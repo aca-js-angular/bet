@@ -7,14 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'bet';
-  loginStateBool: boolean | null = null;
-
-  signIn() {
-    this.loginStateBool = true;
-  }
-
-  signUp() {
-    this.loginStateBool = false;
-  }
-
 }
