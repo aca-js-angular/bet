@@ -1,3 +1,46 @@
-<p>
-  log-in works!
-</p>
+<form [formGroup]="logForm" (ngSubmit)="login()">
+
+  <div *ngIf="!forgotPassword">
+    <h5>Login Your accaunt</h5>
+    <div id="mailInput"><input type="mail" formControlName="mail" placeholder="mail"></div>
+    <div id="passwordInput"><input type="password" formControlName="password" placeholder="password"></div>
+    <button type="submit" [disabled]="!logForm.valid">Sign in</button>
+    <u (click)="inputsTogling()" id="frgotPasword">Forgot Your Password?</u>
+    <a href="" id="goToReg"> Don't have an account? Sign up!</a>
+    <div [@stateAnimation]="start" *ngIf="errorMessage">{{errorMessage}}</div>
+  </div>
+
+  <div [@stateAnimation]="start" *ngIf="password.invalid && (password.dirty || password.touched)">
+      <div [@stateAnimation]="start" *ngIf="password.errors.required">
+          password is required.
+        </div>
+        <div [@stateAnimation]="start" *ngIf="password.errors.minlength">
+            password must be at least 4 characters long.
+          </div>
+      </div>  
+     
+
+  <!-- Forgot Password sxmeluc esa bacvelu -->
+
+  <div *ngIf="forgotPassword">
+    <div id="mailInput"><input type="mail" formControlName="mail" placeholder="mail"></div>
+    <button  (click)="resetPassword()" [disabled]="!mail.valid">Reset Password</button>
+    <div [@stateAnimation]="start" *ngIf="errorMessage">{{errorMessage}}</div>
+    
+  </div>
+
+  <div [@stateAnimation]="start" *ngIf="mail.invalid && (mail.dirty || mail.touched)">
+      <div [@stateAnimation]="start" *ngIf="mail.errors.required">
+          Name is required.
+        </div>
+        <div [@stateAnimation]="start" *ngIf="mail.errors.email">
+            Please enter a valid email address
+          </div>
+      </div>   
+      
+</form>
+
+
+
+
+
