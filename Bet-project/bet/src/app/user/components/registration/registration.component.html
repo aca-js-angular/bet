@@ -1,3 +1,44 @@
-<p>
-  registration works!
-</p>
+<div class="registration">
+
+                                <button class="close" mat-button mat-dialog-close>X</button>
+
+        <p>Register a free account in one easy step!</p>
+        <form [formGroup]="registrForm" (ngSubmit)="onRegistration()">
+                <input type="text" placeholder="First Name" formControlName="firstName" class="inp left"
+                        [ngClass]="{'invalid-border': _firstName.invalid && (_firstName.dirty || _firstName.touched)}">
+
+                <input type="text" placeholder="Last Name" formControlName="lastName" class="inp"
+                        [ngClass]="{'invalid-border': _lastName.invalid && (_lastName.dirty || _lastName.touched)}">
+
+                <input type="text" placeholder="Email Adress" formControlName="email" class="inp left"
+                        [ngClass]="{'invalid-border': _email.invalid && (_email.dirty || _email.touched)}">
+
+                <input type="text" placeholder="Password" formControlName="password" class="inp"
+                        [ngClass]="{'invalid-border': _password.invalid && (_password.dirty || _password.touched)}">
+
+                <re-captcha class="robot left" formControlName="recaptcha"></re-captcha>
+
+                <input type="text" placeholder="Password Confirmation" formControlName="passwordConfirm"
+                        class="inp confirm"
+                        [ngClass]="{'invalid-border': _passwordConfirm.invalid && (_passwordConfirm.dirty || _passwordConfirm.touched)}">
+                <br>
+                <br>
+                <button type="submit" [disabled]="registrForm.invalid">Register</button>
+                <div [@stateAnimation]="start" class="invalid"
+                        *ngIf="(_email.invalid && (_email.dirty || _email.touched)) || ((_firstName.invalid && (_firstName.dirty || _firstName.touched)) || (_lastName.invalid && (_lastName.dirty || _lastName.touched)))">
+                        <span class="email-invalid" *ngIf="_email.invalid && (_email.dirty || _email.touched)">Email
+                                Address should be valid. </span>
+                        <span class="email-invalid"
+                                *ngIf="(_firstName.invalid && (_firstName.dirty || _firstName.touched)) || (_lastName.invalid && (_lastName.dirty || _lastName.touched))">First
+                                name and last name should be at least 2 characters</span>
+                </div>
+                <div [@stateAnimation]="start" class="invalid"
+                        *ngIf="registrForm.errors && registrForm.errors.passwordMatches === false">
+                        <span class="email-invalid">Password doesn't match</span>
+                </div>
+                <div [@stateAnimation]="start" class="invalid"
+                        *ngIf="_password.invalid && (_password.dirty || _password.touched)">
+                        Password should contain at least 8 characters, one uppercase one lowercase, one symbol!
+                </div>
+        </form>
+</div>

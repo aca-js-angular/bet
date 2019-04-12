@@ -14,6 +14,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { Slider } from './user/slider.component';
 import { CommonModule } from '@angular/common';
+import { UserModule } from './user/user.module';
+
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { CommonModule } from '@angular/common';
     AppRoutingModule, 
     MatNativeDateModule,
     ReactiveFormsModule,
+    UserModule
   ],
   entryComponents: [DialogContentExample, DialogContentExampleDialog],
   providers: [],

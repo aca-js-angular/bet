@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 import {MatDialog, MatDialogConfig} from '@angular/material';
+import { LogInComponent } from './components/log-in/log-in.component';
+import { RegistrationComponent } from './components/registration/registration.component';
 
 
 
@@ -11,10 +13,19 @@ import {MatDialog, MatDialogConfig} from '@angular/material';
 export class DialogContentExample {
   constructor(public dialog: MatDialog,){}
 
-  openDialog() {
+  openRegistration() {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    const dialogRef = this.dialog.open(DialogContentExampleDialog,dialogConfig);
+    dialogConfig.disableClose = false;
+    const dialogRef = this.dialog.open(RegistrationComponent,dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+  
+  openSignIn() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    const dialogRef = this.dialog.open(LogInComponent,dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
