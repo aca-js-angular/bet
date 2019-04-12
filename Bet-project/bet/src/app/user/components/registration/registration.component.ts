@@ -17,7 +17,7 @@ import { customValidators } from './customValidators/customValidators';
         animate('0.3s', style({ height: '*', width: '*', 'font-size': '18px' }))
       ]),
       transition(':leave', [
-        animate('0.3s ease-out', style({ transform: 'scale(0)' }))
+        animate('0.3s ease-out', style({ transform: 'scale(0)', height: 0 }))
       ]),
     ])
   ]

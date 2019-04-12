@@ -1,13 +1,29 @@
 .registration { 
-    width: 800px;
+    width: 720px;
     // height: 420px;
     border: 1px solid black;
     margin: 0 auto;
+    padding: 70px 40px;
 }
 
 p {
     text-align: center;
     font-size: 27px;
+    margin-top: 0;
+}
+
+.left {
+    margin-right: 24px;
+}
+
+.close {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border: 1px solid #707070;
+    position: relative;
+    top: -62px;
+    left: 728px;
 }
 
 .inp {
@@ -26,7 +42,6 @@ button {
     width: 344px;
     height: 46px;
     margin-left: 214px;
-    margin-bottom: 30px;
 }
 
 .robot {
@@ -40,9 +55,10 @@ button {
     top: 2px;
 }
 
-.left {
-    margin-left: 40px;
-    margin-right: 24px;
+.confirm {
+    position: relative;
+    top: -47px;
+    left: 10px;
 }
 
 .text {
