@@ -1,3 +1,18 @@
-
-
-<router-outlet></router-outlet>
+<div class="body">
+    <div class="header">
+        <div class="link">
+            <button class="logo">LOGO</button>
+            <div>
+                <a [routerLink]="['']">In play</a>
+                <a [routerLink]="['']">Todays Games</a>
+                <a [routerLink]="['']">Results</a>
+            </div>
+        </div>
+        <div class="dialog">
+            <dialog-content-example></dialog-content-example>
+        </div>
+    </div>
+    <div>
+        <slider></slider>
+    </div>
+</div>

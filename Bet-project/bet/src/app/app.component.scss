@@ -1,5 +1,39 @@
-header {
-    width: 1920px;
+.header {
+    width: 99.9%;
     height: 100px;
-    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.dialog {
+    display: flex;
+    width: 120px;
+    height: 60px;
+    align-items: flex-end;
+    margin-right: 176px;
+    dialog-content-example{
+        display: flex;
+    }
+}
+.logo {
+    margin-left: 40px;
+    padding: 0px;
+    border: 0px;
+    width: 100px;
+    height: 40px;
+}
+.link{
+    display: flex;
+    align-items: center;
+    div {
+       width: 250px;
+       margin-left: 10px;
+       display: flex;
+       justify-content: space-evenly;
+       a {
+          font-family: "Helvetica Neue, Regular";
+          font-size: 18px;
+          color: black
+      }
+   }
 }
