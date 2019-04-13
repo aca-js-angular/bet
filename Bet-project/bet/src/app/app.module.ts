@@ -15,6 +15,7 @@ import { NgImageSliderModule } from 'ng-image-slider';
 import { Slider } from './user/slider.component';
 import { CommonModule } from '@angular/common';
 import { UserModule } from './user/user.module';
+import { GamesModule } from './games/games.module';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { UserModule } from './user/user.module';
     AppRoutingModule, 
     MatNativeDateModule,
     ReactiveFormsModule,
-    UserModule
+    UserModule,
+    GamesModule
   ],
   entryComponents: [DialogContentExample, DialogContentExampleDialog],
   providers: [],
