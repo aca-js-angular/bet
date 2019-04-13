@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { LogInService } from '../../services/log-in.service';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { DialogContentExample } from '../../popup/dialog-content-example';
+import { PopupService } from '../../services/popup.service';
 
 @Component({
   selector: 'app-log-in',
@@ -25,7 +26,7 @@ export class LogInComponent implements OnInit {
   forgotPassword: boolean = false;
   errorMessage: string = '';
 
-  constructor(private loginForm: FormBuilder, private autorization: LogInService,) { }
+  constructor(private loginForm: FormBuilder, private autorization: LogInService, private popup:PopupService) { }
   logForm = this.loginForm.group({
     mail: ['', [Validators.email, Validators.required]],
     password: ['', [Validators.required, Validators.minLength(4)]],
@@ -38,7 +39,7 @@ export class LogInComponent implements OnInit {
     
     this.autorization.doLogin(this.logForm.value.mail, this.logForm.value.password).
       subscribe(
-        (res) => { console.log(res), this.errorMessage = '' },///t4isht login lneluc pti gna homepage et yuserov
+        (res) => { this.popup._closePopup(), this.errorMessage = '' },///t4isht login lneluc pti gna homepage et yuserov
         (error) => { console.log(error), this.errorMessage = 'The Username or Password are Invalid' }
       )
   }
@@ -50,11 +51,10 @@ export class LogInComponent implements OnInit {
   }
 
 
-
   resetPassword() {
     this.errorMessage = '';
     this.autorization.resetPassword(this.logForm.value.mail).subscribe(
-      (res) => { console.log(res), this.errorMessage = '' },///t4isht login lneluc pti gna homepage et yuserov
+      (res) => { this.popup._closePopup(), this.errorMessage = '' },///t4isht login lneluc pti gna homepage et yuserov
       (error) => { console.log(error), this.errorMessage = 'Invalid Email Address' }
     )
   }

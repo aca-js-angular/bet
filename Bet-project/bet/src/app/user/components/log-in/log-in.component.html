@@ -40,7 +40,7 @@
     <div *ngIf="forgotPassword">
       <div class="frgpassword">Forgot Your Password?</div>
       <div><input class="frgInput" type="mail" formControlName="mail" placeholder="mail"></div>
-      <button (click)="resetPassword()" [disabled]="!mail.valid">Reset Password</button>
+      <button (click)="resetPassword()" type="button" [disabled]="!mail.valid">Reset Password</button>
       <div class="errorr" [@stateAnimation]="start" *ngIf="errorMessage">{{errorMessage}}</div>
 
 

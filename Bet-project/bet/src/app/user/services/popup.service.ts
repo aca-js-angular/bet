@@ -27,5 +27,9 @@ export class PopupService {
       console.log(`Dialog result: ${result}`);
     });
   }
-
+  _closePopup(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    this.dialog.closeAll();    
+  };
 }

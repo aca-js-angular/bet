@@ -9,7 +9,8 @@
             </div>
         </div>
         <div class="dialog">
-            <dialog-content-example></dialog-content-example>
+            <dialog-content-example *ngIf="!auth.isLogged"></dialog-content-example>
+            <button (click)="logOut()" *ngIf="auth.isLogged">Log Out</button>
         </div>
     </div>
     <div>

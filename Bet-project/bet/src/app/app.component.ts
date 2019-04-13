@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthentificationService } from './user/services/authentification.service';
+import { auth } from 'firebase';
 
 @Component({
   selector: 'app-root',
@@ -6,10 +8,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
-  constructor(){ }
- 
-  title = 'bet';
-
   
+  constructor(private auth:AuthentificationService){
+    this.auth.checkAuthState();
+   }
+   logOut(){
+     this.auth.logOut();
+   }
 }
