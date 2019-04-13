@@ -10,7 +10,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 
 import { UserRoutingModule } from './user-routing.module';
 import { RecaptchaDirective } from './directives/recaptcha.directive';
-import { MaterialModule } from './material.module';
+import { MaterialModule } from './popup/material.module';
 
 @NgModule({
   imports: [
@@ -30,6 +30,6 @@ import { MaterialModule } from './material.module';
       useValue: { siteKey: '6LddwJ0UAAAAADVcYu3ruf8qVmL8uCP3adQ-Xw3h' } as RecaptchaSettings,
     },
   ],
-  exports: [LogInComponent,RegistrationComponent]
+  exports: [LogInComponent,RegistrationComponent],
 })
 export class UserModule { }

@@ -19,4 +19,22 @@ input.ng-valid {
   input.ng-pristine{
     border-left: 5px solid #42A948;
   }
+
+  .close {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border: 1px solid #707070;
+    position: relative;
+    top: -62px;
+    left: 728px;
+}
+
+
+.mat-button {
+  margin-left: 0;
+  min-width: auto;
+  line-height: 0;
+  padding: 0;
+}
   

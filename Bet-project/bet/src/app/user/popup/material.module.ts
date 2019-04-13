@@ -21,8 +21,8 @@ import {
   MatToolbarModule,
   MatTooltipModule,
 } from '@angular/material';
-import { LogInComponent } from './components/log-in/log-in.component';
-import { RegistrationComponent } from './components/registration/registration.component';
+import { LogInComponent } from '../components/log-in/log-in.component';
+import { RegistrationComponent } from '../components/registration/registration.component';
   
 @NgModule({
   exports: [
