@@ -1,13 +1,100 @@
+.header{
+  text-align: center;
+  font-size: 27px;
+  margin-top: 0;
+  width: 238px;
+  height: 28px;
+  margin-left: 130px;
+  margin-right: 132px;
+  margin-bottom: 24px;
+  font-family: Helvetica, Neue, Regular;
+  
+}
+
+.closeButton{
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 1px solid #707070;
+  position: relative;
+  left: 402px;
+  padding: 0;
+}
+
+.mat-button {
+    margin-left: 0;
+    min-width: auto;
+    line-height: 0;
+    padding: 0;
+}
+
+.inputsDiv3{
+  display: flex;
+  flex-direction: column;
+
+    input, button{
+      width: 420px;
+      height: 50px;
+      margin-bottom: 18px;
+    }  
+}
+.checkButton{
+  width: 420px;
+  margin-bottom: 24px;
+  u{
+  display: inline;
+  margin-left: 156px;
+}
+}
+.gotoReg{
+  width: 350px;
+  font-size: 24px;
+  color: #002EED;
+  margin-left: 73px;
+}
+
+.errorr{
+  
+  width: 410px;
+  border: 1px solid #FF0000;
+  border-left: 6px solid #F87474;
+  background-color: #FFEAEA;
+  color: #F87474;
+  margin: 0 auto;
+  margin-top: 24px;
+  padding-top: 17px;
+  padding-bottom: 14px;
+  padding-left: 14px;
+  border-radius: 3px;
+  font-size: 18px;
+  margin-left: 0px;
+}
+
+.frgpassword{
+  font-size: 22px;
+  text-align: center;
+  
+  
+  width: 238px;
+  height: 28px;
+  margin-left: 130px;
+  margin-right: 132px;
+  margin-bottom: 24px;
+  font-family: Helvetica, Neue, Regular;
+}
+.frgInput{
+  width: 420px;
+  height: 50px;
+  margin-bottom: 18px;
+}
+
+
+// .....................
 form{
     width: 500px;
     height: 548px;
 }
-#frgotPasword{
-    display: block;
-}
-#goToReg{
-    display: block;
-}
+
 
 input.ng-valid {
     border-left: 5px solid #42A948; /* green */
@@ -20,21 +107,5 @@ input.ng-valid {
     border-left: 5px solid #42A948;
   }
 
-  .close {
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    border: 1px solid #707070;
-    position: relative;
-    top: -62px;
-    left: 728px;
-}
 
-
-.mat-button {
-  margin-left: 0;
-  min-width: auto;
-  line-height: 0;
-  padding: 0;
-}
   

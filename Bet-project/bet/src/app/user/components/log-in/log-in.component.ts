@@ -28,7 +28,7 @@ export class LogInComponent implements OnInit {
   constructor(private loginForm: FormBuilder, private autorization: LogInService,) { }
   logForm = this.loginForm.group({
     mail: ['', [Validators.email, Validators.required]],
-    password: ['', [Validators.required, Validators.minLength(2)]],
+    password: ['', [Validators.required, Validators.minLength(4)]],
   })
 
   get mail() { return this.logForm.get('mail'); }
@@ -55,7 +55,7 @@ export class LogInComponent implements OnInit {
     this.errorMessage = '';
     this.autorization.resetPassword(this.logForm.value.mail).subscribe(
       (res) => { console.log(res), this.errorMessage = '' },///t4isht login lneluc pti gna homepage et yuserov
-      (error) => { console.log(error), this.errorMessage = 'The Username or Password are Invalid' }
+      (error) => { console.log(error), this.errorMessage = 'Invalid Email Address' }
     )
   }
 
