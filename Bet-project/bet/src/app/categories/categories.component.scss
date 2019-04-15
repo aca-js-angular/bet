@@ -1,0 +1,29 @@
+.categories {
+    display: flex;
+    div{
+        border: 1px solid grey;
+        width: 192px;
+        height: 180px;
+    } 
+    .logo {
+        width: 80px;
+        height: 80px;
+        border: 1px solid grey;
+        border-radius: 40px;
+        margin: 24px auto 0;
+    }
+    p {
+        display: flex;
+        justify-content: center;
+        font-family: "Helvetica Neue, Regular";
+        font-size: 18px;
+        margin-bottom: 0;
+    }
+    span{
+        display: flex;
+        justify-content: center;
+        font-family: "Helvetica Neue, Regular";
+        font-size: 19px;
+    }
+}
+

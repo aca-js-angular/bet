@@ -7,7 +7,7 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './user/popup/material.module';
-import { DialogContentExample, DialogContentExampleDialog } from './user/popup/dialog-content-example';
+import { DialogContentExample } from './user/popup/dialog-content-example';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatNativeDateModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -15,11 +15,11 @@ import { NgImageSliderModule } from 'ng-image-slider';
 import { Slider } from './user/slider.component';
 import { CommonModule } from '@angular/common';
 import { UserModule } from './user/user.module';
-
+import { CategoriesComponent } from './categories/categories.component';
 
 @NgModule({
   declarations: [
-    AppComponent,DialogContentExample, DialogContentExampleDialog,Slider
+    AppComponent,DialogContentExample,Slider, CategoriesComponent
   ],
   imports: [
     BrowserModule,BrowserAnimationsModule,
@@ -34,7 +34,7 @@ import { UserModule } from './user/user.module';
     ReactiveFormsModule,
     UserModule
   ],
-  entryComponents: [DialogContentExample, DialogContentExampleDialog],
+  entryComponents: [DialogContentExample],
   providers: [],
   bootstrap: [AppComponent]
 })

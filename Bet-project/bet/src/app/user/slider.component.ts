@@ -1,11 +1,12 @@
 import { NgImageSliderComponent } from 'ng-image-slider';
-import { Component, ViewChild, Input } from '@angular/core';
+import { Component, ViewChild,  } from '@angular/core';
  
 @Component({
     selector: 'slider',
         template:`
-        <ng-image-slider [images]="imageObject" [imageSize]="{width: 1370, height: 400}"  #nav>
-        </ng-image-slider>`
+         <ng-image-slider [images]="imageObject" [imageSize]="{width: 1920, height: 400}" #nav>
+        </ng-image-slider> `,
+        // styleUrls: ['slider.component.scss'],
 })
 export class Slider {
     @ViewChild('nav') slider: NgImageSliderComponent;
