@@ -1,0 +1,14 @@
+<div class="catBody">
+  <div class="categories">
+    <div *ngFor="let cat of categories">
+      <div>
+      <div class="logo"></div>
+      <p (click)="showGames(cat.id)">{{cat.name}}</p>
+    </div>
+    </div>
+  </div>
+  <div id="date">
+      <app-calendar></app-calendar>
+  </div>
+</div>
+<games [games]="games"></games>

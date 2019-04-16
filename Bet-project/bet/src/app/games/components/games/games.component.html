@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="header">
+        <a href="">
+            <p>Home</p>
+        </a>
+        <a href="">
+            <p>Home</p>
+        </a>
+        <a href="">
+            <p>Home</p>
+        </a>
+        <a href="">
+            <p>Home</p>
+        </a>
+    </div>
+    <div class="select">
+        <select>
+            <option value="values"></option>
+        </select>
+        <select>
+            <option value="values"></option>
+        </select>
+    </div>
+    <div class="games" *ngFor="let game of games">
+        <div class="logo"></div>
+        <div class="game">
+            <div>
+                <p>{{game.t1}}</p>
+                <p>{{game.t2}}</p>
+            </div>
+            <div>
+                <p>Today</p>
+                <p>{{game.start_time.seconds | date:"h:mm"}}</p>
+            </div>
+
+        </div>
+        <div class="bet">
+            <div>
+                <div>
+                <p>{{game.t1}}</p>
+                <p>{{game.odds.team_1}}</p>
+            </div>
+            </div>
+            <div>
+                <div>
+                <p>X</p>
+                <p>{{game.odds.draw}}</p>
+            </div>
+            </div>
+            <div>
+                <div>
+                <p>{{game.t2}}</p>
+                <p>{{game.odds.team_2}}</p>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>

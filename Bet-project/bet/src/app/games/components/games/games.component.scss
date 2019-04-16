@@ -1,0 +1,78 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid grey;
+    width: 960px;
+    .header{
+        display: flex;
+        flex-direction: row;
+        height: 60px;
+        width: 40%;
+        font-size: 18px;
+        margin-top:24px;
+        justify-content: space-evenly;
+        font-family: "Helvetica Neue, Regular";
+    }
+    .select {
+        display: flex;
+        justify-content: space-evenly;
+        margin-top:24px;
+        select{
+            height: 60px;
+            width: 46.5%;
+        }
+    }
+    .games{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 912px;
+        height: 83px;
+        margin: 24px auto 0;
+        .logo{
+            width: 66px;
+            height: 56px;
+            border: 1px solid grey;
+            border-radius: 70px;
+            margin-right: 10px;
+        }
+        .game{
+            display: flex;
+            width: 451px;
+            justify-content: space-between;
+            align-items: center;
+             height: 52px;
+            border: 1px solid grey;
+            border-top: none;
+            border-bottom: none;
+            padding: 10px;
+        }
+        .bet{
+            display: flex;
+            flex-direction: row;
+            width: 461px;
+            margin-left: 8px;
+            div{
+                flex-direction: column;
+                height: 52px;
+                width: 146px;
+                border-radius: 4px 4px 4px 4px;
+                border: 1px solid grey;
+                display: flex;
+                margin-right: 8px;
+                div{
+                    justify-content: center;
+                    p{
+                        margin:0;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                    }
+                }
+            }
+            :last-child{
+                margin-right: 0;
+            }
+        }
+    }
+}

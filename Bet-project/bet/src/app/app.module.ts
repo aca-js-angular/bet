@@ -15,24 +15,27 @@ import { NgImageSliderModule } from 'ng-image-slider';
 import { Slider } from './user/slider.component';
 import { CommonModule } from '@angular/common';
 import { UserModule } from './user/user.module';
-import { CategoriesComponent } from './categories/categories.component';
+import { GamesModule } from './games/games.module';
+import { CategoriesComponent } from './games/categories/categories.component';
 
 @NgModule({
   declarations: [
-    AppComponent,DialogContentExample,Slider, CategoriesComponent
+    AppComponent,DialogContentExample,Slider, CategoriesComponent,
   ],
   imports: [
     BrowserModule,BrowserAnimationsModule,
     MaterialModule,
     NgImageSliderModule,
     CommonModule,
+    FormsModule,
     AngularFireModule.initializeApp(environment.firebase), // imports firebase/app needed for everything
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AppRoutingModule, 
     MatNativeDateModule,
     ReactiveFormsModule,
-    UserModule
+    UserModule,
+    GamesModule
   ],
   entryComponents: [DialogContentExample],
   providers: [],

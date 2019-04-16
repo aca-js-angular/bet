@@ -4,9 +4,9 @@ import { Component, ViewChild,  } from '@angular/core';
 @Component({
     selector: 'slider',
         template:`
-         <ng-image-slider [images]="imageObject" [imageSize]="{width: 1920, height: 400}" #nav>
+         <ng-image-slider [images]="imageObject" [imageSize]="{ width: 1920 ,height: 400}" #nav>
         </ng-image-slider> `,
-        // styleUrls: ['slider.component.scss'],
+        styles: ['#nav { margin-left: 0;width: 100% }']
 })
 export class Slider {
     @ViewChild('nav') slider: NgImageSliderComponent;
