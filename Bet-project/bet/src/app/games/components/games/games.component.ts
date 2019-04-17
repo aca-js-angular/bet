@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { CategoriesService } from '../../categories/service/categories.service';
+import { CategoriesService } from '../../services/categories.service';
 
 @Component({
   selector: 'games',

@@ -1,13 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CalendarComponent } from './components/calendar/calendar.component';
 
-// const routes: Routes = [
-//   { path: 'calendar', component: CalendarComponent },
-// ];
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { GamesComponent } from './components/games/games.component';
+
+const routes: Routes = [
+  // { path: 'calendar', component: CalendarComponent },
+  {path: '', redirectTo: 'games', pathMatch: 'full'},
+  {path: 'games', component: GamesComponent},
+  {path: 'games/:category', component: GamesComponent},
+];
 
 @NgModule({
-  // imports: [RouterModule.forChild(routes)],
-  // exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
 export class GamesRoutingModule { }

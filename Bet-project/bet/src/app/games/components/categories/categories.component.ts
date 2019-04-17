@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { CategoriesService } from './service/categories.service';
+import { CategoriesService } from '../../services/categories.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-categories',
@@ -18,6 +19,7 @@ export class CategoriesComponent {
   constructor(
     private db: AngularFirestore,
     private category: CategoriesService,
+    private route: Router
   ) {
     this.db.collection("categories").snapshotChanges().subscribe((cat) => {
       return cat.forEach((c) => {
@@ -28,11 +30,13 @@ export class CategoriesComponent {
     });
   };
 
-
-  showGames(itemId: string) {
+  showGames(categoryId: string) {
     this.clickChange.emit(this.games);
-     this.games = this.category.showGame(itemId);
-     console.log(this.games);
+    this.category.showGame(categoryId).then(res => {
+      this.route.navigate([`games/${categoryId}`]);
+      this.games = res;
+      console.log(res);
+    });
   };
- 
+
 }

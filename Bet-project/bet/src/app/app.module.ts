@@ -16,7 +16,7 @@ import { Slider } from './user/slider.component';
 import { CommonModule } from '@angular/common';
 import { UserModule } from './user/user.module';
 import { GamesModule } from './games/games.module';
-import { CategoriesComponent } from './games/categories/categories.component';
+import { CategoriesComponent } from './games/components/categories/categories.component';
 
 @NgModule({
   declarations: [
