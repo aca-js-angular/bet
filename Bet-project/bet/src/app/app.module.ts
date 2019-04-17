@@ -28,9 +28,10 @@ import { CategoriesComponent } from './games/categories/categories.component';
     NgImageSliderModule,
     CommonModule,
     FormsModule,
-    AngularFireModule.initializeApp(environment.firebase), // imports firebase/app needed for everything
-    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
-    AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
+    AngularFireModule.initializeApp(environment.firebase), 
+    AngularFirestoreModule.enablePersistence(),
+    AngularFirestoreModule, 
+    AngularFireAuthModule,
     AppRoutingModule, 
     MatNativeDateModule,
     ReactiveFormsModule,

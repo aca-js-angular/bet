@@ -12,20 +12,20 @@ export class CategoriesComponent {
 
   categories: Array<Object> = []
 
-  @Output() public games: Array<Object> = [];
+  @Output() public games: any = [];
   @Output() clickChange: EventEmitter<Array<Object>> = new EventEmitter();
 
   constructor(
     private db: AngularFirestore,
-    private category: CategoriesService
+    private category: CategoriesService,
   ) {
     this.db.collection("categories").snapshotChanges().subscribe((cat) => {
       return cat.forEach((c) => {
         const data = c.payload.doc.data()
         const id = c.payload.doc.id;
         return this.categories.push({ id, ...data })
-      })
-    })
+      });
+    });
   };
 
 

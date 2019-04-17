@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { CategoriesService } from '../../categories/service/categories.service';
 
 @Component({
   selector: 'games',
@@ -8,7 +9,9 @@ import { Component, Input } from '@angular/core';
 
 export class GamesComponent {
   @Input() games: any;
-  constructor() 
+
+  
+  constructor(private cat:CategoriesService) 
   {
   }
   
