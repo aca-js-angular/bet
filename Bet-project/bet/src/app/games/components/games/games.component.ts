@@ -12,18 +12,18 @@ import { Game } from '../../interfaces/game';
   styleUrls: ['./games.component.scss']
 })
 
-export class GamesComponent implements OnInit{
-  
+export class GamesComponent implements OnInit {
+
   categories: Array<Object> = []
   allGames: Array<Game> = [];
   filteredGames: Array<Game> = [];
-  
+
   constructor(private afs: AngularFirestore,
     private category: CategoriesService,
     private router: Router,
     private activeRoute: ActivatedRoute) {
     this.afs.firestore.disableNetwork();
-    
+
 
   }
 
@@ -32,19 +32,17 @@ export class GamesComponent implements OnInit{
     this.category.getAllGames().then(res => {
       this.categories = res[2];
       this.allGames = res[0];
+      console.log(res)
       this.activeRoute.params.subscribe(params => {
-        if(params.category) {
+        if (params.category) {
           this.filteredGames = this.category.filterGamesWithCategory(params.category, this.allGames);
         }
       })
+
     })
-
-    
-
   }
-
   showGames(categoryName) {
     this.router.navigate([`home/${categoryName}`]);
   };
-  
+
 }

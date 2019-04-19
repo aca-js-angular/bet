@@ -10,6 +10,7 @@ export class AppComponent {
   
   constructor(private auth:AuthentificationService){
     this.auth.checkAuthState();
+    
    }
    logOut(){
      this.auth.logOut();

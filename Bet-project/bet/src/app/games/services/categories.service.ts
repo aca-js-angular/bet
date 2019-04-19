@@ -11,7 +11,7 @@ import { Game } from '../interfaces/game';
 export class CategoriesService {
 
   constructor(private db: AngularFirestore, private router: Router) {
-    this.db.firestore.disableNetwork()
+   this.db.firestore.disableNetwork()
    }
 
   filterGamesWithCategory(categoryName: string, filteredGames: Array<Game>) {
