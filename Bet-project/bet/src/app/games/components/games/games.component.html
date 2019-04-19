@@ -1,3 +1,17 @@
+<div class="catBody">
+    <div class="categories">
+        <div *ngFor="let cat of categories">
+            <div>
+                <div class="logo"></div>
+                <p (click)="showGames(category.innerHTML)" #category>{{cat.name}}</p>
+            </div>
+        </div>
+    </div>
+    <div id="date">
+        <app-calendar></app-calendar>
+    </div>
+</div>
+
 <div class="container">
     <div class="header">
         <a href="">
@@ -21,12 +35,12 @@
             <option value="values"></option>
         </select>
     </div>
-    <div class="games" *ngFor="let game of games">
+    <div class="games" *ngFor="let game of filteredGames | dates">
         <div class="logo"></div>
         <div class="game">
             <div>
-                <p>{{game.t1}}</p>
-                <p>{{game.t2}}</p>
+                <p>{{game.team1}}</p>
+                <p>{{game.team2}}</p>
             </div>
             <div>
                 <p>Today</p>
@@ -37,21 +51,21 @@
         <div class="bet">
             <div>
                 <div>
-                <p>{{game.t1}}</p>
-                <p>{{game.odds.team_1}}</p>
-            </div>
-            </div>
-            <div>
-                <div>
-                <p>X</p>
-                <p>{{game.odds.draw}}</p>
-            </div>
+                    <p>{{game.team1}}</p>
+                    <p>{{game.odds.team_1}}</p>
+                </div>
             </div>
             <div>
                 <div>
-                <p>{{game.t2}}</p>
-                <p>{{game.odds.team_2}}</p>
+                    <p>X</p>
+                    <p>{{game.odds.draw}}</p>
+                </div>
             </div>
+            <div>
+                <div>
+                    <p>{{game.team2}}</p>
+                    <p>{{game.odds.team_2}}</p>
+                </div>
             </div>
         </div>
     </div>

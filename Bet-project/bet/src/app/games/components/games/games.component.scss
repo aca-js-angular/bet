@@ -76,3 +76,44 @@
         }
     }
 }
+
+.catBody{
+    display: flex;
+}
+.categories {
+    display: flex;
+    div{
+        border: 1px solid grey;
+        width: 96px;
+        height: 180px;
+        border-right: none;
+    } 
+    .logo {
+        width: 80px;
+        height: 80px;
+        border: 1px solid grey;
+        border-radius: 40px;
+        margin: 24px auto 0;
+    }
+    p {
+        display: flex;
+        justify-content: center;
+        font-family: "Helvetica Neue, Regular";
+        font-size: 18px;
+        margin-bottom: 0;
+        cursor: pointer;
+    }
+    // span{
+    //     display: flex;
+    //     justify-content: center;
+    //     font-family: "Helvetica Neue, Regular";
+    //     font-size: 19px;
+    // }
+}
+ #date{
+    display: flex;
+    justify-content: center;
+    width: 576px;
+    align-items: center;
+}
+

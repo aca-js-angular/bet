@@ -6,9 +6,9 @@ import { GamesComponent } from './components/games/games.component';
 
 const routes: Routes = [
   // { path: 'calendar', component: CalendarComponent },
-  {path: '', redirectTo: 'games', pathMatch: 'full'},
-  {path: 'games', component: GamesComponent},
-  {path: 'games/:category', component: GamesComponent},
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: 'home', component: GamesComponent},
+  {path: 'home/:category', component: GamesComponent},
 ];
 
 @NgModule({

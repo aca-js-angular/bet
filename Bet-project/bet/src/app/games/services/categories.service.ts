@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
+
 import { Game } from '../interfaces/game';
 
 @Injectable({
@@ -8,70 +10,115 @@ import { Game } from '../interfaces/game';
 
 export class CategoriesService {
 
-  constructor(private db: AngularFirestore) { }
+  constructor(private db: AngularFirestore, private router: Router) {
+    this.db.firestore.disableNetwork()
+   }
 
-  showGame(categoryId: string) {
-    return new Promise<Array<Game>>(resolve => {
-      let games: Array<Game> = [];
-      this.db.collection("games").snapshotChanges().subscribe(allGames => {
-        allGames.filter((game: any) => {
-          return game.payload.doc.data().category === categoryId;
-        }).forEach((game: any) => {
-          let data = game.payload.doc.data();
-
-          this.db.collection("teams").doc(game.payload.doc.data().team_1).valueChanges().subscribe((name: any) => {
-            data.t1 = name.name
-          });
-
-          this.db.collection("teams").doc(game.payload.doc.data().team_2).valueChanges().subscribe((name: any) => {
-            data.t2 = name.name;
-          })
-
-          games.push(data);
-        });
-        resolve(games);
-      });
+  filterGamesWithCategory(categoryName: string, filteredGames: Array<Game>) {
+    // console.log(filteredGames);
+    
+    filteredGames = filteredGames.filter(game => {
+      return game.categoryName === categoryName;
     })
-
+    return filteredGames;
+    
   };
 
+  getAllGames(): Promise<Array<any>> {
 
-  /* getAllGames() {
-    return new Promise<Array<Game>>(resolve => {
-      let games: Array<any> = [];
-      this.db.collection('games').snapshotChanges().subscribe(ress => {
-        ress.forEach(game => {
-          let _game = game.payload.doc.data()
-          this.db.collection('categories').doc(game.payload.doc.data()['category']).valueChanges().subscribe(res => {
+    return new Promise(resolve => {
 
-            _game['categoryName'] = res['name'];
+      let games: Array<Array<any>> = [];
+      this.db.collection('games').valueChanges().subscribe(res => {
 
-            this.db.collection('teams').doc(game.payload.doc.data()['team_1']).valueChanges().subscribe(res => {
+        games.push(res);
 
-              _game['t1'] = res['name'];
+        this.db.collection('teams').snapshotChanges().subscribe(res => {
+          games.push(res);
+          games[1].forEach((game, ind) => {
 
-              this.db.collection('teams').doc(game.payload.doc.data()['team_2']).valueChanges().subscribe(res => {
+            let key = game.payload.doc.id;
+            let value = game.payload.doc.data().name;
+            games[1][ind] = {
+              id: key,
+              name: value
+            };
 
-                _game['t2'] = res['name'];
-                games.push(_game);
-                if (games.length === ress.length) {
-                  resolve(games);
-                  
-                }
-              })
+
+          })
+
+          this.db.collection('categories').snapshotChanges().subscribe(res => {
+
+            games.push(res);
+            games[2].forEach((game, ind) => {
+
+              let key = game.payload.doc.id;
+              let value = game.payload.doc.data().name;
+              games[2][ind] = {
+                id: key,
+                name: value
+              };
 
             })
 
+            this.db.collection('subcategories').snapshotChanges().subscribe(res => {
+
+              games.push(res);
+              games[3].forEach((game, ind) => {
+  
+                let key = game.payload.doc.id;
+                let value = game.payload.doc.data().name;
+                games[3][ind] = {
+                  id: key,
+                  name: value
+                };
+  
+              })
+              
+              games[0].forEach(game => {
+
+                games[1].forEach(team => {
+
+                  if(game.team_1 === team.id) {
+                    game.team1 = team.name
+                  } else if(game.team_2 === team.id) {
+                    game.team2 = team.name;
+                  }
+                })
+
+                games[2].forEach(cat => {
+
+                  if(game.category === cat.id) {
+                    game.categoryName = cat.name;
+                  }
+
+                })
+
+                games[3].forEach(subCat => {
+
+                  if(game.type === subCat.id) {
+                    game.subCategory = subCat.name;
+                    
+                  }
+
+                })
+
+              })
+
+              resolve(games);
+
+            })
+
+            
           })
 
-
-
-
+          
 
         })
 
       })
 
     })
-  } */
+
+  }
 }
