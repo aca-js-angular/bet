@@ -17,12 +17,14 @@ export class GamesComponent implements OnInit {
   categories: Array<Object> = []
   allGames: Array<Game> = [];
   filteredGames: Array<Game> = [];
+  
+  availableGames: string = "upcomingGames";
 
   constructor(private afs: AngularFirestore,
     private category: CategoriesService,
     private router: Router,
     private activeRoute: ActivatedRoute) {
-    this.afs.firestore.disableNetwork();
+     this.afs.firestore.disableNetwork();
 
 
   }
