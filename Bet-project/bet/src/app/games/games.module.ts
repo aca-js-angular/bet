@@ -5,9 +5,11 @@ import { GamesComponent } from './components/games/games.component';
 import { XunkCalendarModule } from './xunk-calendar/xunk-calendar.module';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { FormsModule } from '@angular/forms';
+import { CategoryPipe }   from './Pipes/games-filter.pipe';
+import { DateFilterPipe } from './Pipes/date-filter.pipe';
 
 @NgModule({
-  declarations: [CalendarComponent, GamesComponent],
+  declarations: [CalendarComponent, GamesComponent, CategoryPipe, DateFilterPipe ],
   imports: [
     CommonModule,
     GamesRoutingModule,
