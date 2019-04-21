@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
 
-
 import { CategoriesService } from '../../services/categories.service';
 import { Game } from '../../interfaces/game';
 
@@ -17,34 +16,49 @@ export class GamesComponent implements OnInit{
   categories: Array<Object> = []
   allGames: Array<Game> = [];
   filteredGames: Array<Game> = [];
+  allSubCategories: Array<object> = [];
+  filteredSubCategories: Array<any> = [];
   
   constructor(private afs: AngularFirestore,
-    private category: CategoriesService,
+    private categoryService: CategoriesService,
     private router: Router,
     private activeRoute: ActivatedRoute) {
-    this.afs.firestore.disableNetwork();
-    
-
+      this.afs.firestore.disableNetwork();
   }
 
   ngOnInit() {
 
-    this.category.getAllGames().then(res => {
+    this.categoryService.getAllGames().then(res => {
       this.categories = res[2];
       this.allGames = res[0];
+      this.allSubCategories = res[3];
+      this.allSubCategories.forEach(a => this.filteredSubCategories.push(a['name']));
       this.activeRoute.params.subscribe(params => {
-        if(params.category) {
-          this.filteredGames = this.category.filterGamesWithCategory(params.category, this.allGames);
-        }
-      })
-    })
 
-    
+        if(params.category && !params.subCategory) {
+
+          console.log(1)
+          this.filteredSubCategories = this.categoryService.filterSubCategories(params.category,this.filteredSubCategories,this.categories);
+          this.filteredGames = this.categoryService.filterGamesWithCategory(params.category, this.allGames);
+          
+        }else if(params.category && params.subCategory) {
+
+          this.filteredSubCategories = this.categoryService.filterSubCategories(params.category,this.filteredSubCategories,this.categories);
+          this.filteredGames = this.categoryService.filterWithSubCategories(params.subCategory, this.categories, this.allGames);
+          console.log(this.filteredGames)
+        }
+        
+      })
+    })    
 
   }
 
-  showGames(categoryName) {
+  showGamesWithCategory(categoryName: string) {
     this.router.navigate([`home/${categoryName}`]);
+  };
+
+  showGamesWithSubCategory(subCatName: string) {
+    this.filteredGames = this.categoryService.filterWithSubCategories(subCatName, this.categories, this.allGames)
   };
   
 }

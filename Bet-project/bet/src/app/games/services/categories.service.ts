@@ -10,16 +10,58 @@ import { Game } from '../interfaces/game';
 
 export class CategoriesService {
 
+  allGames: Array<object> = [];
+
   constructor(private db: AngularFirestore, private router: Router) {
     this.db.firestore.disableNetwork()
    }
 
-  filterGamesWithCategory(categoryName: string, filteredGames: Array<Game>) {
-    // console.log(filteredGames);
+  getCategoryOfSubCategory(subCategory: string, categories: Array<object>): string {
+    
+    for(let cat of categories) {
+
+      for(let subCat of cat['subCategories']) {
+
+        if(subCat === subCategory) {
+          return cat['name'];
+        }
+
+      }
+
+    }
+
+  }
+
+  filterWithSubCategories(subCategory: string, categories: Array<object>, allGames: Array<Game>) {
+
+    let category = this.getCategoryOfSubCategory(subCategory, categories);
+    this.router.navigate([`home/${category}/${subCategory}`]);
+    let games = this.filterGamesWithCategory(category, allGames);
+    return games.filter(game => {
+      return game['subCategoryName'] === subCategory; 
+    })
+
+  }
+
+  filterSubCategories(categoryName: string, filteredSubCategories: Array<object>, allCategories: Array<object>):Array<object> {
+
+    for(let cat of allCategories) {
+
+      if(categoryName === cat['name']) {
+        filteredSubCategories = cat['subCategories'];
+        return filteredSubCategories;
+      }
+
+    }
+      
+  }
+
+  filterGamesWithCategory(categoryName: string, filteredGames: Array<Game>): Array<Game> {
     
     filteredGames = filteredGames.filter(game => {
-      return game.categoryName === categoryName;
-    })
+      return game['categoryName'] === categoryName;
+    })  
+
     return filteredGames;
     
   };
@@ -64,16 +106,7 @@ export class CategoriesService {
             this.db.collection('subcategories').snapshotChanges().subscribe(res => {
 
               games.push(res);
-              games[3].forEach((game, ind) => {
-  
-                let key = game.payload.doc.id;
-                let value = game.payload.doc.data().name;
-                games[3][ind] = {
-                  id: key,
-                  name: value
-                };
-  
-              })
+              
               
               games[0].forEach(game => {
 
@@ -94,17 +127,45 @@ export class CategoriesService {
 
                 })
 
-                games[3].forEach(subCat => {
+                res.forEach(subCat => {
 
-                  if(game.type === subCat.id) {
-                    game.subCategory = subCat.name;
-                    
+                  if(game.type === subCat.payload.doc.id) {
+                    game.subCategoryName = subCat.payload.doc.data()['name'];
                   }
 
                 })
 
               })
 
+              games[3].forEach((game, ind) => {
+  
+                let key = game.payload.doc.data()['category'];
+                let value = game.payload.doc.data().name;
+                games[3][ind] = {
+                  id: key,
+                  name: value
+                };
+  
+              })
+
+              games[2].forEach(cat => {
+
+                let subCategories = [];
+                games[3].forEach(subCat => {
+
+                  if(subCat['id'] === cat.id) {
+                    
+                    subCategories.push(subCat['name']);
+
+                  }
+
+                })
+                cat['subCategories'] = subCategories;
+
+              })
+              
+              this.allGames = games;
+              console.log(this.allGames)
               resolve(games);
 
             })

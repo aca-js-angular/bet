@@ -3,7 +3,7 @@
         <div *ngFor="let cat of categories">
             <div>
                 <div class="logo"></div>
-                <p (click)="showGames(category.innerHTML)" #category>{{cat.name}}</p>
+                <p (click)="showGamesWithCategory(category.innerHTML)" #category>{{cat.name}}</p>
             </div>
         </div>
     </div>
@@ -13,7 +13,13 @@
 </div>
 
 <div class="allGames">
-    <div class="subCategories"></div>
+    <div class="subCategories">
+        <div (click)="showGamesWithSubCategory(subCat)" class="subCat" 
+                *ngFor="let subCat of filteredSubCategories"
+                >
+            {{subCat}}
+        </div>
+    </div>
 
     <div class="container">
         <div class="header">
