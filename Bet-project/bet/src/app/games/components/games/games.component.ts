@@ -11,14 +11,16 @@ import { Game } from '../../interfaces/game';
   styleUrls: ['./games.component.scss']
 })
 
-export class GamesComponent implements OnInit{
-  
+export class GamesComponent implements OnInit {
+
   categories: Array<Object> = []
   allGames: Array<Game> = [];
   filteredGames: Array<Game> = [];
   allSubCategories: Array<object> = [];
   filteredSubCategories: Array<any> = [];
   
+  availableGames: string = "upcomingGames";
+
   constructor(private afs: AngularFirestore,
     private categoryService: CategoriesService,
     private router: Router,
@@ -51,6 +53,7 @@ export class GamesComponent implements OnInit{
       })
     })    
 
+    
   }
 
   showGamesWithCategory(categoryName: string) {

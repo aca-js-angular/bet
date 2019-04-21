@@ -16,8 +16,8 @@ export class CalendarComponent implements OnInit {
   }
   /** Log changes in date */
   dateChanged(data: any) {
-    this.day = data;
-    console.log(data);
+    this.day = Date.parse(`${data.month}/${data.date}/${data.year}/`)
+    console.log(this.day);
   }
 
 }

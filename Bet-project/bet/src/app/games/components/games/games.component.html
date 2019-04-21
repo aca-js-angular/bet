@@ -1,6 +1,6 @@
 <div class="catBody">
     <div class="categories">
-        <div *ngFor="let cat of categories">
+        <div *ngFor="let cat of categories | gamesFilter : allGames">
             <div>
                 <div class="logo"></div>
                 <p (click)="showGamesWithCategory(category.innerHTML)" #category>{{cat.name}}</p>
@@ -44,7 +44,7 @@
                 <option value="values"></option>
             </select>
         </div>
-        <div class="games" *ngFor="let game of filteredGames | dates">
+        <div class="games" *ngFor="let game of filteredGames | dateFilter : availableGames  ">
             <div class="logo"></div>
             <div class="game">
                 <div>
@@ -55,7 +55,7 @@
                     <p>Today</p>
                     <p>{{game.start_time.seconds | date:"h:mm"}}</p>
                 </div>
-    
+
             </div>
             <div class="bet">
                 <div>
@@ -80,4 +80,3 @@
         </div>
     </div>
 </div>
-
