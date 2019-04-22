@@ -13,6 +13,9 @@ import { Game } from '../../interfaces/game';
 
 export class GamesComponent implements OnInit {
 
+  sxmacSubcategoriID = '';
+  sxmaccategori = '';
+
   categories: Array<Object> = []
   allGames: Array<Game> = [];
   filteredGames: Array<Game> = [];
@@ -34,20 +37,22 @@ export class GamesComponent implements OnInit {
       this.categories = res[2];
       this.allGames = res[0];
       this.allSubCategories = res[3];
+      console.log(this.allSubCategories)
       this.allSubCategories.forEach(a => this.filteredSubCategories.push(a['name']));
       this.activeRoute.params.subscribe(params => {
 
         if(params.category && !params.subCategory) {
 
-          console.log(1)
-          this.filteredSubCategories = this.categoryService.filterSubCategories(params.category,this.filteredSubCategories,this.categories);
+          
+         this.filteredSubCategories = this.categoryService.filterSubCategories(params.category,this.filteredSubCategories,this.categories);
           this.filteredGames = this.categoryService.filterGamesWithCategory(params.category, this.allGames);
           
         }else if(params.category && params.subCategory) {
 
           this.filteredSubCategories = this.categoryService.filterSubCategories(params.category,this.filteredSubCategories,this.categories);
           this.filteredGames = this.categoryService.filterWithSubCategories(params.subCategory, this.categories, this.allGames);
-          console.log(this.filteredGames)
+        
+          this.router.navigate([`home/${this.sxmaccategori}`]);
         }
         
       })
@@ -57,11 +62,26 @@ export class GamesComponent implements OnInit {
   }
 
   showGamesWithCategory(categoryName: string) {
-    this.router.navigate([`home/${categoryName}`]);
+    
+    for(let cat of this.categories){
+      if(cat['name'] == categoryName){
+       this.sxmacSubcategoriID = cat['id'];
+       console.log(this.sxmacSubcategoriID)
+       this.sxmaccategori = categoryName;
+       this.router.navigate([`home/${categoryName}`]);
+       break;}
+    }
+   
+    
+    
+   
   };
 
   showGamesWithSubCategory(subCatName: string) {
     this.filteredGames = this.categoryService.filterWithSubCategories(subCatName, this.categories, this.allGames)
+    
+    this.router.navigate([`home/${this.sxmaccategori}/${this.sxmacSubcategoriID}`]);
+   
   };
   
 }

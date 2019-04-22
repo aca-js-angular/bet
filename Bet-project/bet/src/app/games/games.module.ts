@@ -7,9 +7,10 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { FormsModule } from '@angular/forms';
 import { CategoryPipe }   from './Pipes/games-filter.pipe';
 import { DateFilterPipe } from './Pipes/date-filter.pipe';
+import { SubcategoriesFilterPipe } from './Pipes/subcategories-filter.pipe';
 
 @NgModule({
-  declarations: [CalendarComponent, GamesComponent, CategoryPipe, DateFilterPipe ],
+  declarations: [CalendarComponent, GamesComponent, CategoryPipe, DateFilterPipe, SubcategoriesFilterPipe ],
   imports: [
     CommonModule,
     GamesRoutingModule,

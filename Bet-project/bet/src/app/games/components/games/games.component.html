@@ -1,6 +1,6 @@
 <div class="catBody">
     <div class="categories">
-        <div *ngFor="let cat of categories | gamesFilter : allGames">
+        <div *ngFor="let cat of categories | gamesFilter : (allGames | dateFilter : availableGames)">
             <div>
                 <div class="logo"></div>
                 <p (click)="showGamesWithCategory(category.innerHTML)" #category>{{cat.name}}</p>
@@ -14,10 +14,12 @@
 
 <div class="allGames">
     <div class="subCategories">
-        <div (click)="showGamesWithSubCategory(subCat)" class="subCat" 
-                *ngFor="let subCat of filteredSubCategories"
-                >
-            {{subCat}}
+        <div  *ngFor="let subCat of allSubCategories | subcategoriesFilter : (allGames | dateFilter : availableGames) : sxmacSubcategoriID"
+        (click)="showGamesWithSubCategory(subCat.name)" class="subCat" >
+                
+            {{subCat.name}}
+
+           
         </div>
     </div>
 
@@ -44,7 +46,7 @@
                 <option value="values"></option>
             </select>
         </div>
-        <div class="games" *ngFor="let game of filteredGames | dateFilter : availableGames  ">
+        <div class="games" *ngFor="let game of filteredGames   ">
             <div class="logo"></div>
             <div class="game">
                 <div>
@@ -52,8 +54,8 @@
                     <p>{{game.team2}}</p>
                 </div>
                 <div>
-                    <p>Today</p>
-                    <p>{{game.start_time.seconds | date:"h:mm"}}</p>
+                    <p>{{game.start_time.seconds*1000| date :'longDate'}}</p>
+                    <p>{{game.start_time.seconds*1000 | date:'shortTime'}}</p>
                 </div>
 
             </div>
