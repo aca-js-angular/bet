@@ -13,6 +13,9 @@ import { Game } from '../../interfaces/game';
 
 export class GamesComponent implements OnInit {
 
+  sxmacSubcategoriID = '';
+  sxmaccategori = '';
+
   categories: Array<Object> = []
   allGames: Array<Game> = [];
   filteredGames: Array<Game> = [];
@@ -25,7 +28,7 @@ export class GamesComponent implements OnInit {
     private categoryService: CategoriesService,
     private router: Router,
     private activeRoute: ActivatedRoute) {
-      // this.afs.firestore.disableNetwork();
+      this.afs.firestore.disableNetwork();
   }
 
   ngOnInit() {
@@ -34,6 +37,7 @@ export class GamesComponent implements OnInit {
       this.categories = res[2];
       this.allGames = res[0];
       this.allSubCategories = res[3];
+      console.log(this.allSubCategories)
       this.allSubCategories.forEach(a => this.filteredSubCategories.push(a['name']));
       this.activeRoute.params.subscribe(params => {
 
@@ -46,7 +50,6 @@ export class GamesComponent implements OnInit {
 
           this.filteredSubCategories = this.categoryService.filterSubCategories(params.category,this.filteredSubCategories,this.categories);
           this.filteredGames = this.categoryService.filterWithSubCategories(params.subCategory, this.categories, this.allGames);
-
         }
         
       })
@@ -56,11 +59,19 @@ export class GamesComponent implements OnInit {
   }
 
   showGamesWithCategory(categoryName: string) {
-    this.router.navigate([`home/${categoryName}`]);
+    
+  this.router.navigate([`home/${categoryName}`]);
+   
+    
+    
+   
   };
 
   showGamesWithSubCategory(subCatName: string) {
     this.filteredGames = this.categoryService.filterWithSubCategories(subCatName, this.categories, this.allGames)
+    
+    // this.router.navigate([`home/${this.sxmaccategori}/${this.sxmacSubcategoriID}`]);
+   
   };
   
 }
