@@ -25,7 +25,7 @@ export class GamesComponent implements OnInit {
     private categoryService: CategoriesService,
     private router: Router,
     private activeRoute: ActivatedRoute) {
-      this.afs.firestore.disableNetwork();
+      // this.afs.firestore.disableNetwork();
   }
 
   ngOnInit() {
@@ -39,7 +39,6 @@ export class GamesComponent implements OnInit {
 
         if(params.category && !params.subCategory) {
 
-          console.log(1)
           this.filteredSubCategories = this.categoryService.filterSubCategories(params.category,this.filteredSubCategories,this.categories);
           this.filteredGames = this.categoryService.filterGamesWithCategory(params.category, this.allGames);
           
@@ -47,7 +46,7 @@ export class GamesComponent implements OnInit {
 
           this.filteredSubCategories = this.categoryService.filterSubCategories(params.category,this.filteredSubCategories,this.categories);
           this.filteredGames = this.categoryService.filterWithSubCategories(params.subCategory, this.categories, this.allGames);
-          console.log(this.filteredGames)
+
         }
         
       })
