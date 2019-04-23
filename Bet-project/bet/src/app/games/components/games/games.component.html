@@ -1,6 +1,6 @@
 <div class="catBody">
     <div class="categories">
-        <div *ngFor="let cat of categories | gamesFilter : (allGames | dateFilter : availableGames)">
+        <div *ngFor="let cat of categories | gamesFilter : (allGames | dateFilter :  nextHours : selectedDayFromCalendar)">
             <div>
                 <div class="logo"></div>
                 <p (click)="showGamesWithCategory(category.innerHTML)" #category>{{cat.name}}</p>
@@ -8,14 +8,17 @@
         </div>
     </div>
     <div id="date">
-        <app-calendar></app-calendar>
+        <app-calendar (selectedDate)= "selectDay($event)"  [dateFromSelect]="selectedDayFromCalendar"></app-calendar>
+        
     </div>
 </div>
+
+<h5>{{selectedDay}}</h5>
 
 <div class="allGames">
     <div class="subCategories">
         <div (click)="showGamesWithSubCategory(subCat)" class="subCat" 
-                *ngFor="let subCat of filteredSubCategories | subCategoriesFilter : (allGames | dateFilter : availableGames)"
+                *ngFor="let subCat of filteredSubCategories | subCategoriesFilter : (allGames | dateFilter : nextHours: selectedDayFromCalendar)"
                 >
             {{subCat}}
         </div>
@@ -40,11 +43,15 @@
             <select>
                 <option value="values"></option>
             </select>
-            <select>
-                <option value="values"></option>
+            <select #selectedTime (change)='selectTime(selectedTime.value)'> 
+                <option value ="3" >Next 3 Hours</option>
+                <option  value="5">Next 5 Hours</option>
+                <option value="6">Next 6 Hours</option>
+                <option value="24">Next 24 Hours</option>
+                <option selected value="500000000000">Next 30 Hours</option>
             </select>
         </div>
-        <div class="games" *ngFor="let game of filteredGames">
+        <div class="games" *ngFor="let game of filteredGames | dateFilter : nextHours: selectedDayFromCalendar">
             <div class="logo"></div>
             <div class="game">
                 <div>

@@ -2,28 +2,47 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'dateFilter',
-  
+
 })
 export class DateFilterPipe implements PipeTransform {
 
- 
-
-transform(games: any, availableGames ?: string ): any {
 
 
-  const liveGames = games.filter(game => game.start_time.seconds * 1000 < Date.now() && Date.now() < game.end_time.seconds * 1000);
-  const upcomingGames = games.filter(game =>game.start_time.seconds * 1000 > Date.now())
+  transform(games: any, hours?: number, selectedDayFromCalendar?: number): any {
 
-  if(availableGames == "upcomingGames") return upcomingGames;
-  if(availableGames == "liveGames") return liveGames;
+    const selectedDataFromCalendar = new Date(selectedDayFromCalendar);
+    const toDay = new Date();
 
+    console.log(
+      selectedDataFromCalendar.getDate() +":"+ toDay.getDate()+ "&&"+
+      selectedDataFromCalendar.getMonth()+":"+ toDay.getMonth() +"&&"+
+      selectedDataFromCalendar.getFullYear()+":"+toDay.getFullYear()
+    );
+    if (
+      selectedDataFromCalendar.getDate() == toDay.getDate() &&
+      selectedDataFromCalendar.getMonth() == toDay.getMonth() &&
+      selectedDataFromCalendar.getFullYear() == toDay.getFullYear()) {
+
+      return games.filter((game) => {
+        return game.start_time.seconds * 1000 > Date.now() && game.start_time.seconds * 1000 < (Date.now() + hours * 3600)
+        
+      })
+    }
+
+  else{
+
+    return games.filter((game) => {
+    
+    return game.start_time.seconds * 1000 > selectedDayFromCalendar && game.start_time.seconds * 1000 < (selectedDayFromCalendar+86400000)
+  })
+}
 }
 
 
+  }
 
-}
 
-  
+
 
 
 

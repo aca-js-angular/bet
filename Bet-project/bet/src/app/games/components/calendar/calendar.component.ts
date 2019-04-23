@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { XunkCalendarModule } from 'src/app/games/xunk-calendar/xunk-calendar.module';
+import { GamesComponent } from '../games/games.component';
 
 @Component({
   selector: 'app-calendar',
@@ -7,6 +8,9 @@ import { XunkCalendarModule } from 'src/app/games/xunk-calendar/xunk-calendar.mo
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent implements OnInit {
+
+  @Output() selectedDate = new EventEmitter<any>();
+@Input() dateFromSelect : GamesComponent;  /////esi pti havasaracnem day -in
   day: number = Date.now();
   public selDate = { date: 1, month: 1, year: 1 };
 
@@ -16,8 +20,10 @@ export class CalendarComponent implements OnInit {
   }
   /** Log changes in date */
   dateChanged(data: any) {
-    this.day = Date.parse(`${data.month}/${data.date}/${data.year}/`)
-    console.log(this.day);
+    
+    this.day = Date.parse(`${data.month+1}/${data.date}/${data.year}/`)
+    this.selectedDate.emit(this.day)
+    
   }
 
 }
