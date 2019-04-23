@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { CategoriesService } from '../../services/categories.service';
 import { Game } from '../../interfaces/game';
-import { CalendarComponent } from '../calendar/calendar.component';
 
 @Component({
   selector: 'games',
@@ -40,8 +39,6 @@ export class GamesComponent implements OnInit {
   selectTime(selectedTime) {
     this.nextHours = selectedTime;
     this.selectedDayFromCalendar = Date.now();
-
-
   }
 
   ngOnInit() {
@@ -50,7 +47,6 @@ export class GamesComponent implements OnInit {
       this.categories = res[2];
       this.allGames = res[0];
       this.allSubCategories = res[3];
-      console.log(this.allSubCategories)
       this.allSubCategories.forEach(a => this.filteredSubCategories.push(a['name']));
       this.activeRoute.params.subscribe(params => {
 
@@ -74,22 +70,11 @@ export class GamesComponent implements OnInit {
   showGamesWithCategory(categoryName: string) {
 
     this.router.navigate([`home/${categoryName}`]);
-
-
-
-
+    
   };
 
   showGamesWithSubCategory(subCatName: string) {
     this.filteredGames = this.categoryService.filterWithSubCategories(subCatName, this.categories, this.allGames)
-
-
-
   };
-
-  
-  selectDay(selectedday) {
-    console.log(this.selectedDayFromCalendar = selectedday)
-  }
 
 }

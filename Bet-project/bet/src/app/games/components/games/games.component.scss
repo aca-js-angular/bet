@@ -2,7 +2,8 @@
     display: inline-block;
     flex-direction: column;
     border: 1px solid grey;
-    width: 960px;
+    width: 804px;
+    padding: 24px 24px 0 24px;
     .header{
         display: flex;
         flex-direction: row;
@@ -17,16 +18,18 @@
         display: flex;
         justify-content: space-evenly;
         margin-top:24px;
-        select{
+        .catFilterSelect {
             height: 60px;
-            width: 46.5%;
+        }
+        .dateFilterSelect {
+            height: 60px;
         }
     }
     .games{
         display: flex;
         flex-direction: row;
         align-items: center;
-        width: 912px;
+        width: 780px;
         height: 83px;
         margin: 24px auto 0;
         .logo{
@@ -124,14 +127,17 @@
         overflow: auto;
         float: left;
         border: 1px solid black;
-        width: 383px;
+        width: 376px;
+        padding: 24px 24px 0 24px;
         height: 1033px;
 
         .subCat {
             border: 1px solid black;
-            width: 350px;
-            margin: 0 auto;
-            height: 60px;
+            border-radius: 3px;
+            margin-bottom: 8px;
+            padding-top: 20px;
+            padding-left: 24px;
+            height: 40px;
             cursor: pointer;
         }
     }
