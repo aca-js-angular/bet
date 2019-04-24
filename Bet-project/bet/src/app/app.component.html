@@ -1,22 +1,37 @@
 <div class="body">
+    <div class="user" *ngIf="auth.isLogged">
+        <p>Username:</p>
+        <p>Balance:</p>
+    </div>
     <div class="header">
         <div class="link">
             <button class="logo">LOGO</button>
-            <div>
-                <a [routerLink]="['']">In play</a>
-                <a [routerLink]="['']">Todays Games</a>
-                <a [routerLink]="['']">Results</a>
-            </div>
         </div>
         <div class="dialog">
             <dialog-content-example *ngIf="!auth.isLogged"></dialog-content-example>
-            <button (click)="logOut()" *ngIf="auth.isLogged">Log Out</button>
+        </div>
+        <div class="rightContent"  *ngIf="auth.isLogged">
+            <div>
+                <div></div>
+                <p>Bets</p>
+            </div>
+            <div>
+                <div></div>
+                <p>Profile</p>
+            </div>
+            <div>
+                <div></div>
+                <p>Deposit</p>
+            </div>
+            <div (click)="logOut()">
+                    <div></div>
+                    <p>Logout</p>
+            </div>
         </div>
     </div>
     <div>
         <slider></slider>
     </div>
-
 </div>
 
 <router-outlet></router-outlet>

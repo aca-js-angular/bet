@@ -20,21 +20,28 @@
         margin-top:24px;
         .catFilterSelect {
             height: 60px;
+            width: 390px;
+            border-radius: 4px
         }
         .dateFilterSelect {
             height: 60px;
+            width: 390px;
+            border-radius: 4px
         }
     }
     .games{
         display: flex;
         flex-direction: row;
         align-items: center;
-        width: 780px;
+        width: 806px;
+        border: 1px solid grey;
+        border-radius: 4px;
         height: 83px;
         margin: 24px auto 0;
+        justify-content: space-evenly;
         .logo{
-            width: 66px;
-            height: 56px;
+            width: 60px;
+            height: 60px;
             border: 1px solid grey;
             border-radius: 70px;
             margin-right: 10px;
@@ -51,43 +58,39 @@
             padding: 10px;
         }
         .bet{
-            display: flex;
-            flex-direction: row;
-            width: 461px;
-            margin-left: 8px;
-            div{
-                flex-direction: column;
-                height: 52px;
-                width: 146px;
-                border-radius: 4px 4px 4px 4px;
-                border: 1px solid grey;
-                display: flex;
-                margin-right: 8px;
-                div{
-                    justify-content: center;
-                    p{
-                        margin:0;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                    }
-                }
-            }
-            :last-child{
-                margin-right: 0;
+            button{
+                height: 40px;
+                width: 180px;
+                justify-content: center;
             }
         }
     }
 }
 
-.catBody{
+
+.category{
     display: flex;
+    ::-webkit-scrollbar {
+        height: 5px;
+     }::-webkit-scrollbar-track {
+              background: #bbb1b1; 
+            }::-webkit-scrollbar-thumb {
+              background: rgb(49, 49, 49); 
+            }::-webkit-scrollbar-thumb:hover {
+                background: rgb(22, 22, 22); 
+            }
 }
+
 .categories {
     display: flex;
+    width: 99.9%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-snap-points-y: 10px;
+    margin-left: 34px;
     div{
         border: 1px solid grey;
-        width: 96px;
+        width: 192px;
         height: 180px;
         border-right: none;
     } 
@@ -106,32 +109,37 @@
         margin-bottom: 0;
         cursor: pointer;
     }
-    // span{
-    //     display: flex;
-    //     justify-content: center;
-    //     font-family: "Helvetica Neue, Regular";
-    //     font-size: 19px;
-    // }
 }
- #date{
-    display: flex;
-    justify-content: center;
-    width: 576px;
-    align-items: center;
-}
+        #date{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            width: 576px;
+            align-items: center;
+            p{
+                // justify-content: center
+                margin-bottom: 24px;
+                font-family: "Helvetica Neue, Regular";
+                font-size: 18px;
+            }
+        }
+        #catBody{
+            display: flex;
+        }
 
 .allGames {
     width: 99.9%;
-    
+    display: flex;
+    justify-content: center;
     .subCategories {
         overflow: auto;
         float: left;
         border: 1px solid black;
         width: 376px;
         padding: 24px 24px 0 24px;
-        height: 1033px;
 
         .subCat {
+            display: flex;
             border: 1px solid black;
             border-radius: 3px;
             margin-bottom: 8px;
@@ -139,6 +147,13 @@
             padding-left: 24px;
             height: 40px;
             cursor: pointer;
+            .inSubCat{
+                display: flex;
+                width: 8px;
+                height: 30px;
+                border: 1px solid grey;
+                border-radius: 4px;
+            }
         }
     }
 }

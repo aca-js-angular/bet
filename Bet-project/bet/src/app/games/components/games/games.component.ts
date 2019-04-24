@@ -32,7 +32,7 @@ export class GamesComponent implements OnInit {
     private categoryService: CategoriesService,
     private router: Router,
     private activeRoute: ActivatedRoute) {
-    this.afs.firestore.disableNetwork();
+    // this.afs.firestore.disableNetwork();
 
   }
 
