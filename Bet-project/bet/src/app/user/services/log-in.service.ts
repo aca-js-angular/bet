@@ -10,8 +10,10 @@ export class LogInService {
   constructor(private avtorizating : AngularFireAuth) { }
 
   doLogin(mail, password):Observable<any>{
+    this.avtorizating.auth.setPersistence('session');
     return from(this.avtorizating.auth.signInWithEmailAndPassword(mail, password))
   }
+ 
 
   resetPassword(mail){
     return from(this.avtorizating.auth.sendPasswordResetEmail(mail))

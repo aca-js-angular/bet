@@ -25,6 +25,7 @@ import { PopupService } from '../../services/popup.service';
 export class LogInComponent implements OnInit {
   forgotPassword: boolean = false;
   errorMessage: string = '';
+  checked:boolean;
 
   constructor(private loginForm: FormBuilder, private autorization: LogInService, private popup:PopupService) { }
   logForm = this.loginForm.group({
@@ -36,7 +37,8 @@ export class LogInComponent implements OnInit {
   get password() { return this.logForm.get('password'); }
 
   login() {
-    
+    if(this.checked)console.log("+");
+    else console.log("-");
     this.autorization.doLogin(this.logForm.value.mail, this.logForm.value.password).
       subscribe(
         (res) => { this.popup._closePopup(), this.errorMessage = '' },///t4isht login lneluc pti gna homepage et yuserov

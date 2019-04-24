@@ -76,5 +76,8 @@ export class GamesComponent implements OnInit {
   showGamesWithSubCategory(subCatName: string) {
     this.filteredGames = this.categoryService.filterWithSubCategories(subCatName, this.categories, this.allGames)
   };
+  selectDay(selectedDay){
+    this.selectedDayFromCalendar = selectedDay
 
+  }
 }

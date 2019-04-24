@@ -66,28 +66,13 @@
         }
     }
 }
-
-
-.category{
-    display: flex;
-    ::-webkit-scrollbar {
-        height: 5px;
-     }::-webkit-scrollbar-track {
-              background: #bbb1b1; 
-            }::-webkit-scrollbar-thumb {
-              background: rgb(49, 49, 49); 
-            }::-webkit-scrollbar-thumb:hover {
-                background: rgb(22, 22, 22); 
-            }
-}
-
 .categories {
     display: flex;
     width: 99.9%;
     overflow-x: scroll;
     overflow-y: hidden;
     scroll-snap-points-y: 10px;
-    margin-left: 34px;
+    margin-left: 34px; 
     div{
         border: 1px solid grey;
         width: 192px;
@@ -125,6 +110,15 @@
         }
         #catBody{
             display: flex;
+            ::-webkit-scrollbar {
+                height: 10px;
+             }::-webkit-scrollbar-track {
+                      background: #bbb1b1; 
+                    }::-webkit-scrollbar-thumb {
+                      background: rgb(49, 49, 49); 
+                    }::-webkit-scrollbar-thumb:hover {
+                        background: rgb(22, 22, 22); 
+                    }
         }
 
 .allGames {

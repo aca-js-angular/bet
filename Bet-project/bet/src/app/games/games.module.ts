@@ -9,6 +9,7 @@ import { CategoryPipe }   from './Pipes/games-filter.pipe';
 import { DateFilterPipe } from './Pipes/date-filter.pipe';
 import { SubCategoriesFilterPipe } from './pipes/sub-categories-filter.pipe';
 
+
 @NgModule({
   declarations: [CalendarComponent, GamesComponent, CategoryPipe, DateFilterPipe, SubCategoriesFilterPipe ],
   imports: [
