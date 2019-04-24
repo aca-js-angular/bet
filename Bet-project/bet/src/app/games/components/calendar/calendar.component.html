@@ -1,10 +1,9 @@
 <div class="calendar"> 
-  <select class="form-control">
-    <option selected>{{day | date:'dd/MMM/yyyy'}}</option>
-  </select>
- <button>Search</button>
+  <div (click)="toggle = !toggle" >{{day | date:'dd/MMM/yyyy'}}  '&#x25BC;'</div>
+  
+ 
 </div>
-<div class="calendar-container mat-elevation-z3" *ngIf="true">
+<div  #calendar class="calendar-container mat-elevation-z3" *ngIf="toggle">
     
           <xunk-calendar [selectedDate]="selDate"
                          
@@ -13,4 +12,7 @@
                          primaryColor="#673ab7"
                          primaryForeground="white">
           </xunk-calendar>
+          <button (click)="closingCalendar()"> X Close</button>
+          <button (click) = "searchButton()"> Search</button>
 </div>
+
