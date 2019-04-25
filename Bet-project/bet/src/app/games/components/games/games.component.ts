@@ -37,7 +37,7 @@ export class GamesComponent implements OnInit {
     private gameDetails: GameDetailsService,
     private router: Router,
     private activeRoute: ActivatedRoute) {
-    this.afs.firestore.disableNetwork();
+    // this.afs.firestore.disableNetwork();
 
   }
 
@@ -89,5 +89,8 @@ export class GamesComponent implements OnInit {
   showGamesWithSubCategory(subCatName: string) {
     this.filteredGames = this.filtrationService.filterWithSubCategories(subCatName, this.categories, this.allGames)
   };
+  selectDay(selectedDay){
+    this.selectedDayFromCalendar = selectedDay
 
+  }
 }

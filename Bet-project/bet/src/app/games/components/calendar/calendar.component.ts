@@ -9,21 +9,31 @@ import { GamesComponent } from '../games/games.component';
 })
 export class CalendarComponent implements OnInit {
 
+  toggle: boolean = true;
+
   @Output() selectedDate = new EventEmitter<any>();
-@Input() dateFromSelect : GamesComponent;  /////esi pti havasaracnem day -in
+  @Input() dateFromSelect: GamesComponent;  /////esi pti havasaracnem day -in
   day: number = Date.now();
   public selDate = { date: 1, month: 1, year: 1 };
 
   ngOnInit() {
-      this.selDate = XunkCalendarModule.getToday();
-      
+    this.selDate = XunkCalendarModule.getToday();
   }
-  /** Log changes in date */
-  dateChanged(data: any) {
-    
-    this.day = Date.parse(`${data.month+1}/${data.date}/${data.year}/`)
+  closingCalendar() {
+    this.toggle = !this.toggle;
+    this.day = Date.now();
+  }
+
+  searchButton() {
     this.selectedDate.emit(this.day)
-    
+  }
+
+
+  dateChanged(data: any) {
+
+    this.day = Date.parse(`${data.month + 1}/${data.date}/${data.year}/`)
+
+
   }
 
 }

@@ -5,6 +5,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 import { DialogContentExample } from '../../popup/dialog-content-example';
 import { PopupService } from '../../services/popup.service';
 
+
 @Component({
   selector: 'app-log-in',
   templateUrl: './log-in.component.html',
@@ -23,40 +24,45 @@ import { PopupService } from '../../services/popup.service';
   ]
 })
 export class LogInComponent implements OnInit {
-  forgotPassword: boolean = false;
-  errorMessage: string = '';
 
-  constructor(private loginForm: FormBuilder, private autorization: LogInService, private popup:PopupService) { }
-  logForm = this.loginForm.group({
-    mail: ['', [Validators.email, Validators.required]],
-    password: ['', [Validators.required, Validators.minLength(4)]],
+  state: string = "login";
+  errorMessage: string = '';
+  checked: boolean = false;
+
+  constructor(private fb: FormBuilder, private autorization: LogInService, private popup: PopupService) { }
+
+  logForm = this.fb.group({
+    mail: ['', [Validators.required]],
+    password: ['', [Validators.required]],
+  })
+
+  forgotPasswordForm = this.fb.group({
+    mail: ['', [Validators.required]],
   })
 
   get mail() { return this.logForm.get('mail'); }
   get password() { return this.logForm.get('password'); }
 
   login() {
-    
-    this.autorization.doLogin(this.logForm.value.mail, this.logForm.value.password).
+    this.autorization.doLogin(this.logForm.value.mail, this.logForm.value.password, this.checked).
       subscribe(
-        (res) => { this.popup._closePopup(), this.errorMessage = '' },///t4isht login lneluc pti gna homepage et yuserov
+        (res) => { this.popup._closePopup(), this.errorMessage = '' },
         (error) => { console.log(error), this.errorMessage = 'The Username or Password are Invalid' }
       )
   }
 
-  inputsTogling() {
-    this.forgotPassword = true;
-    this.errorMessage = '';
-    this.logForm.reset()
-  }
 
 
   resetPassword() {
-    this.errorMessage = '';
-    this.autorization.resetPassword(this.logForm.value.mail).subscribe(
+    this.autorization.resetPassword(this.forgotPasswordForm.value.mail).subscribe(
       (res) => { this.popup._closePopup(), this.errorMessage = '' },///t4isht login lneluc pti gna homepage et yuserov
-      (error) => { console.log(error), this.errorMessage = 'Invalid Email Address' }
+      (error) => { this.errorMessage = 'Invalid Email Address' }
     )
+  }
+
+  openRegistationPage() {
+    this.popup._closePopup()
+    this.popup._openRegistration()
   }
 
 

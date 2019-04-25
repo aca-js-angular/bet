@@ -4,7 +4,7 @@ import { Component, ViewChild,  } from '@angular/core';
 @Component({
     selector: 'slider',
         template:`
-         <ng-image-slider [images]="imageObject" [imageSize]="{ width: 1920 ,height: 400}" #nav>
+         <ng-image-slider [images]="imageObject" [imageSize]="{ width: 1366 ,height: 400}" #nav>
         </ng-image-slider> `,
         styles: ['#nav { margin-left: 0;width: 100% }']
 })

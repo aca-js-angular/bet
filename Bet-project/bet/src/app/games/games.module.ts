@@ -22,6 +22,7 @@ import { DateFilterPipe } from './Pipes/date-filter.pipe';
 import { SubCategoriesFilterPipe } from './pipes/sub-categories-filter.pipe';
 import { SelectedOddDirective } from './components/directives/selected-odd.directive';
 
+
 @NgModule({
   declarations: [
     CalendarComponent, 

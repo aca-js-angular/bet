@@ -11,7 +11,7 @@ import { Game } from '../interfaces/game';
 export class FiltrationService {
 
   constructor(private db: AngularFirestore, private router: Router) {
-  this.db.firestore.disableNetwork()
+  // this.db.firestore.disableNetwork()
    }
 
   getCategoryOfSubCategory(subCategory: string, categories: Array<object>): string {

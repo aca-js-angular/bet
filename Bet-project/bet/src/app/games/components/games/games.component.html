@@ -1,4 +1,4 @@
-<div class="catBody">
+<div id="catBody">
     <div class="categories">
         <div *ngFor="let cat of categories | gamesFilter : (allGames | dateFilter :  nextHours : selectedDayFromCalendar)">
             <div>
@@ -8,18 +8,16 @@
         </div>
     </div>
     <div id="date">
-        <app-calendar (selectedDate)= "selectDay($event)"  [dateFromSelect]="selectedDayFromCalendar"></app-calendar>
-        
+        <p>Select date</p>
+        <app-calendar (selectedDate)= "selectDay($event)"  [dateFromSelect]="selectedDayFromCalendar"></app-calendar>  
     </div>
 </div>
-
-<h5>{{selectedDay}}</h5>
-
 <div class="allGames">
     <div class="subCategories">
         <div #subCategory (click)="showGamesWithSubCategory(subCat)" class="subCat" 
                 *ngFor="let subCat of filteredSubCategories | subCategoriesFilter : (allGames | dateFilter : nextHours: selectedDayFromCalendar)"
                 >
+                <div class="inSubCat"></div>
             {{subCat}}
         </div>
     </div>
@@ -54,24 +52,7 @@
 
             </div>
             <div class="bet">
-                <div>
-                    <div>
-                        <p>{{game.team1}}</p>
-                        <p>{{game.odds.team_1}}</p>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <p>X</p>
-                        <p>{{game.odds.draw}}</p>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <p>{{game.team2}}</p>
-                        <p>{{game.odds.team_2}}</p>
-                    </div>
-                </div>
+                <button>Details</button>
             </div>
             
             <button type="button"
