@@ -8,9 +8,7 @@ import { Game } from '../interfaces/game';
   providedIn: 'root'
 })
 
-export class CategoriesService {
-
-  allGames: Array<object> = [];
+export class FiltrationService {
 
   constructor(private db: AngularFirestore, private router: Router) {
   // this.db.firestore.disableNetwork()
@@ -32,7 +30,7 @@ export class CategoriesService {
 
   }
 
-  filterWithSubCategories(subCategory: string, categories: Array<object>, allGames: Array<Game>) {
+  filterWithSubCategories(subCategory: string, categories: Array<object>, allGames: Array<Game>): Array<Game> {
 
     let category = this.getCategoryOfSubCategory(subCategory, categories);
     this.router.navigate([`home/${category}/${subCategory}`]);
@@ -163,9 +161,8 @@ export class CategoriesService {
                 cat['subCategories'] = subCategories;
 
               })
-              
-              this.allGames = games;
-              console.log(this.allGames)
+
+              console.log(games)
               resolve(games);
 
             })

@@ -1,6 +1,7 @@
 <div id="catBody">
     <div class="categories">
-        <div *ngFor="let cat of categories | gamesFilter : (allGames | dateFilter :  nextHours : selectedDayFromCalendar)">
+        <div
+            *ngFor="let cat of categories | gamesFilter : (allGames | dateFilter :  nextHours : selectedDayFromCalendar)">
             <div>
                 <div class="logo"></div>
                 <p (click)="showGamesWithCategory(category.innerHTML)" #category>{{cat.name}}</p>
@@ -9,32 +10,31 @@
     </div>
     <div id="date">
         <p>Select date</p>
-        <app-calendar (selectedDate)= "selectDay($event)" ></app-calendar>  
+        <app-calendar (selectedDate)="selectDay($event)"></app-calendar>
     </div>
 </div>
 <div class="allGames">
     <div class="subCategories">
-        <div (click)="showGamesWithSubCategory(subCat)" class="subCat" 
-                *ngFor="let subCat of filteredSubCategories | subCategoriesFilter : (allGames | dateFilter : nextHours: selectedDayFromCalendar)"
-                >
-                <div>
-                    <span [ngClass]="{'inSubCat': (currentSubCategory && subCat == currentSubCategory)}"></span>
-                        <span>{{subCat}}</span>
-                </div>
+        <div #subCategory (click)="showGamesWithSubCategory(subCat)" class="subCat"
+            *ngFor="let subCat of filteredSubCategories | subCategoriesFilter : (allGames | dateFilter : nextHours: selectedDayFromCalendar)">
+            <div>
+                <span [ngClass]="{'inSubCat': (currentSubCategory && subCat == currentSubCategory)}"></span>
+                <span>{{subCat}}</span>
+            </div>
         </div>
     </div>
 
-    <div class="container">
+    <div class="container" *ngIf="!showGameDetails">
         <div class="select">
             <select #category2 (change)="showGamesWithCategory(category2.value)" class="catFilterSelect">
-                <option 
-                    [value]="cat.name"
-                    *ngFor="let cat of categories | gamesFilter : (allGames | dateFilter :  nextHours : selectedDayFromCalendar)">{{cat.name}}
+                <option [value]="cat.name"
+                    *ngFor="let cat of categories | gamesFilter : (allGames | dateFilter :  nextHours : selectedDayFromCalendar)">
+                    {{cat.name}}
                 </option>
             </select>
-            <select #selectedTime (change)='selectTime(selectedTime.value)' class="dateFilterSelect"> 
-                <option value ="3" >Next 3 Hours</option>
-                <option  value="5">Next 5 Hours</option>
+            <select #selectedTime (change)='selectTime(selectedTime.value)' class="dateFilterSelect">
+                <option value="3">Next 3 Hours</option>
+                <option value="5">Next 5 Hours</option>
                 <option value="6">Next 6 Hours</option>
                 <option value="24">Next 24 Hours</option>
                 <option selected value="500000000000">Next 30 Hours</option>
@@ -54,8 +54,13 @@
 
             </div>
             <div class="bet">
-                <button>Details</button>
+                <button type="button" (click)="getCurrentGame(game)"
+                    [routerLink]="['/', 'home', game.categoryName, game.subCategoryName, game.team1, 'vs', game.team2]">Details
+                </button>
             </div>
+
+
         </div>
     </div>
+    <app-game-details *ngIf="showGameDetails" class="game-details"></app-game-details>
 </div>
