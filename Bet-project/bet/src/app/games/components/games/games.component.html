@@ -18,7 +18,7 @@
                 *ngFor="let subCat of filteredSubCategories | subCategoriesFilter : (allGames | dateFilter : nextHours: selectedDayFromCalendar)"
                 >
                 <div>
-                    <span class="inSubCat"></span>
+                    <span [ngClass]="{'inSubCat': (currentSubCategory && subCat == currentSubCategory)}"></span>
                         <span>{{subCat}}</span>
                 </div>
         </div>

@@ -22,11 +22,11 @@ export class GamesComponent implements OnInit {
   filteredGames: Array<Game> = [];
   allSubCategories: Array<object> = [];
   filteredSubCategories: Array<any> = [];
-
+  currentSubCategory: string;
   nextHours: number = 500000000000;
 
   constructor(
-
+    
     private afs: AngularFirestore,
     private categoryService: CategoriesService,
     private router: Router,
@@ -55,7 +55,7 @@ export class GamesComponent implements OnInit {
           this.filteredGames = this.categoryService.filterGamesWithCategory(params.category, this.allGames);
 
         } else if (params.category && params.subCategory) {
-
+          this.currentSubCategory = params.subCategory;
           this.filteredSubCategories = this.categoryService.filterSubCategories(params.category, this.filteredSubCategories, this.categories);
           this.filteredGames = this.categoryService.filterWithSubCategories(params.subCategory, this.categories, this.allGames);
         }
