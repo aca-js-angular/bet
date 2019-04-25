@@ -1,8 +1,11 @@
 <div class="calendar">
-  <div (click)="toggle = !toggle"><span>{{day | date:'dd/MMM/yyyy'}}</span> <span>'&#x25BC;'</span> </div>
+  <div (click)="toggle = !toggle">
+    <span>{{day | date:'dd/MMM/yyyy'}}</span> 
+    <span>&#x25BC;</span> 
+  </div>
 
 </div>
-<div #calendar class="calendar-container mat-elevation-z3" *ngIf="toggle">
+<div #calendar class="calendar-container mat-elevation-z3" *ngIf="!toggle">
 
   <xunk-calendar [selectedDate]="selDate" (change)="dateChanged($event)" primaryColor="#673ab7"
     primaryForeground="white">

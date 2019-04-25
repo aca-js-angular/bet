@@ -12,20 +12,21 @@ export class CalendarComponent implements OnInit {
   toggle: boolean = true;
 
   @Output() selectedDate = new EventEmitter<any>();
-  @Input() dateFromSelect: GamesComponent;  /////esi pti havasaracnem day -in
+  // @Input() dateFromSelect: GamesComponent;  /////esi pti havasaracnem day -in
   day: number = Date.now();
   public selDate = { date: 1, month: 1, year: 1 };
 
   ngOnInit() {
-    this.selDate = XunkCalendarModule.getToday();
+    // this.selDate = XunkCalendarModule.getToday();
   }
   closingCalendar() {
     this.toggle = !this.toggle;
-    this.day = Date.now();
+    // this.day = Date.now();
   }
 
   searchButton() {
     this.selectedDate.emit(this.day)
+    this.closingCalendar();
   }
 
 

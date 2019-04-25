@@ -11,7 +11,7 @@ import { SubCategoriesFilterPipe } from './pipes/sub-categories-filter.pipe';
 
 
 @NgModule({
-  declarations: [CalendarComponent, GamesComponent, CategoryPipe, DateFilterPipe, SubCategoriesFilterPipe ],
+  declarations: [CalendarComponent, GamesComponent, CategoryPipe, DateFilterPipe, SubCategoriesFilterPipe, ],
   imports: [
     CommonModule,
     GamesRoutingModule,

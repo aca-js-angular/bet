@@ -9,7 +9,6 @@ import { LogInComponent } from './components/log-in/log-in.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 
 import { UserRoutingModule } from './user-routing.module';
-import { RecaptchaDirective } from './directives/recaptcha.directive';
 import { MaterialModule } from './popup/material.module';
 
 @NgModule({
@@ -23,11 +22,11 @@ import { MaterialModule } from './popup/material.module';
     RecaptchaFormsModule,
     UserRoutingModule
   ],
-  declarations: [LogInComponent, RegistrationComponent, RecaptchaDirective],
+  declarations: [LogInComponent, RegistrationComponent],
   providers: [
     {
       provide: RECAPTCHA_SETTINGS,
-      useValue: { siteKey: '6LddwJ0UAAAAADVcYu3ruf8qVmL8uCP3adQ-Xw3h' } as RecaptchaSettings,
+      useValue: { siteKey: '6LfWIqAUAAAAALDQckG9em7ENFV3m7G7jWg1ZBCL' } as RecaptchaSettings,
     },
   ],
   exports: [LogInComponent,RegistrationComponent],

@@ -5,21 +5,11 @@ import {CdkTableModule} from '@angular/cdk/table';
 import {CdkTreeModule} from '@angular/cdk/tree';
 import {NgModule} from '@angular/core';
 import {
-    MAT_DIALOG_DEFAULT_OPTIONS,
-  MatAutocompleteModule,
   MatBottomSheetModule,
   MatButtonModule,
   MatButtonToggleModule,
   MatCheckboxModule,
   MatDialogModule,
-  MatInputModule,
-  MatListModule,
-  MatMenuModule,
-  MatNativeDateModule,
-  MatSelectModule,
-  MatTabsModule,
-  MatToolbarModule,
-  MatTooltipModule,
 } from '@angular/material';
 import { LogInComponent } from '../components/log-in/log-in.component';
 import { RegistrationComponent } from '../components/registration/registration.component';
@@ -31,20 +21,11 @@ import { RegistrationComponent } from '../components/registration/registration.c
     CdkTableModule,
     CdkTreeModule,
     DragDropModule,
-    MatAutocompleteModule,
     MatBottomSheetModule,
     MatButtonModule,
     MatButtonToggleModule,
     MatCheckboxModule,
     MatDialogModule,
-    MatInputModule,
-    MatListModule,
-    MatMenuModule,
-    MatNativeDateModule,
-    MatSelectModule,
-    MatTabsModule,
-    MatToolbarModule,
-    MatTooltipModule,
   ],
   entryComponents: [LogInComponent, RegistrationComponent],
 })

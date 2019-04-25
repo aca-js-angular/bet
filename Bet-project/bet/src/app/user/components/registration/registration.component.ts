@@ -29,6 +29,7 @@ export class RegistrationComponent implements OnInit {
   registrForm: FormGroup = this.fb.group({
     firstName: ['', [Validators.required, Validators.minLength(2)]],
     lastName: ['', [Validators.required, Validators.minLength(2)]],
+    username: ['', [Validators.required, Validators.minLength(2)]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8), customValidators.upperCaseAndLowerCase, customValidators.specSymbols]],
     passwordConfirm: ['', [Validators.required]],
@@ -53,6 +54,9 @@ export class RegistrationComponent implements OnInit {
 
   get _lastName() {
     return this.registrForm.get('lastName');
+  }
+  get _username() {
+    return this.registrForm.get('username');
   }
 
   get _passwordConfirm() {

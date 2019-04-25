@@ -17,7 +17,6 @@ export class GamesComponent implements OnInit {
 
   selectedDayFromCalendar: number = Date.now();
 
-
   categories: Array<Object> = []
   allGames: Array<Game> = [];
   filteredGames: Array<Game> = [];

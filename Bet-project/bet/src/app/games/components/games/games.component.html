@@ -9,7 +9,7 @@
     </div>
     <div id="date">
         <p>Select date</p>
-        <app-calendar (selectedDate)= "selectDay($event)"  [dateFromSelect]="selectedDayFromCalendar"></app-calendar>  
+        <app-calendar (selectedDate)= "selectDay($event)" ></app-calendar>  
     </div>
 </div>
 <div class="allGames">
@@ -17,8 +17,10 @@
         <div (click)="showGamesWithSubCategory(subCat)" class="subCat" 
                 *ngFor="let subCat of filteredSubCategories | subCategoriesFilter : (allGames | dateFilter : nextHours: selectedDayFromCalendar)"
                 >
-                <div class="inSubCat"></div>
-            {{subCat}}
+                <div>
+                    <span class="inSubCat"></span>
+                        <span>{{subCat}}</span>
+                </div>
         </div>
     </div>
 
