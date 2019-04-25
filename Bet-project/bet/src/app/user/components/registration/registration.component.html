@@ -23,7 +23,9 @@
                 <input type="text" placeholder="Password Confirmation" formControlName="passwordConfirm"
                         class="inp"
                         [ngClass]="{'invalid-border': _passwordConfirm.invalid && (_passwordConfirm.dirty || _passwordConfirm.touched)}">
-                <re-captcha class="robot left" formControlName="recaptcha"></re-captcha>
+                        <div class="robot">
+                <re-captcha  formControlName="recaptcha"></re-captcha>
+                         </div>
 
                 <br>
                 <br>

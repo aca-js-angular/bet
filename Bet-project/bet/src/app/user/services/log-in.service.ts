@@ -7,15 +7,17 @@ import { Observable, from } from 'rxjs';
 })
 export class LogInService {
 
-  constructor(private avtorizating : AngularFireAuth) { }
+  constructor(private avtorizating: AngularFireAuth) { }
 
-  doLogin(mail, password):Observable<any>{
-    this.avtorizating.auth.setPersistence('session');
+  doLogin(mail, password, remeberPassw): Observable<any> {
+    if (!remeberPassw){
+      this.avtorizating.auth.setPersistence('session');
+    } 
     return from(this.avtorizating.auth.signInWithEmailAndPassword(mail, password))
   }
- 
 
-  resetPassword(mail){
+
+  resetPassword(mail) {
     return from(this.avtorizating.auth.sendPasswordResetEmail(mail))
   }
 }
