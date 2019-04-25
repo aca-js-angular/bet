@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="info">
+    <div class="team1">
+      <span>{{ currentGame.team1 }}</span>
+    </div>
+    <div class="about">
+      <span>{{ currentGame.start_time.seconds | date:'d MMMM hh:mm' }}</span>
+      <br>
+      <span>{{ currentGame.subCategoryName }}</span>
+    </div>
+    <div class="team2">
+      <span>{{ currentGame.team2 }}</span>
+    </div>
+  </div>
+  <div class="bets">
+    <div class="betting-amount" *ngIf="bettingAmount && gameDetails.selectedBet">
+      <span style="color: white; font-size: 21px">Betting Amount</span>
+      <input class="amount" type="number" placeholder="ex 1000 AMD">
+      <br>
+      <span style="color: #9B9B9B; font-size: 16px">(Min 1000 AMD)</span>
+    </div>
+    <div class="bets-info" appSelectedOdd>
+      <div class="winner">
+        <div>
+          <span>{{ currentGame.team1 }} to Win</span>
+        </div>
+        <div class="bets-over">
+          <div class="overX">
+            <p>Over 0.5</p>
+            <p>3.12</p>
+          </div>
+          <div class="overX">
+            <p>Over 1.5</p>
+            <p>2.12</p>
+          </div>
+          <div class="overX">
+            <p>Over 2.5</p>
+            <p>1.25</p>
+          </div>
+          <div class="verticalLine"></div>
+          <div class="place-bet" (click)="bettingAmount = true"><p>Place Bet</p></div>
+        </div>
+      </div>
+      <div class="winner">
+        <div>
+          <span>{{ currentGame.team2 }} to Win</span>
+        </div>
+        <div class="bets-over">
+          <div class="overX">
+            <p>Over 0.5</p>
+            <p>3.12</p>
+          </div>
+          <div class="overX">
+            <p>Over 1.5</p>
+            <p>2.12</p>
+          </div>
+          <div class="overX">
+            <p>Over 2.5</p>
+            <p>1.25</p>
+          </div>
+          <div class="verticalLine"></div>
+          <div class="place-bet" (click)="bettingAmount = true"><p>Place Bet</p></div>
+        </div>
+      </div>
+      <div class="winner">
+        <div>
+          <span>Draw no bet</span>
+        </div>
+        <div class="bets-over">
+          <div class="teams_draw">
+            <p>Draw</p>
+            <p>3.1</p>
+          </div>
+          <div class="verticalLine"></div>
+          <div class="place-bet" (click)="bettingAmount = true"><p>Place Bet</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

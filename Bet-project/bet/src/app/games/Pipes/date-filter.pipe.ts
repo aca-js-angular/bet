@@ -13,11 +13,11 @@ export class DateFilterPipe implements PipeTransform {
     const selectedDataFromCalendar = new Date(selectedDayFromCalendar);
     const toDay = new Date();
 
-    console.log(
+    /* console.log(
       selectedDataFromCalendar.getDate() +":"+ toDay.getDate()+ "&&"+
       selectedDataFromCalendar.getMonth()+":"+ toDay.getMonth() +"&&"+
       selectedDataFromCalendar.getFullYear()+":"+toDay.getFullYear()
-    );
+    ); */
     if (
       selectedDataFromCalendar.getDate() == toDay.getDate() &&
       selectedDataFromCalendar.getMonth() == toDay.getMonth() &&

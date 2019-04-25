@@ -2,7 +2,9 @@ import { Component, OnInit, Input, ViewChild, OnChanges, SimpleChanges } from '@
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { CategoriesService } from '../../services/categories.service';
+import { GameDetailsService } from '../../services/game-details.service';
+import { FiltrationService } from '../../services/filtration.service';
+
 import { Game } from '../../interfaces/game';
 
 @Component({
@@ -26,24 +28,31 @@ export class GamesComponent implements OnInit {
 
   nextHours: number = 500000000000;
 
+  showGameDetails: boolean = false;
+
   constructor(
 
     private afs: AngularFirestore,
-    private categoryService: CategoriesService,
+    private filtrationService: FiltrationService,
+    private gameDetails: GameDetailsService,
     private router: Router,
     private activeRoute: ActivatedRoute) {
     this.afs.firestore.disableNetwork();
 
   }
 
-  selectTime(selectedTime) {
+  getCurrentGame(game: Game): void {
+    this.gameDetails.currentGame = game;
+  }
+
+  selectTime(selectedTime): void {
     this.nextHours = selectedTime;
     this.selectedDayFromCalendar = Date.now();
   }
 
   ngOnInit() {
     
-    this.categoryService.getAllGames().then(res => {
+    this.filtrationService.getAllGames().then(res => {
       this.categories = res[2];
       this.allGames = res[0];
       this.allSubCategories = res[3];
@@ -52,13 +61,17 @@ export class GamesComponent implements OnInit {
 
         if (params.category && !params.subCategory) {
 
-          this.filteredSubCategories = this.categoryService.filterSubCategories(params.category, this.filteredSubCategories, this.categories);
-          this.filteredGames = this.categoryService.filterGamesWithCategory(params.category, this.allGames);
+          this.filteredSubCategories = this.filtrationService.filterSubCategories(params.category, this.filteredSubCategories, this.categories);
+          this.filteredGames = this.filtrationService.filterGamesWithCategory(params.category, this.allGames);
 
         } else if (params.category && params.subCategory) {
 
-          this.filteredSubCategories = this.categoryService.filterSubCategories(params.category, this.filteredSubCategories, this.categories);
-          this.filteredGames = this.categoryService.filterWithSubCategories(params.subCategory, this.categories, this.allGames);
+          this.filteredSubCategories = this.filtrationService.filterSubCategories(params.category, this.filteredSubCategories, this.categories);
+          this.filteredGames = this.filtrationService.filterWithSubCategories(params.subCategory, this.categories, this.allGames);
+        }
+        
+        if(params.team1 && params.team2) {
+          this.showGameDetails = true;
         }
 
       })
@@ -74,7 +87,7 @@ export class GamesComponent implements OnInit {
   };
 
   showGamesWithSubCategory(subCatName: string) {
-    this.filteredGames = this.categoryService.filterWithSubCategories(subCatName, this.categories, this.allGames)
+    this.filteredGames = this.filtrationService.filterWithSubCategories(subCatName, this.categories, this.allGames)
   };
 
 }
