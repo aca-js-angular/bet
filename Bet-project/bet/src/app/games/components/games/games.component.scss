@@ -1,7 +1,6 @@
 .container {
     display: inline-block;
     flex-direction: column;
-    border: 1px solid grey;
     width: 804px;
     padding: 24px 24px 0 24px;
     .header{
@@ -11,6 +10,7 @@
         width: 40%;
         font-size: 18px;
         margin-top:24px;
+        color: #ffffff;
         justify-content: space-evenly;
         font-family: "Helvetica Neue, Regular";
     }
@@ -19,11 +19,15 @@
         justify-content: space-evenly;
         margin-top:24px;
         .catFilterSelect {
+            background-color: #1D1E33;
+            color: #ffffff;
             height: 60px;
             width: 390px;
             border-radius: 4px
         }
         .dateFilterSelect {
+            background-color: #1D1E33;
+            color: #ffffff;
             height: 60px;
             width: 390px;
             border-radius: 4px
@@ -34,7 +38,7 @@
         flex-direction: row;
         align-items: center;
         width: 806px;
-        border: 1px solid grey;
+        background-color: #1D1E33;
         border-radius: 4px;
         height: 83px;
         margin: 24px auto 0;
@@ -42,7 +46,7 @@
         .logo{
             width: 60px;
             height: 60px;
-            border: 1px solid grey;
+            background-color: #ffffff;
             border-radius: 70px;
             margin-right: 10px;
         }
@@ -52,16 +56,18 @@
             justify-content: space-between;
             align-items: center;
              height: 52px;
-            border: 1px solid grey;
             border-top: none;
             border-bottom: none;
             padding: 10px;
+            color: #ffffff;
         }
         .bet{
             button{
                 height: 40px;
                 width: 180px;
                 justify-content: center;
+                background-color: #7A7B9B;
+                border-radius: 4px;
             }
         }
     }
@@ -73,16 +79,16 @@
     overflow-y: hidden;
     scroll-snap-points-y: 10px;
     margin-left: 34px; 
+    background-color: #1D1E33;
     div{
-        border: 1px solid grey;
         width: 192px;
         height: 180px;
-        border-right: none;
+        cursor: pointer;
     } 
     .logo {
         width: 80px;
         height: 80px;
-        border: 1px solid grey;
+        background-color: #ffffff;
         border-radius: 40px;
         margin: 24px auto 0;
     }
@@ -91,6 +97,7 @@
         justify-content: center;
         font-family: "Helvetica Neue, Regular";
         font-size: 18px;
+        color: #ffffff;
         margin-bottom: 0;
         cursor: pointer;
     }
@@ -102,7 +109,7 @@
             width: 576px;
             align-items: center;
             p{
-                // justify-content: center
+                color: #ffffff;
                 margin-bottom: 24px;
                 font-family: "Helvetica Neue, Regular";
                 font-size: 18px;
@@ -111,13 +118,12 @@
         #catBody{
             display: flex;
             ::-webkit-scrollbar {
-                height: 10px;
+                height: 6px;
              }::-webkit-scrollbar-track {
-                      background: #bbb1b1; 
+                      background: #1D1E33;
                     }::-webkit-scrollbar-thumb {
-                      background: rgb(49, 49, 49); 
-                    }::-webkit-scrollbar-thumb:hover {
-                        background: rgb(22, 22, 22); 
+                      background:#5DB057; 
+                      border-radius: 4px;
                     }
         }
 
@@ -128,26 +134,31 @@
     .subCategories {
         overflow: auto;
         float: left;
-        border: 1px solid black;
         width: 376px;
         padding: 24px 24px 0 24px;
 
         .subCat {
             display: flex;
-            border: 1px solid black;
-            border-radius: 3px;
+        background-color: #1D1E33;
+            border-radius: 4px;
             margin-bottom: 8px;
-            padding-top: 20px;
-            padding-left: 24px;
-            height: 40px;
+            height: 60px;
+            color: #ffffff;
+            font-size: 18px;
+            font-family: "Helvetica Neue, Regular";
             cursor: pointer;
-            .inSubCat{
+            div{
                 display: flex;
-                width: 8px;
-                height: 30px;
-                border: 1px solid grey;
-                border-radius: 4px;
-            }
+                align-items: center;
+                .inSubCat{
+                    display: flex;
+                    background-color: #5DB057;
+                    width: 8px;
+                    height: 30px;
+                    border-radius: 4px;
+                    margin: 8px;
+                }
+            } 
         }
     }
 

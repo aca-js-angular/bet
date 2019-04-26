@@ -3,6 +3,7 @@
     justify-content: flex-end;
     height: 40px;
     width: 99.9%;
+    color: #ffffff;
 }
 .header {
     width: 99.9%;
@@ -28,6 +29,7 @@
     border: 0px;
     width: 100px;
     height: 40px;
+    cursor: pointer;
 }
 
 .rightContent{
@@ -46,6 +48,7 @@
         p {
             font-family: "Helvetica Neue, Regular";
             font-size: 18px;
+            color: #ffffff;
             margin: 8px auto 0;
         }
     }

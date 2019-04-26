@@ -5,15 +5,17 @@
     </div>
     <div class="header">
         <div class="link">
-            <button class="logo">LOGO</button>
+            <button class="logo" routerLink="/home">LOGO</button>
         </div>
+        <bets *ngIf="showBet"></bets>
         <div class="dialog">
             <dialog-content-example *ngIf="!auth.isLogged"></dialog-content-example>
         </div>
         <div class="rightContent"  *ngIf="auth.isLogged">
-            <div>
+            <div >
                 <div></div>
-                <p>Bets</p>
+                <p (click)="openBets()">Bets</p>
+                <span></span>
             </div>
             <div>
                 <div></div>

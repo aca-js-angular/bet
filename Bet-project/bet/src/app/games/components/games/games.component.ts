@@ -19,19 +19,18 @@ export class GamesComponent implements OnInit {
 
   selectedDayFromCalendar: number = Date.now();
 
-
   categories: Array<Object> = []
   allGames: Array<Game> = [];
   filteredGames: Array<Game> = [];
   allSubCategories: Array<object> = [];
   filteredSubCategories: Array<any> = [];
-
+  currentSubCategory: string;
   nextHours: number = 500000000000;
 
   showGameDetails: boolean = false;
 
   constructor(
-
+    
     private afs: AngularFirestore,
     private filtrationService: FiltrationService,
     private gameDetails: GameDetailsService,
@@ -65,8 +64,9 @@ export class GamesComponent implements OnInit {
           this.filteredGames = this.filtrationService.filterGamesWithCategory(params.category, this.allGames);
 
         } else if (params.category && params.subCategory) {
-
+          this.currentSubCategory = params.subCategory;
           this.filteredSubCategories = this.filtrationService.filterSubCategories(params.category, this.filteredSubCategories, this.categories);
+
           this.filteredGames = this.filtrationService.filterWithSubCategories(params.subCategory, this.categories, this.allGames);
         }
         

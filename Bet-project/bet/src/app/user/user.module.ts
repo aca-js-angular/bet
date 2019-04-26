@@ -9,7 +9,6 @@ import { LogInComponent } from './components/log-in/log-in.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 
 import { UserRoutingModule } from './user-routing.module';
-
 import { MaterialModule } from './popup/material.module';
 
 @NgModule({

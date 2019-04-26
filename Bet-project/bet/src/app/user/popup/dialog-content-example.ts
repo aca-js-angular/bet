@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
-import { LogInComponent } from '../components/log-in/log-in.component';
-import { RegistrationComponent } from '../components/registration/registration.component';
 
 import { PopupService } from '../services/popup.service';
 

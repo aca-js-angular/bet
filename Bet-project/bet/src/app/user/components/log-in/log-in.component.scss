@@ -1,5 +1,10 @@
 .login {
+  .closeButton {
+    float: right;
+    color: #ffffff;
+  }
   div {
+    color: #ffffff;
     :first-child {
       font-size: 24px;
       margin-bottom: 6px;
@@ -12,6 +17,7 @@
       width: 420px;
       height: 50px;
       margin-bottom: 18px;
+      border-radius: 4px;
       font-size: 16px;
     }
     button {
@@ -19,7 +25,9 @@
       height: 50px;
       margin-bottom: 18px;
       font-size: 16px;
+      border-radius: 4px;
       background: #5db057;
+      color: #ffffff;
       cursor: pointer;
     }
     :nth-last-child(2) {
@@ -52,23 +60,28 @@
   align-items: center;
 
   border: 1px solid #ff0000;
-  border-left: 6px solid #f87474;
-  background-color: #ffeaea;
-  color: #f87474;
-  margin: 0 auto;
-  margin-top: 24px;
+  border-left: 6px solid #f87474 ;
+  background-color: #ffeaea !important;
+  color: #f87474 !important ;
+  margin: 24px auto 0 0;
   padding-top: 17px;
   padding-bottom: 14px;
   border-radius: 3px;
   font-size: 18px;
+  width: 90%;
 }
 
 .forgotPassword {
+  .closeButton{
+    color: #ffffff;
+    float: right;
+  }
   div {
     width: 420px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: #ffffff;
     :first-child {
       font-size: 24px;
       margin-bottom: 6px;
@@ -79,11 +92,15 @@
       height: 50px;
       margin-bottom: 18px;
       font-size: 16px;
+      border-radius: 4px;
+      color: black !important;
     }
     button {
       width: 420px;
       height: 50px;
       margin-bottom: 18px;
+      border-radius: 4px;
+      color: #ffffff;
       font-size: 16px;
       background: #5db057;
       cursor: pointer;
