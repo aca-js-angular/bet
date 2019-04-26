@@ -11,11 +11,11 @@ export class SelectedOddDirective {
   selectedElem: EventTarget;
 
   @HostListener('click', ['$event']) onclick() {
-    if(event.target['className'] === "overX" || event.target['className'] === "teams_draw") {
+    if(event.target['className'] === "overX") {
       this.gameDetails.selectedBet = event.target;
       this.highLight(event.target, '#5DB057');
-    } else if( event.target['parentElement']['className'] === "overX" || event.target['parentElement']['className'] === "teams_draw") {
-      this.gameDetails.selectedBet = event.target;['parentElement'];
+    } else if( event.target['parentElement']['className'] === "overX") {
+      this.gameDetails.selectedBet = event.target['parentElement'];
       this.highLight(event.target['parentElement'], '#5DB057');
     }
   }

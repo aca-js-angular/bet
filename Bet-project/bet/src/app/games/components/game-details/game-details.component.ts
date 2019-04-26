@@ -19,6 +19,18 @@ export class GameDetailsComponent implements OnInit {
 
   }
 
+  showBettingAmount(event: Event) {
+    if(event.target['tagName'] === 'P' && this.gameDetails.selectedBet) {
+      if(event.target['parentElement']['parentElement'] === this.gameDetails.selectedBet['parentElement']) {
+        this.bettingAmount = true;
+      }
+    } else if(event.target['tagName'] === 'DIV' && this.gameDetails.selectedBet) {
+      if(event.target['parentElement'] === this.gameDetails.selectedBet['parentElement']) {
+        this.bettingAmount = true;
+      }
+    }
+  }
+
   
 
 /*   bet = {
