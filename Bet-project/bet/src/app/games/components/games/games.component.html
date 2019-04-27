@@ -1,10 +1,19 @@
 <div id="catBody">
     <div class="categories">
+            <div (click)="showGamesWithCategory('allSports')">
+                <img class="logo" src="assets/img/Gameslogos80X80/Allgames.svg">
+                <p [ngClass]="{'checkCat': (currentCategory == 'allSports')}">All Sports</p>
+            </div>
+            
         <div
             *ngFor="let cat of categories | gamesFilter : (allGames | dateFilter :  nextHours : selectedDayFromCalendar)">
-            <div>
+            <!-- <div>
                 <img src={{cat.img}} class="logo">
-                <p (click)="showGamesWithCategory(category.innerHTML)" [ngClass]="{'checkCat': (cat.name == currentCategory)}" #category>{{cat.name}}</p>
+                <p (click)="showGamesWithCategory(category.innerHTML)" [ngClass]="{'checkCat': (cat.name == currentCategory)}" #category>{{cat.name}}</p> -->
+            <div (click)="showGamesWithCategory(cat.name)">               
+                <img class="logo" src="assets/img/Gameslogos80X80/{{cat.name}}.svg" color="red">        
+                <p [ngClass]="{'checkCat': (cat.name == currentCategory)}">{{cat.name}}</p>
+                
             </div>
         </div>
     </div>
@@ -41,7 +50,8 @@
             </select>
         </div>
         <div class="games" *ngFor="let game of filteredGames | dateFilter : nextHours: selectedDayFromCalendar">
-            <img src={{game.img}}>
+            <!-- <img src={{game.img}}> -->
+            <img class="logo" src="assets/img/Gameslogos60X60/{{game.categoryName}}.png">
             <div class="game">
                 <div>
                     <p>{{game.team1}}</p>

@@ -5,9 +5,10 @@
   </div>
 
 </div>
-<div #calendar class="calendar-container mat-elevation-z3" *ngIf="!toggle">
 
-  <xunk-calendar [selectedDate]="selDate" (change)="dateChanged($event)" primaryColor="#673ab7"
+<div style.zIndex=10 #calendar class="calendar-container mat-elevation-z3" *ngIf="!toggle">
+
+  <xunk-calendar  [selectedDate]="selDate" (change)="dateChanged($event)" primaryColor="#673ab7"
     primaryForeground="white">
   </xunk-calendar>
   <div>

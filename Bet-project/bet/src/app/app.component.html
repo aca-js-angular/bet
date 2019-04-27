@@ -7,31 +7,44 @@
         <div class="link">
             <div class="logo" routerLink="/home">Go<span>Bet</span></div>
         </div>
-        <bets *ngIf="showBet"></bets>
         <div class="dialog">
             <dialog-content-example *ngIf="!auth.isLogged"></dialog-content-example>
         </div>
-        <div class="rightContent"  *ngIf="auth.isLogged">
-            <div (click)="openBets()">
-                <img src="assets/img/icon/Mask%20Group%2016.svg">
-                <span class="circule">{{2}}</span>
-                <p>Bets</p>
-            </div>
-            <div>
-                <img src="assets/img/icon/Mask%20Group%2015.svg">
-                <p>Deposit</p>
-            </div>
-            <div (click)="logOut()">
-                    <img src="assets/img/icon/Mask%20Group%2014.svg">
-                    <p>Logout</p>
-            </div>
-        </div>
+        <bets-and-deposit class="rightContent" *ngIf="auth.isLogged"></bets-and-deposit>
     </div>
-    <div class="baner"><span><span> BENFICA</span><span>VS</span><span> EINTRACHT FRANKFURT</span> </span>
+    <div class="baner"><span><span> {{randomGame.team1}}</span><span>VS</span><span>{{randomGame.team2}}</span> </span>
+        <div class="betnow" (click)="betNow(randomGame)"
+            [routerLink]="['/', 'home', randomGame.categoryName, randomGame.subCategoryName, randomGame.team1, 'vs', randomGame.team2]">
+            BET NOW</div>
     </div>
     <div>
         <slider></slider>
+
     </div>
 </div>
 
 <router-outlet></router-outlet>
+<div class="footer">
+    <div class="footerLeft">
+    <tbody >
+        <th>Payment Methods</th><br>
+        <tr>Visa card</tr><br>
+        <tr>Master card</tr><br>
+        <tr>ARCA</tr>
+    </tbody>
+    <tbody>
+        <th>GoBet links</th><br>
+        <tr>About GoBet</tr><br>
+        <tr>Teams & Conditions</tr><br>
+        <tr>Blog</tr>
+    </tbody> 
+</div>
+    <div class="footerRight">
+        <div class="logo" routerLink="/home">Go<span>Bet</span></div>
+        <div class="icon">
+            <img src="assets/img/icon/facebook.svg" alt="facebook">
+            <img src="assets/img/icon/instagram.svg" alt="instagram">
+            <img src="assets/img/icon/Mask%20Group%202.svg" alt="twitter">
+        </div>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -32,7 +32,6 @@ export class GamesComponent implements OnInit {
 
   constructor(
     
-    private afs: AngularFirestore,
     private filtrationService: FiltrationService,
     private gameDetails: GameDetailsService,
     private router: Router,
@@ -54,6 +53,7 @@ export class GamesComponent implements OnInit {
     this.filtrationService.getAllGames().then(res => {
       this.categories = res[2];
       this.allGames = res[0];
+      this.filteredGames = this.allGames
       this.allSubCategories = res[3];
       this.allSubCategories.forEach(a => this.filteredSubCategories.push(a['name']));
       this.activeRoute.params.subscribe(params => {
@@ -73,15 +73,19 @@ export class GamesComponent implements OnInit {
         if(params.team1 && params.team2) {
           this.showGameDetails = true;
         }
-        this.addImage();
-        this.addIcon()
       });
     
     });
   }
 
   showGamesWithCategory(categoryName: string) {
-    this.router.navigate([`home/${categoryName}`]);
+    if(categoryName == 'allSports'){
+      this.router.navigate([`home/`]);
+      this.currentCategory = "allSports";
+    }
+    else {
+      this.router.navigate([`home/${categoryName}`]);
+    } 
     this.currentCategory = categoryName;
   };
 
@@ -91,29 +95,5 @@ export class GamesComponent implements OnInit {
   selectDay(selectedDay){
     this.selectedDayFromCalendar = selectedDay
 
-  }
-  addImage():void{
-    this.categories.forEach((i:any)=>{
-      if(i.name == "Baseball" || i.name == "Basketball") {
-        i.img = "assets/img/icon/Mask%20Group%2010.svg"
-      }else if (i.name == "Tennis") {
-        i.img = "assets/img/icon/Mask%20Group%208.svg";
-      }
-      else{
-        i.img = "assets/img/icon/Mask%20Group%205.svg"
-      }
-    });
-  }
-  addIcon():void {
-    this.filteredGames.forEach((i:any)=>{
-      if(i.categoryName == "Baseball" || i.categoryName == "Basketball") {
-        i.img = "assets/img/icon/Mask%20Group%2010.svg"
-      }else if (i.categoryName == "Tennis") {
-        i.img = "assets/img/icon/Mask%20Group%208.svg";
-      }
-      else{
-        i.img = "assets/img/icon/Mask%20Group%205.svg"
-      }
-    });
   }
 }

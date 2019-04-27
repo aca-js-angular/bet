@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="80" height="80" viewBox="0 0 80 80">
+  <defs>
+    <clipPath id="clip-path">
+      <circle id="Ellipse_9" data-name="Ellipse 9" cx="40" cy="40" r="40" transform="translate(757 -9234)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="Group_28" data-name="Group 28" transform="translate(-738 9256)">
+    <g id="Mask_Group_20" data-name="Mask Group 20" transform="translate(-19 -22)" clip-path="url(#clip-path)">
+      <path id="nunchaku" d="M45.984,19.818V12.183H41.8V9.061A9.071,9.071,0,0,0,32.734,0H16.022A9.071,9.071,0,0,0,6.961,9.061v3.122H3.19v7.635H0V65.89H17.783V19.818H15.014V12.183H10.822V9.061a5.206,5.206,0,0,1,5.2-5.2H32.734a5.206,5.206,0,0,1,5.2,5.2v3.122H34.16v7.635H30.97V65.89H48.754V19.818ZM13.922,23.679v4.982H3.861V23.679ZM3.861,62.029V32.522H13.923V62.029Zm7.292-42.211H7.05V16.044h4.1Zm33.74,3.861v4.982H34.831V23.679Zm-6.872-7.635h4.1v3.775h-4.1Zm-3.19,45.985V32.522H44.893V62.029Zm0,0" transform="translate(773 -9229)"/>
+    </g>
+    <rect id="Rectangle_211" data-name="Rectangle 211" width="80" height="80" transform="translate(738 -9256)" fill="none"/>
+  </g>
+</svg>

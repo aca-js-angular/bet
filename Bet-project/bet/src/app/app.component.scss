@@ -36,47 +36,13 @@
     }
 }
 
-.rightContent{
-    display: flex;
-    flex-direction: row;
-    width: 317px;
-    justify-content: space-around;
-    div{
-        flex-direction: column;
-        height: 44px;
-        width: 44px;
-        cursor: pointer;
-        div {
-            border: 1px solid grey;
-        }
-        p {
-            font-family: "Helvetica Neue, Regular";
-            font-size: 18px;
-            color: #ffffff;
-            margin: 8px auto 0;
-        }
-    }
-}
-.circule{
-    color: #ffffff;
-    height: 18px;
-    width: 18px;
-    float: right;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    background-color: #FF0000;
-    margin-top: -16px;
-    margin-right: -4px;
-    position: relative;
-}
 .baner{
     height: 400px;
     width: 70%;
     position: absolute;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     z-index: 1;
     color: #ffffff;
     background-image: linear-gradient(to right, rgba(0,0,0,1),rgba(19, 17, 17, 0.9),rgba(46, 43, 43, 0.7), rgba(255, 255, 255,0));
@@ -93,5 +59,55 @@
     }
     span {
         margin-top:20px
+    }
+    .betnow{
+        width: 280px;
+        height: 80px;
+        background-color: #5DB057;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        font-size: 32px;
+        font-family: fantasy;
+        margin-left: 105px;
+        cursor: pointer;
+    }
+}
+.footer{
+    height: 245px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #ffffff;
+    border-top: 1px solid #5DB057;
+    margin-top: 30px;
+    box-shadow:0 -5px 115px 0 #5DB057;
+    .footerLeft{
+        th{
+            color: #5DB057;
+            font-size: 18px;
+            font-family: sans-serif;
+            font-weight: bold;
+        }
+        tr{
+            font-family: sans-serif;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+        display: flex;
+        width: 40%;
+        justify-content: space-evenly;
+    }
+    .footerRight{
+        .logo{
+            margin-bottom: 10px;
+            margin-left: 0 !important;
+        }
+        .icon{
+            display: flex;
+            justify-content: space-evenly;
+        }
     }
 }

@@ -10,6 +10,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 
 import { UserRoutingModule } from './user-routing.module';
 import { MaterialModule } from './popup/material.module';
+import { BetsAndDepositComponent } from './components/bets-and-deposit/bets-and-deposit.component';
 
 @NgModule({
   imports: [
@@ -22,13 +23,13 @@ import { MaterialModule } from './popup/material.module';
     RecaptchaFormsModule,
     UserRoutingModule
   ],
-  declarations: [LogInComponent, RegistrationComponent],
+  declarations: [LogInComponent, RegistrationComponent, BetsAndDepositComponent],
   providers: [
     {
       provide: RECAPTCHA_SETTINGS,
       useValue: { siteKey: '6LfWIqAUAAAAALDQckG9em7ENFV3m7G7jWg1ZBCL' } as RecaptchaSettings,
     },
   ],
-  exports: [LogInComponent,RegistrationComponent],
+  exports: [LogInComponent,RegistrationComponent,BetsAndDepositComponent],
 })
 export class UserModule { }

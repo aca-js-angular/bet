@@ -41,7 +41,7 @@ export class FiltrationService {
 
   }
 
-  filterSubCategories(categoryName: string, filteredSubCategories: Array<object>, allCategories: Array<object>):Array<object> {
+  filterSubCategories(categoryName?: string, filteredSubCategories?: Array<object>, allCategories?: Array<object>):Array<object> {
 
     for(let cat of allCategories) {
 
@@ -59,9 +59,7 @@ export class FiltrationService {
     filteredGames = filteredGames.filter(game => {
       return game['categoryName'] === categoryName;
     })  
-
     return filteredGames;
-    
   };
 
   getAllGames(): Promise<Array<any>> {
@@ -161,8 +159,6 @@ export class FiltrationService {
                 cat['subCategories'] = subCategories;
 
               })
-
-              console.log(games)
               resolve(games);
 
             })

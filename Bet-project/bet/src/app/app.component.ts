@@ -1,21 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthentificationService } from './user/services/authentification.service';
-
+import { FiltrationService } from './games/services/filtration.service';
+import { GameDetailsService } from './games/services/game-details.service';
+import { Game } from './games/interfaces/game';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  showBet:boolean = false;
-  constructor(private auth:AuthentificationService){
+export class AppComponent implements OnInit {
+  randomGame:Object = {};
+  constructor(
+    private auth:AuthentificationService,
+    private allGames: FiltrationService,
+    private gameDetails: GameDetailsService,
+    ){
     this.auth.checkAuthState();
-    
    }
-   logOut(){
-     this.auth.logOut();
+   ngOnInit(){
+    this.allGames.getAllGames().then(res => {
+      this.randomGame = res[0][(Math.floor(Math.random() * res[0].length))];
+    });
    }
-   openBets(){
-     this.showBet = !this.showBet;
+   betNow(game:Game){
+    this.gameDetails.currentGame = game;
    }
 }

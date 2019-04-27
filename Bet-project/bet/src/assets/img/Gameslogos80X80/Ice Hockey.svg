@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="80" height="80" viewBox="0 0 80 80">
+  <defs>
+    <clipPath id="clip-path">
+      <circle id="Ellipse_9" data-name="Ellipse 9" cx="40" cy="40" r="40" transform="translate(763 -9218)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="Group_28" data-name="Group 28" transform="translate(-769 9247)">
+    <g id="Mask_Group_20" data-name="Mask Group 20" transform="translate(6 -29)" clip-path="url(#clip-path)">
+      <g id="hockey" transform="translate(773 -9209.685)">
+        <path id="Path_159" data-name="Path 159" d="M30.579,31.722,15.075.684,11.807,2.317l16.73,33.492Z" transform="translate(-3.09 0)"/>
+        <path id="Path_160" data-name="Path 160" d="M65.993,63.126H46.7l-1.894-3.791-2.042,4.088L46.5,70.9a6.135,6.135,0,0,0,5.158,3.189H65.993a4.267,4.267,0,0,0,4.262-4.262V67.389A4.267,4.267,0,0,0,65.993,63.126Z" transform="translate(-11.193 -15.35)"/>
+        <path id="Path_161" data-name="Path 161" d="M47.077.684,23.553,47.776H4.262A4.267,4.267,0,0,0,0,52.038v2.436a4.267,4.267,0,0,0,4.262,4.262H18.6a6.135,6.135,0,0,0,5.158-3.189l26.59-53.23Z" transform="translate(0 0)"/>
+      </g>
+    </g>
+    <rect id="Rectangle_211" data-name="Rectangle 211" width="80" height="80" transform="translate(769 -9247)" fill="none"/>
+  </g>
+</svg>

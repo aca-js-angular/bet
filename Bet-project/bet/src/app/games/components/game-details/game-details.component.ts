@@ -1,8 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { GameDetailsService } from '../../services/game-details.service';
-import { Game } from '../../interfaces/game';
-
 @Component({
   selector: 'app-game-details',
   templateUrl: './game-details.component.html',

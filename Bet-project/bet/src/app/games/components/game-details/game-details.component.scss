@@ -4,59 +4,35 @@
     .info {
         width: 662px;
         height: 120px;
-        padding: 63px 100px;
+        width: 854px;
+        height: 246px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         background-image: url('../../../../assets/img/images/willian-justen-de-vasconcellos-445506-unsplash.png');
         color: white;
-
+            div {
+                width: 190px;
+                height: 85px;
+                    display: flex;
+    align-items: center;
+                span {
+                    width: 100%;
+                    font-size: 21px;
+                    text-align: center;
+                    background-color: rgba(0, 0, 0, 0);
+                }
+            }
         * {
             background-color: rgba(0, 0, 0, 0.5);
             border-radius: 3px;
-            display: inline-block;
         }
-
-        .team1 {
-            padding: 30px 0;
-            width: 190px;
-            position: relative;
-            top: -20px;
-
-            span {
-                display: inline-block;
-                width: 100%;
-                font-size: 21px;
-                text-align: center;
-                background-color: rgba(0, 0, 0, 0);
-            }
-        }
-    
-        .team2 {
-            padding: 30px 0;
-            width: 190px;
-            position: relative;
-            top: -20px;
-    
-            span {
-                display: inline-block;
-                width: 100%;
-                font-size: 21px;
-                text-align: center;
-                background-color: rgba(0, 0, 0, 0);
-            }
-        }
-
         .about {
-            padding: 35px 0;
-            height: 50px;
+            height: 120px;
             width: 282px;
-
-            span {
-                display: inline-block;
-                width: 100%;
-                font-size: 21px;
-                text-align: center;
-                margin-bottom: 8px;
-                background-color: rgba(0, 0, 0, 0);
-            }
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
     }
 
