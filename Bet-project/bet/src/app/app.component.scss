@@ -25,11 +25,15 @@
 }
 .logo {
     margin-left: 40px;
-    padding: 0px;
-    border: 0px;
-    width: 100px;
-    height: 40px;
+    color: #ffffff;
+    display: flex;
+    font-size: 40px;
     cursor: pointer;
+    font-family: cursive;
+    span{
+        cursor: pointer;
+        color: #5DB057;
+    }
 }
 
 .rightContent{
@@ -51,5 +55,43 @@
             color: #ffffff;
             margin: 8px auto 0;
         }
+    }
+}
+.circule{
+    color: #ffffff;
+    height: 18px;
+    width: 18px;
+    float: right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: #FF0000;
+    margin-top: -16px;
+    margin-right: -4px;
+    position: relative;
+}
+.baner{
+    height: 400px;
+    width: 70%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    color: #ffffff;
+    background-image: linear-gradient(to right, rgba(0,0,0,1),rgba(19, 17, 17, 0.9),rgba(46, 43, 43, 0.7), rgba(255, 255, 255,0));
+    >span{
+        font-size: 40px;
+        height: 157px;
+        width: 370px;
+        margin-top: 30px;
+        margin-left: 60px;
+        font-family: fantasy;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    span {
+        margin-top:20px
     }
 }

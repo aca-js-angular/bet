@@ -25,6 +25,7 @@ export class GamesComponent implements OnInit {
   allSubCategories: Array<object> = [];
   filteredSubCategories: Array<any> = [];
   currentSubCategory: string;
+  currentCategory: string;
   nextHours: number = 500000000000;
 
   showGameDetails: boolean = false;
@@ -37,7 +38,6 @@ export class GamesComponent implements OnInit {
     private router: Router,
     private activeRoute: ActivatedRoute) {
     // this.afs.firestore.disableNetwork();
-
   }
 
   getCurrentGame(game: Game): void {
@@ -73,17 +73,16 @@ export class GamesComponent implements OnInit {
         if(params.team1 && params.team2) {
           this.showGameDetails = true;
         }
-
-      })
-    })
-
-
+        this.addImage();
+        this.addIcon()
+      });
+    
+    });
   }
 
   showGamesWithCategory(categoryName: string) {
-
     this.router.navigate([`home/${categoryName}`]);
-    
+    this.currentCategory = categoryName;
   };
 
   showGamesWithSubCategory(subCatName: string) {
@@ -92,5 +91,29 @@ export class GamesComponent implements OnInit {
   selectDay(selectedDay){
     this.selectedDayFromCalendar = selectedDay
 
+  }
+  addImage():void{
+    this.categories.forEach((i:any)=>{
+      if(i.name == "Baseball" || i.name == "Basketball") {
+        i.img = "assets/img/icon/Mask%20Group%2010.svg"
+      }else if (i.name == "Tennis") {
+        i.img = "assets/img/icon/Mask%20Group%208.svg";
+      }
+      else{
+        i.img = "assets/img/icon/Mask%20Group%205.svg"
+      }
+    });
+  }
+  addIcon():void {
+    this.filteredGames.forEach((i:any)=>{
+      if(i.categoryName == "Baseball" || i.categoryName == "Basketball") {
+        i.img = "assets/img/icon/Mask%20Group%2010.svg"
+      }else if (i.categoryName == "Tennis") {
+        i.img = "assets/img/icon/Mask%20Group%208.svg";
+      }
+      else{
+        i.img = "assets/img/icon/Mask%20Group%205.svg"
+      }
+    });
   }
 }

@@ -3,8 +3,8 @@
         <div
             *ngFor="let cat of categories | gamesFilter : (allGames | dateFilter :  nextHours : selectedDayFromCalendar)">
             <div>
-                <div class="logo"></div>
-                <p (click)="showGamesWithCategory(category.innerHTML)" #category>{{cat.name}}</p>
+                <img src={{cat.img}} class="logo">
+                <p (click)="showGamesWithCategory(category.innerHTML)" [ngClass]="{'checkCat': (cat.name == currentCategory)}" #category>{{cat.name}}</p>
             </div>
         </div>
     </div>
@@ -41,7 +41,7 @@
             </select>
         </div>
         <div class="games" *ngFor="let game of filteredGames | dateFilter : nextHours: selectedDayFromCalendar">
-            <div class="logo"></div>
+            <img src={{game.img}}>
             <div class="game">
                 <div>
                     <p>{{game.team1}}</p>

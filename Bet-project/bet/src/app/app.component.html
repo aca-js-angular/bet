@@ -5,31 +5,29 @@
     </div>
     <div class="header">
         <div class="link">
-            <button class="logo" routerLink="/home">LOGO</button>
+            <div class="logo" routerLink="/home">Go<span>Bet</span></div>
         </div>
         <bets *ngIf="showBet"></bets>
         <div class="dialog">
             <dialog-content-example *ngIf="!auth.isLogged"></dialog-content-example>
         </div>
         <div class="rightContent"  *ngIf="auth.isLogged">
-            <div >
-                <div></div>
-                <p (click)="openBets()">Bets</p>
-                <span></span>
+            <div (click)="openBets()">
+                <img src="assets/img/icon/Mask%20Group%2016.svg">
+                <span class="circule">{{2}}</span>
+                <p>Bets</p>
             </div>
             <div>
-                <div></div>
-                <p>Profile</p>
-            </div>
-            <div>
-                <div></div>
+                <img src="assets/img/icon/Mask%20Group%2015.svg">
                 <p>Deposit</p>
             </div>
             <div (click)="logOut()">
-                    <div></div>
+                    <img src="assets/img/icon/Mask%20Group%2014.svg">
                     <p>Logout</p>
             </div>
         </div>
+    </div>
+    <div class="baner"><span><span> BENFICA</span><span>VS</span><span> EINTRACHT FRANKFURT</span> </span>
     </div>
     <div>
         <slider></slider>
