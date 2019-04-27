@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GamesRoutingModule } from './games-routing.module';
 import { XunkCalendarModule } from './xunk-calendar/xunk-calendar.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 /*
   Components
@@ -21,6 +21,7 @@ import { CategoryPipe }   from './Pipes/games-filter.pipe';
 import { DateFilterPipe } from './Pipes/date-filter.pipe';
 import { SubCategoriesFilterPipe } from './pipes/sub-categories-filter.pipe';
 import { SelectedOddDirective } from './components/directives/selected-odd.directive';
+import { SharedModule } from '../shared-module/shared.module';
 
 
 @NgModule({
@@ -37,7 +38,9 @@ import { SelectedOddDirective } from './components/directives/selected-odd.direc
     CommonModule,
     GamesRoutingModule,
     XunkCalendarModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule
   ],
   exports: [CalendarComponent,GamesComponent],
 })

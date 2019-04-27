@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 
 import { GameDetailsService } from '../../services/game-details.service';
-import { Game } from '../../interfaces/game';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-game-details',
@@ -13,10 +14,14 @@ export class GameDetailsComponent implements OnInit {
   currentGame = this.gameDetails.currentGame;
   bettingAmount: boolean = false;
 
-  constructor(private gameDetails: GameDetailsService) { }
+  constructor(private gameDetails: GameDetailsService, private auth:AngularFireAuth) {  }
 
   ngOnInit() {
 
+  }
+
+  placeBet(currentUser) {
+    console.log(currentUser);
   }
 
   showBettingAmount(event: Event) {
@@ -31,8 +36,8 @@ export class GameDetailsComponent implements OnInit {
     }
   }
 
+  bettingAmountControl = new FormControl('',[Validators.required,Validators.min(1000)]);
   
-
 /*   bet = {
     game: this.currentGame,
     winner: 'team_1 || team_2 || draw',

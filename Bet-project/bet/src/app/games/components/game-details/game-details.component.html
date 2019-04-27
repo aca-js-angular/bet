@@ -15,7 +15,10 @@
   <div class="bets">
     <div class="betting-amount" *ngIf="bettingAmount && gameDetails.selectedBet">
       <span style="color: white; font-size: 21px">Betting Amount</span>
-      <input class="amount" type="number" placeholder="ex 1000 AMD">
+      <input class="amount" type="number" placeholder="ex 1000 AMD" [formControl]="bettingAmountControl"
+              [ngClass]="{'invalid-border': bettingAmountControl.errors && (bettingAmountControl.dirty || bettingAmountControl.touched)}">
+      <span style="color: white; margin-right: 80px">Winning price - {{ bettingAmountControl.value * gameDetails.selectedOdd.toFixed(2)}}</span>
+      <button [_persistance]="placeBet">Do Bet</button>
       <br>
       <span style="color: #9B9B9B; font-size: 16px">(Min 1000 AMD)</span>
     </div>
@@ -27,15 +30,15 @@
         <div class="bets-over">
           <div class="overX">
             <p>Over 0.5</p>
-            <p>3.12</p>
+            <p class="odd">3.12</p>
           </div>
           <div class="overX">
             <p>Over 1.5</p>
-            <p>2.12</p>
+            <p class="odd">2.12</p>
           </div>
           <div class="overX">
             <p>Over 2.5</p>
-            <p>1.25</p>
+            <p class="odd">1.25</p>
           </div>
           <div class="verticalLine"></div>
           <div class="place-bet" (click)="showBettingAmount($event)"><p>Place Bet</p></div>
@@ -48,15 +51,15 @@
         <div class="bets-over">
           <div class="overX">
             <p>Over 0.5</p>
-            <p>3.12</p>
+            <p class="odd">3.12</p>
           </div>
           <div class="overX">
             <p>Over 1.5</p>
-            <p>2.12</p>
+            <p class="odd">2.12</p>
           </div>
           <div class="overX">
             <p>Over 2.5</p>
-            <p>1.25</p>
+            <p class="odd">1.25</p>
           </div>
           <div class="verticalLine"></div>
           <div class="place-bet" (click)="showBettingAmount($event)"><p>Place Bet</p></div>
@@ -69,15 +72,15 @@
         <div class="bets-over">
           <div class="overX">
             <p>Draw on 0</p>
-            <p>3.12</p>
+            <p class="odd">3.12</p>
           </div>
           <div class="overX">
             <p>Draw on 1</p>
-            <p>2.12</p>
+            <p class="odd">2.12</p>
           </div>
           <div class="overX">
             <p>Draw on 2+</p>
-            <p>4.15</p>
+            <p class="odd">4.15</p>
           </div>
           <div class="verticalLine"></div>
           <div class="place-bet" (click)="showBettingAmount($event)"><p>Place Bet</p></div>

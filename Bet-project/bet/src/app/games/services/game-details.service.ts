@@ -9,6 +9,7 @@ export class GameDetailsService {
 
   currentGame: Game;
   selectedBet: EventTarget = null;
+  selectedOdd: number = null;
 
   constructor() { }
 }
