@@ -54,6 +54,7 @@ export class GamesComponent implements OnInit {
     this.filtrationService.getAllGames().then(res => {
       this.categories = res[2];
       this.allGames = res[0];
+      this.filteredGames = this.allGames
       this.allSubCategories = res[3];
       this.allSubCategories.forEach(a => this.filteredSubCategories.push(a['name']));
       this.activeRoute.params.subscribe(params => {
@@ -81,8 +82,13 @@ export class GamesComponent implements OnInit {
   }
 
   showGamesWithCategory(categoryName: string) {
-
-    this.router.navigate([`home/${categoryName}`]);
+    if(categoryName == 'allSports'){
+      this.router.navigate([`home/`]);
+    }
+    else {
+      this.router.navigate([`home/${categoryName}`]);
+      
+    } 
     
   };
 

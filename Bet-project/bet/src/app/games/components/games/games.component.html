@@ -1,10 +1,16 @@
 <div id="catBody">
     <div class="categories">
+            <div (click)="showGamesWithCategory('allSports')">
+                <img class="logo" src="assets/img/Gameslogos80X80/Allgames.svg">
+                <p>All Sports</p>
+            </div>
+            
         <div
             *ngFor="let cat of categories | gamesFilter : (allGames | dateFilter :  nextHours : selectedDayFromCalendar)">
-            <div>
-                <div class="logo"></div>
-                <p (click)="showGamesWithCategory(category.innerHTML)" #category>{{cat.name}}</p>
+            <div (click)="showGamesWithCategory(cat.name)">               
+                <img class="logo" src="assets/img/Gameslogos80X80/{{cat.name}}.svg" color="red">        
+                <p >{{cat.name}}</p>
+                
             </div>
         </div>
     </div>
@@ -41,7 +47,7 @@
             </select>
         </div>
         <div class="games" *ngFor="let game of filteredGames | dateFilter : nextHours: selectedDayFromCalendar">
-            <div class="logo"></div>
+            <img class="logo" src="assets/img/Gameslogos60X60/{{game.categoryName}}.png">
             <div class="game">
                 <div>
                     <p>{{game.team1}}</p>
