@@ -41,7 +41,7 @@ export class FiltrationService {
 
   }
 
-  filterSubCategories(categoryName: string, filteredSubCategories: Array<object>, allCategories: Array<object>):Array<object> {
+  filterSubCategories(categoryName?: string, filteredSubCategories?: Array<object>, allCategories?: Array<object>):Array<object> {
 
     for(let cat of allCategories) {
 

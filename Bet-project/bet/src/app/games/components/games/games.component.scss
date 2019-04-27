@@ -46,7 +46,7 @@
         .logo{
             width: 60px;
             height: 60px;
-            background-color: #ffffff;
+            fill: red;
             border-radius: 70px;
             margin-right: 10px;
         }
@@ -83,14 +83,16 @@
     div{
         width: 192px;
         height: 180px;
-        cursor: pointer;
+        
+        
+        
     } 
     .logo {
-        width: 80px;
-        height: 80px;
-        background-color: #ffffff;
-        border-radius: 40px;
-        margin: 24px auto 0;
+        margin-left: 56px;
+        margin-top: 24px;
+        cursor: pointer;
+        
+        
     }
     p {
         display: flex;
