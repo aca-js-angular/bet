@@ -11,11 +11,20 @@ export class SelectedOddDirective {
   selectedElem: EventTarget;
 
   @HostListener('click', ['$event']) onclick() {
-    if(event.target['className'] === "overX" || event.target['className'] === "teams_draw") {
+    if(event.target['className'] === "overX") {
       this.gameDetails.selectedBet = event.target;
+      this.gameDetails.selectedOdd = +event.target['lastElementChild'].textContent;
+      this.gameDetails.selectedTeam = event.target['lastElementChild'].getAttribute('name');
       this.highLight(event.target, '#5DB057');
-    } else if( event.target['parentElement']['className'] === "overX" || event.target['parentElement']['className'] === "teams_draw") {
-      this.gameDetails.selectedBet = event.target;['parentElement'];
+    } else if( event.target['parentElement']['className'] === "overX") {
+      this.gameDetails.selectedBet = event.target['parentElement'];
+      if(event.target['className'] === 'odd') {
+        this.gameDetails.selectedOdd = +event.target['textContent'];
+        this.gameDetails.selectedTeam = event.target['getAttribute']('name');
+      } else {
+        this.gameDetails.selectedOdd = +event.target['nextElementSibling'].textContent;
+        this.gameDetails.selectedTeam = event.target['nextElementSibling'].getAttribute('name');
+      }
       this.highLight(event.target['parentElement'], '#5DB057');
     }
   }

@@ -4,7 +4,7 @@
       <span>{{ currentGame.team1 }}</span>
     </div>
     <div class="about">
-      <span>{{ currentGame.start_time.seconds * 1000 | date:'d MMMM hh:mm' }}</span>
+      <span>{{ currentGame.start_time.seconds*1000 | date:'d MMMM hh:mm' }}</span>
       <br>
       <span>{{ currentGame.subCategoryName }}</span>
     </div>
@@ -14,10 +14,20 @@
   </div>
   <div class="bets">
     <div class="betting-amount" *ngIf="bettingAmount && gameDetails.selectedBet">
+      <div>
+        <div class="bettinFirstChild">
       <span style="color: white; font-size: 21px">Betting Amount</span>
-      <input class="amount" type="number" placeholder="ex 1000 AMD">
-      <br>
       <span style="color: #9B9B9B; font-size: 16px">(Min 1000 AMD)</span>
+      </div> 
+      <div class="bettingLastChild">
+      <input class="amount" type="number" placeholder="ex 1000 AMD" [formControl]="bettingAmountControl"
+              [ngClass]="{'invalid-border': bettingAmountControl.errors && (bettingAmountControl.dirty || bettingAmountControl.touched)}">
+              <span style="color: white; margin-right: 80px">Winning price - {{ bettingAmountControl.value * gameDetails.selectedOdd.toFixed(2)}}</span>
+      </div>
+    </div>
+    <div>
+      <button  [_persistance]="placeBet">Do Bet</button>
+    </div>
     </div>
     <div class="bets-info" appSelectedOdd>
       <div class="winner">
@@ -27,18 +37,18 @@
         <div class="bets-over">
           <div class="overX">
             <p>Over 0.5</p>
-            <p>3.12</p>
+            <p class="odd" name="team_1:0">3.12</p>
           </div>
           <div class="overX">
             <p>Over 1.5</p>
-            <p>2.12</p>
+            <p class="odd" name="team_1:1">2.12</p>
           </div>
           <div class="overX">
             <p>Over 2.5</p>
-            <p>1.25</p>
+            <p class="odd" name="team_1:2">1.25</p>
           </div>
           <div class="verticalLine"></div>
-          <div class="place-bet" (click)="bettingAmount = true"><p>Place Bet</p></div>
+          <div class="place-bet" (click)="showBettingAmount($event)"><p>Place Bet</p></div>
         </div>
       </div>
       <div class="winner">
@@ -48,18 +58,18 @@
         <div class="bets-over">
           <div class="overX">
             <p>Over 0.5</p>
-            <p>3.12</p>
+            <p class="odd" name="team_2:0">3.12</p>
           </div>
           <div class="overX">
             <p>Over 1.5</p>
-            <p>2.12</p>
+            <p class="odd" name="team_2:1">2.12</p>
           </div>
           <div class="overX">
             <p>Over 2.5</p>
-            <p>1.25</p>
+            <p class="odd" name="team_2:2">1.25</p>
           </div>
           <div class="verticalLine"></div>
-          <div class="place-bet" (click)="bettingAmount = true"><p>Place Bet</p></div>
+          <div class="place-bet" (click)="showBettingAmount($event)"><p>Place Bet</p></div>
         </div>
       </div>
       <div class="winner">
@@ -69,18 +79,18 @@
         <div class="bets-over">
           <div class="overX">
             <p>Draw on 0</p>
-            <p>3.12</p>
+            <p class="odd" name="draw:0">3.12</p>
           </div>
           <div class="overX">
             <p>Draw on 1</p>
-            <p>2.12</p>
+            <p class="odd" name="draw:1">2.12</p>
           </div>
           <div class="overX">
             <p>Draw on 2+</p>
-            <p>4.15</p>
+            <p class="odd" name="draw:2">4.15</p>
           </div>
           <div class="verticalLine"></div>
-          <div class="place-bet" (click)="bettingAmount = true"><p>Place Bet</p></div>
+          <div class="place-bet" (click)="showBettingAmount($event)"><p>Place Bet</p></div>
         </div>
       </div>
     </div>

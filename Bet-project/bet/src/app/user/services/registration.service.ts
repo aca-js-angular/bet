@@ -15,13 +15,13 @@ export class RegistrationService {
   createUser(user: User) {
     return from(this.auth.auth.createUserWithEmailAndPassword(user.email, user.password)
       .then(
-        () => {
-          let _user = {
-            first_name: user.name,
-            last_name: user.surname,
-            balance: 1000
-          }
-          this.afs.collection('users').add(_user);
+        (u) => {
+          this.afs.collection('users').doc(u.user.uid).set({
+            first_name: user.firstName,
+            last_name: user.lastName,
+            balance: 1000,
+            username: user.username,
+          });
         }
       )
       .catch(err => console.log(err))

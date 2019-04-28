@@ -1,4 +1,5 @@
-<div class="deposit">
+<form [formGroup]="depositForm">
+<div class="deposit" >
     <div class="depositWithdrawal">
         <div  (click)="opneDeposit()" [ngClass]="{'check': showDeposit}" ><span>Deposit</span></div>
         <div  (click)="opneWithdrawal()" [ngClass]="{'check': !showDeposit}"><span> Withdrawal</span></div>
@@ -10,30 +11,30 @@
         </div>
         <div>
             <p>Card Number</p>
-            <input type="text" placeholder="ex. 1234-1234-1234-1234">
+            <input type="text" placeholder="ex. 1234-1234-1234-1234" formControlName="cardNumber">
         </div>
         <div>
             <p>Expiry Date</p>
             <div class="expiryDate">
-                <input type="text" placeholder="mm">
-                <input type="text" placeholder="yyyy">
+                <input type="text" placeholder="mm"  formControlName="expiryDateMM">
+                <input type="text" placeholder="yyyy"  formControlName="expiryDateYY">
             </div>
         </div>
         <div>
             <p>Card Holder`s Name</p>
-            <input type="text" placeholder="ex. Jhon Smith">
+            <input type="text" placeholder="ex. Jhon Smith" formControlName="cardHoldersName">
         </div>
         <div>
             <p>CVC Number</p>
-            <input type="number" placeholder="ex 123">
+            <input type="number" placeholder="ex 123" formControlName="cvcNumber">
         </div>
         <div>
             <p>Deposit Amount <br>
                 <span>(Min. 5000AMD)</span>
             </p>
-            <input type="text" placeholder="ex 5000">
+            <input type="text" placeholder="ex 5000" formControlName="depositAmount">
         </div>
-        <button class="dep" mat-dialog-close >Deposit</button>
+        <button class="dep" mat-dialog-close (click)="depositBalance()">Deposit</button>
     </div>
     <div class="withdrawal" *ngIf="!showDeposit">
         <div class="cardDetails">
@@ -44,9 +45,10 @@
                 <p>Withdraw Amount <br>
                     <span>(Min. 5000 AMD)</span>
                 </p>
-                <input type="text" placeholder="ex. 5000">
+                <input type="text" placeholder="ex. 5000" formControlName="depositAmount">
             </div>
-            <button class="dep" mat-dialog-close>Withdrawl</button>
+            <button class="dep" mat-dialog-close (click)="withdrawlBalance()">Withdrawl</button>
         </div>
     </div>
 </div>
+</form>

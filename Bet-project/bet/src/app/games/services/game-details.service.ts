@@ -9,6 +9,8 @@ export class GameDetailsService {
 
   currentGame: Game;
   selectedBet: EventTarget = null;
+  selectedOdd: number = null;
+  selectedTeam: string = null;
 
   constructor() { }
 }

@@ -67,7 +67,6 @@ export class GamesComponent implements OnInit {
         } else if (params.category && params.subCategory) {
           this.currentSubCategory = params.subCategory;
           this.filteredSubCategories = this.filtrationService.filterSubCategories(params.category, this.filteredSubCategories, this.categories);
-
           this.filteredGames = this.filtrationService.filterWithSubCategories(params.subCategory, this.categories, this.allGames);
         }
         
