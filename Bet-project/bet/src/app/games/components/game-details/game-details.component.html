@@ -4,7 +4,7 @@
       <span>{{ currentGame.team1 }}</span>
     </div>
     <div class="about">
-      <span>{{ currentGame.start_time.seconds | date:'d MMMM hh:mm' }}</span>
+      <span>{{ currentGame.start_time.seconds * 1000 | date:'d MMMM hh:mm' }}</span>
       <br>
       <span>{{ currentGame.subCategoryName }}</span>
     </div>

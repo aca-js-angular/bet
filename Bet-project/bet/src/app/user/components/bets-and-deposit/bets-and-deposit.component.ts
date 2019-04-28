@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { AuthentificationService } from '../../services/authentification.service';
+import { PopupService } from '../../services/popup.service';
 
 @Component({
   selector: 'bets-and-deposit',
@@ -7,6 +8,7 @@ import { AuthentificationService } from '../../services/authentification.service
   styleUrls: ['./bets-and-deposit.component.scss']
 })
 export class BetsAndDepositComponent implements OnInit {
+  showDeposit:boolean = false;
   gamesBet:Array<Object> = [{
     category: "Soccer",
     endTime: {
@@ -43,7 +45,7 @@ export class BetsAndDepositComponent implements OnInit {
  ongoing:Array<Object> = [];
   ended:Array<Object> = [];
   showBet:boolean = false;
-  constructor(private auth:AuthentificationService,) { }
+  constructor(private auth:AuthentificationService,@Inject(PopupService) private popup:PopupService) { }
 
   ngOnInit() {
     this.gamesBet.forEach((i:any)=>{
@@ -59,5 +61,8 @@ export class BetsAndDepositComponent implements OnInit {
   }
   openBets(){
     this.showBet = !this.showBet;
+  }
+  openDeposit(){
+    this.popup._openDeposit();
   }
 }

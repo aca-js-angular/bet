@@ -13,6 +13,7 @@ import {
 } from '@angular/material';
 import { LogInComponent } from '../components/log-in/log-in.component';
 import { RegistrationComponent } from '../components/registration/registration.component';
+import { DepositCopmponent } from '../components/bets-and-deposit/deposit.component';
   
 @NgModule({
   exports: [
@@ -27,6 +28,6 @@ import { RegistrationComponent } from '../components/registration/registration.c
     MatCheckboxModule,
     MatDialogModule,
   ],
-  entryComponents: [LogInComponent, RegistrationComponent],
+  entryComponents: [LogInComponent, RegistrationComponent,DepositCopmponent],
 })
 export class MaterialModule {}

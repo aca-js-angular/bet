@@ -49,7 +49,7 @@ export class GamesComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+    this.currentCategory = "allSports";
     this.filtrationService.getAllGames().then(res => {
       this.categories = res[2];
       this.allGames = res[0];
@@ -60,6 +60,7 @@ export class GamesComponent implements OnInit {
 
         if (params.category && !params.subCategory) {
 
+          this.currentCategory = params.category;
           this.filteredSubCategories = this.filtrationService.filterSubCategories(params.category, this.filteredSubCategories, this.categories);
           this.filteredGames = this.filtrationService.filterGamesWithCategory(params.category, this.allGames);
 
@@ -81,12 +82,11 @@ export class GamesComponent implements OnInit {
   showGamesWithCategory(categoryName: string) {
     if(categoryName == 'allSports'){
       this.router.navigate([`home/`]);
-      this.currentCategory = "allSports";
+      
     }
     else {
       this.router.navigate([`home/${categoryName}`]);
     } 
-    this.currentCategory = categoryName;
   };
 
   showGamesWithSubCategory(subCatName: string) {
