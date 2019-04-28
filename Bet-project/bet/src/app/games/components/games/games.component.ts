@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -25,19 +25,18 @@ export class GamesComponent implements OnInit {
   allSubCategories: Array<object> = [];
   filteredSubCategories: Array<any> = [];
   currentSubCategory: string;
+  currentCategory: string;
   nextHours: number = 500000000000;
 
   showGameDetails: boolean = false;
 
   constructor(
     
-    private afs: AngularFirestore,
     private filtrationService: FiltrationService,
     private gameDetails: GameDetailsService,
     private router: Router,
     private activeRoute: ActivatedRoute) {
     // this.afs.firestore.disableNetwork();
-
   }
 
   getCurrentGame(game: Game): void {
@@ -67,29 +66,26 @@ export class GamesComponent implements OnInit {
         } else if (params.category && params.subCategory) {
           this.currentSubCategory = params.subCategory;
           this.filteredSubCategories = this.filtrationService.filterSubCategories(params.category, this.filteredSubCategories, this.categories);
-
           this.filteredGames = this.filtrationService.filterWithSubCategories(params.subCategory, this.categories, this.allGames);
         }
         
         if(params.team1 && params.team2) {
           this.showGameDetails = true;
         }
-
-      })
-    })
-
-
+      });
+    
+    });
   }
 
   showGamesWithCategory(categoryName: string) {
     if(categoryName == 'allSports'){
       this.router.navigate([`home/`]);
+      this.currentCategory = "allSports";
     }
     else {
       this.router.navigate([`home/${categoryName}`]);
-      
     } 
-    
+    this.currentCategory = categoryName;
   };
 
   showGamesWithSubCategory(subCatName: string) {

@@ -1,21 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthentificationService } from './user/services/authentification.service';
-
+import { FiltrationService } from './games/services/filtration.service';
+import { GameDetailsService } from './games/services/game-details.service';
+import { Game } from './games/interfaces/game';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  showBet:boolean = false;
-  constructor(private auth:AuthentificationService){
+export class AppComponent implements OnInit {
+  randomGame:Object = {};
+  username: string;
+  balance: number;
+
+  constructor(
+    private auth:AuthentificationService,
+    private allGames: FiltrationService,
+    private gameDetails: GameDetailsService,
+    private _auth: AngularFireAuth,
+    private afs: AngularFirestore
+    ){
     this.auth.checkAuthState();
-    
    }
-   logOut(){
-     this.auth.logOut();
+   ngOnInit(){
+    this.allGames.getAllGames().then(res => {
+      this.randomGame = res[0][(Math.floor(Math.random() * res[0].length))];
+    });
+  
+    this._auth.authState.subscribe(user => {
+      if(user) {
+        this.afs.collection('users').doc(user.uid).valueChanges().subscribe(res => {
+          this.username = res['username'];
+          this.balance = res['balance'];
+        })
+      }
+    });    
    }
-   openBets(){
-     this.showBet = !this.showBet;
+   betNow(game:Game){
+    this.gameDetails.currentGame = game;
    }
 }

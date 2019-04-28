@@ -16,11 +16,10 @@ import { Slider } from './user/slider.component';
 import { CommonModule } from '@angular/common';
 import { UserModule } from './user/user.module';
 import { GamesModule } from './games/games.module';
-import { BetsComponent } from './bets/bets.component';
 
 @NgModule({
   declarations: [
-    AppComponent,DialogContentExample,Slider,BetsComponent
+    AppComponent,DialogContentExample,Slider,
   ],
   imports: [
     BrowserModule,BrowserAnimationsModule,
@@ -38,7 +37,7 @@ import { BetsComponent } from './bets/bets.component';
     UserModule,
     GamesModule,
   ],
-  entryComponents: [DialogContentExample,BetsComponent],
+  entryComponents: [DialogContentExample,],
   providers: [],
   bootstrap: [AppComponent]
 })

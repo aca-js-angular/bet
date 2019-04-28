@@ -4,7 +4,7 @@
       <span>{{ currentGame.team1 }}</span>
     </div>
     <div class="about">
-      <span>{{ currentGame.start_time.seconds | date:'d MMMM hh:mm' }}</span>
+      <span>{{ currentGame.start_time.seconds*1000 | date:'d MMMM hh:mm' }}</span>
       <br>
       <span>{{ currentGame.subCategoryName }}</span>
     </div>
@@ -30,15 +30,15 @@
         <div class="bets-over">
           <div class="overX">
             <p>Over 0.5</p>
-            <p class="odd">3.12</p>
+            <p class="odd" name="team_1:0">3.12</p>
           </div>
           <div class="overX">
             <p>Over 1.5</p>
-            <p class="odd">2.12</p>
+            <p class="odd" name="team_1:1">2.12</p>
           </div>
           <div class="overX">
             <p>Over 2.5</p>
-            <p class="odd">1.25</p>
+            <p class="odd" name="team_1:2">1.25</p>
           </div>
           <div class="verticalLine"></div>
           <div class="place-bet" (click)="showBettingAmount($event)"><p>Place Bet</p></div>
@@ -51,15 +51,15 @@
         <div class="bets-over">
           <div class="overX">
             <p>Over 0.5</p>
-            <p class="odd">3.12</p>
+            <p class="odd" name="team_2:0">3.12</p>
           </div>
           <div class="overX">
             <p>Over 1.5</p>
-            <p class="odd">2.12</p>
+            <p class="odd" name="team_2:1">2.12</p>
           </div>
           <div class="overX">
             <p>Over 2.5</p>
-            <p class="odd">1.25</p>
+            <p class="odd" name="team_2:2">1.25</p>
           </div>
           <div class="verticalLine"></div>
           <div class="place-bet" (click)="showBettingAmount($event)"><p>Place Bet</p></div>
@@ -72,15 +72,15 @@
         <div class="bets-over">
           <div class="overX">
             <p>Draw on 0</p>
-            <p class="odd">3.12</p>
+            <p class="odd" name="draw:0">3.12</p>
           </div>
           <div class="overX">
             <p>Draw on 1</p>
-            <p class="odd">2.12</p>
+            <p class="odd" name="draw:1">2.12</p>
           </div>
           <div class="overX">
             <p>Draw on 2+</p>
-            <p class="odd">4.15</p>
+            <p class="odd" name="draw:2">4.15</p>
           </div>
           <div class="verticalLine"></div>
           <div class="place-bet" (click)="showBettingAmount($event)"><p>Place Bet</p></div>

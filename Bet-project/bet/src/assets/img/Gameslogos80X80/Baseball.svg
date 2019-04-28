@@ -1,13 +1,58 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="80" height="80" viewBox="0 0 80 80">
-  <defs>
-    <clipPath id="clip-path">
-      <circle id="Ellipse_9" data-name="Ellipse 9" cx="40" cy="40" r="40" transform="translate(735 -9227)" fill="#fff" stroke="#707070" stroke-width="1"/>
-    </clipPath>
-  </defs>
-  <g id="Group_28" data-name="Group 28" transform="translate(-743 9252)">
-    <g id="Mask_Group_20" data-name="Mask Group 20" transform="translate(8 -25)" clip-path="url(#clip-path)">
-      <path id="baseball" d="M52.147,24.975l5.731-4.018A11.523,11.523,0,1,0,41.828,4.9L29.807,22.022a145.934,145.934,0,0,1-16.191,19.27l-2.663,2.662a45.605,45.605,0,0,1-6.527,5.409L0,52.661,10.135,62.8l3.2-4.36.044-.063a45.626,45.626,0,0,1,5.607-6.819l2.161-2.161A146,146,0,0,1,32.221,39.4,14.1,14.1,0,1,0,52.147,24.975Zm3.675,8.734L50.866,38.6a4.293,4.293,0,0,1-6.076-6.066l4.722-4.648a10.389,10.389,0,0,1,6.31,5.821ZM9.7,57.161,5.611,53.068l.921-.687q1.067-.729,2.1-1.518l3.261,3.261q-.8,1.064-1.546,2.166Zm4.521-5.9-2.747-2.746q1.066-.949,2.076-1.954l.412-.412,2.611,2.611-.2.2Q15.268,50.066,14.226,51.257Zm4.957-5.1-2.615-2.615a149.635,149.635,0,0,0,16.251-19.4L44.84,7.016A7.844,7.844,0,1,1,55.765,17.944L47.5,23.737A14.083,14.083,0,0,0,32.52,34.463,149.779,149.779,0,0,0,19.183,46.157ZM53.6,45.15A10.426,10.426,0,1,1,44.69,27.471L42.2,29.919l-.011.01A7.973,7.973,0,0,0,53.459,41.212l3.18-3.14A10.383,10.383,0,0,1,53.6,45.15Zm0,0" transform="translate(743.358 -9217.47)"/>
-    </g>
-    <rect id="Rectangle_211" data-name="Rectangle 211" width="80" height="80" transform="translate(743 -9252)" fill="none"/>
-  </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 80 80" style="enable-background:new 0 0 80 80;" xml:space="preserve">
+<image style="overflow:visible;" width="60" height="60" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAABS2lUWHRYTUw6Y29tLmFkb2JlLnht
+cAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQi
+Pz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1Q
+IENvcmUgNS42LWMxMzggNzkuMTU5ODI0LCAyMDE2LzA5LzE0LTAxOjA5OjAxICAgICAgICAiPgog
+PHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50
+YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+CiA8L3JkZjpSREY+Cjwv
+eDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+IEmuOgAACd1JREFUaIHt2nuQ3lV5B/DPLrmQ
+BNAYigETZVJLhBZRLl5q6TbUS60ttXKpSq2OrZXK1FrU2lI5mKMOVqzFIoK29KK1g6hT66WjZMRE
+rMZS2tqotRBqB1MgkkAIlySE7PaP73nzvvtmd7Ob6zqT78w7u+f3O+e853ue5zy383IIh3AIP8oY
+6G0sX758SoNLKft0MbvBTByN+Xhi+8zEVqzF3fhhrXW4f+Bll1228/8ZB2Kl+wBPxAvwcpyOebL2
+AezAg1iN60opK2qtW8ebaHD/r3WvcRo+gD/DS4T8ETgcszG3PTsbH0Eppcwbb7LpTvhlQvQcUWfY
+hlvwCXwca9rzASzERbi0lDJ7rAmnq0rPwC/jj3Fqe7Yen8Iq/AD3YRjH4tm4AM/AUbgQG0sp76+1
+7uideLpKeCnepkt2Dd6Jd+GTcl5vq7WurbXeLFrwB7ix9X8cXo9TSymjOE5HCc/HG0RqxPpehb8S
+A7ULmhRXlFI2Yw7OxGKR+n9jc6fvdJPw4fhVvLq1R/A3+IxxyPai1vpN2ZitmIVfEJXfielG+HQ5
+fx0ruxJ/i3unMMdt+F77fzGe0vtyOhFeiFfijNb+Ad4tKjkVbOgZc1ibdyemC+EBIfua1n4AH8I3
+9mCuRyUQ6cw7q/fldCH8UrxODM6wqPJf45E9mOtwMXzaXBt6X04Hwk/Fr+Nprf0dvEf87p7gOF0L
+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
+lRm5tdlIAAAAAElFTkSuQmCC" transform="matrix(1.3333 0 0 1.3333 0 0)">
+</image>
 </svg>

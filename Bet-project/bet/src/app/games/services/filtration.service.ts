@@ -32,9 +32,9 @@ export class FiltrationService {
 
   filterWithSubCategories(subCategory: string, categories: Array<object>, allGames: Array<Game>): Array<Game> {
 
-    let category = this.getCategoryOfSubCategory(subCategory, categories);
+    const category = this.getCategoryOfSubCategory(subCategory, categories);
     this.router.navigate([`home/${category}/${subCategory}`]);
-    let games = this.filterGamesWithCategory(category, allGames);
+    const games = this.filterGamesWithCategory(category, allGames);
     return games.filter(game => {
       return game['subCategoryName'] === subCategory; 
     })
@@ -59,26 +59,29 @@ export class FiltrationService {
     filteredGames = filteredGames.filter(game => {
       return game['categoryName'] === categoryName;
     })  
-
     return filteredGames;
-    
   };
 
   getAllGames(): Promise<Array<any>> {
 
     return new Promise(resolve => {
 
-      let games: Array<Array<any>> = [];
-      this.db.collection('games').valueChanges().subscribe(res => {
+      const games: Array<Array<any>> = [];
+      this.db.collection('games').snapshotChanges().subscribe(res => {
 
-        games.push(res);
+        const arr: Array<any> = [];
+
+        res.forEach(game => {
+          arr.push(game.payload.doc.data())
+        })
+        games.push(arr);
 
         this.db.collection('teams').snapshotChanges().subscribe(res => {
           games.push(res);
           games[1].forEach((game, ind) => {
 
-            let key = game.payload.doc.id;
-            let value = game.payload.doc.data().name;
+            const key = game.payload.doc.id;
+            const value = game.payload.doc.data().name;
             games[1][ind] = {
               id: key,
               name: value
@@ -92,8 +95,8 @@ export class FiltrationService {
             games.push(res);
             games[2].forEach((game, ind) => {
 
-              let key = game.payload.doc.id;
-              let value = game.payload.doc.data().name;
+              const key = game.payload.doc.id;
+              const value = game.payload.doc.data().name;
               games[2][ind] = {
                 id: key,
                 name: value
@@ -137,8 +140,8 @@ export class FiltrationService {
 
               games[3].forEach((game, ind) => {
   
-                let key = game.payload.doc.data()['category'];
-                let value = game.payload.doc.data().name;
+                const key = game.payload.doc.data()['category'];
+                const value = game.payload.doc.data().name;
                 games[3][ind] = {
                   id: key,
                   name: value
@@ -148,7 +151,7 @@ export class FiltrationService {
 
               games[2].forEach(cat => {
 
-                let subCategories = [];
+                const subCategories = [];
                 games[3].forEach(subCat => {
 
                   if(subCat['id'] === cat.id) {
@@ -161,7 +164,6 @@ export class FiltrationService {
                 cat['subCategories'] = subCategories;
 
               })
-
               console.log(games)
               resolve(games);
 

@@ -1,16 +1,44 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="80" height="80" viewBox="0 0 80 80">
-  <defs>
-    <clipPath id="clip-path">
-      <circle id="Ellipse_9" data-name="Ellipse 9" cx="40" cy="40" r="40" transform="translate(933 -9230)" fill="#fff" stroke="#707070" stroke-width="1"/>
-    </clipPath>
-  </defs>
-  <g id="Group_28" data-name="Group 28" transform="translate(-954 9243)">
-    <g id="Mask_Group_20" data-name="Mask Group 20" transform="translate(21 -13)" clip-path="url(#clip-path)">
-      <g id="american-football" transform="translate(945.209 -9217.554)">
-        <path id="Path_159" data-name="Path 159" d="M56.6,1.749A6,6,0,0,0,52.161,0,74.645,74.645,0,0,0,34.542,2.725c-8.38,2.4-15.234,6.229-20.372,11.367S5.207,26.084,2.8,34.464A74.645,74.645,0,0,0,.082,52.083a5.973,5.973,0,0,0,5.973,6.183c.069,0,.138,0,.207,0A74.645,74.645,0,0,0,23.88,55.541c8.38-2.4,15.234-6.229,20.372-11.367S53.215,32.182,55.619,23.8A74.645,74.645,0,0,0,58.341,6.183,5.994,5.994,0,0,0,56.6,1.749Zm-4.313,1.7a2.52,2.52,0,0,1,2.609,2.609,73.149,73.149,0,0,1-1.436,11.993L40.289,4.89A73.2,73.2,0,0,1,52.282,3.454ZM6.141,54.813A2.52,2.52,0,0,1,3.532,52.2,73.248,73.248,0,0,1,4.968,40.211L18.133,53.376A73.2,73.2,0,0,1,6.141,54.813ZM41.812,41.733C36.17,47.375,28.84,50.6,22.076,52.437L5.907,36.268c1.839-6.764,5.062-14.094,10.7-19.736s12.972-8.865,19.736-10.7L52.515,22C50.677,28.762,47.453,36.092,41.812,41.733Zm0,0" transform="translate(0 0)"/>
-        <path id="Path_160" data-name="Path 160" d="M47.726,22.652a1.726,1.726,0,0,0-2.441,0l-2.212,2.212-1.395-1.395a1.726,1.726,0,0,0-2.441,2.441L40.632,27.3l-2.789,2.789L36.449,28.7a1.726,1.726,0,1,0-2.441,2.441L35.4,32.534l-2.789,2.789-1.395-1.395a1.726,1.726,0,0,0-2.441,2.441l1.395,1.395-2.789,2.789-1.395-1.395A1.726,1.726,0,0,0,23.547,41.6l1.395,1.395L22.73,45.206a1.726,1.726,0,0,0,2.441,2.441l2.212-2.212,1.395,1.395a1.726,1.726,0,0,0,2.441-2.441l-1.395-1.395,2.789-2.789L34.007,41.6a1.726,1.726,0,0,0,2.441-2.441l-1.395-1.395,2.789-2.789,1.395,1.395a1.726,1.726,0,1,0,2.441-2.441l-1.395-1.395,2.789-2.789,1.395,1.395A1.726,1.726,0,1,0,46.908,28.7L45.513,27.3l2.212-2.212A1.725,1.725,0,0,0,47.726,22.652Zm0,0" transform="translate(-6.017 -6.017)"/>
-      </g>
-    </g>
-    <rect id="Rectangle_211" data-name="Rectangle 211" width="80" height="80" transform="translate(954 -9243)" fill="none"/>
-  </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 80 80" style="enable-background:new 0 0 80 80;" xml:space="preserve">
+<image style="overflow:visible;" width="60" height="60" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAABS2lUWHRYTUw6Y29tLmFkb2JlLnht
+cAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQi
+Pz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1Q
+IENvcmUgNS42LWMxMzggNzkuMTU5ODI0LCAyMDE2LzA5LzE0LTAxOjA5OjAxICAgICAgICAiPgog
+PHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50
+YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+CiA8L3JkZjpSREY+Cjwv
+eDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+IEmuOgAABtVJREFUaIHt2nusXFUVBvDfvRYK
+tYoIlmeF+sBYEUFEsYFYqwWkFCQqxXfVGF8VrCLx0Zxyd6LGgpGQqqCgqUpTNNqiFB8oVm3wUUWq
+1ohoTGksLa2BFPqk5fjHOtMzHe7MnHPnUjCZL5nsfc7stfb+Zq+z9lrrDH300Ucf/0cY6DYgz/P9
+sY62SCntc51l2UE4EkfhKbgzpbSt8f38+fM76nsyEh6Dl+OFeB6ej4k4HM/C01rGb8FHU0o30J1w
+V+R5vj8+J+R5/pE8z5fnef5wPjLMGRoa6srnidzhSbgIs3BKmzHb8WesxXqsw73YXHx/OuZiArbh
+qIGBgS2dJh3T87Lr43x8Aq/sMu6TWJBSerTDmBVZlm3C9RiHKfhxJ6WDNRbaK2biT7hZSXYLfohL
+8SLMRsOkhnBWBb1/b+of3G3w/iB8MlbhB0Uf7sZ7hSM6H9fgb1iEtwjSB+LmLMvO6aJ/fFP/oW6L
+eTwJj8OV+CNeVtxbhQuFB74ejwwjt0SQ3qMa6UOb+k8Y4Slixy4r5ngA78crsExptu2wBG9SjfSR
+Tf0N3Rb2eBB+O36J44rrG8VZep3uRJuxVJDerSQ9bZhxxxZtjv90UzqahMdgIb5Z9HeIY+dt+O8I
+dS7F65Wkbx2G9PFFuzGltLubwtEiPIDF+FBxfb8w6+/2qjiltFxJeqzHkn5O0d7d61yoHGktaIp4
+7srz/OgeI6/j8zw/Pc9zQ0NDhoaG5Hk+I8/zXcUcO/I8n5bn+WDTvYVVIq3R2OH34ONFf704O9fX
+kJ+Mn+HzwlLOE2frb4Q/wN6dniE8+1jcig/ggGLImiqT9Ur4ZHy16D8igov7a+qYhdfgcvxcBCZj
+hQnvY6YppdsE6Z3FmIVNX/+lymS9EB4jPHBDxxzcOQI9X1YSe3Whb7sg9vvWwQXpcwTpBnbjt1Um
+64VwJswRblLudF1sxLUt91bip+0EUkorBOkG7qjioRk54ReI4J7IUubWkJ2A5fi6MMvzcFXLmOmY
+10XP1qb+r6pOPlLC85SZ1mdwXw3Zs3Au3iUClO+JykWOK5Sp38wuet7Y1L+t6uQjSQ+PE7EukZ9e
+WVN+KVZgqgg1iRDy3SJouRFvFVbQCW8u2o34ddXJR7LDn2qSm2f4BKATtuJLLff+JWJs+KdIDf/Q
+TkGWZaeKsg98J6VUOWStS/hwkbMSx8/iCjKHil3YjNOE922VO0ENs8QlTf2basjVJvwGEdPC1eI4
+6IZjhKM6DLeLnTxAWMaFwsSJH7MrsiyboHyk7sMdVeQaqEt4VtHu8NijpB3+incKpzRe+I2dYqeX
+iR/xHbi4or65St9zVR1zpp7TOkI4GiKse6DD2EliV39XQW+Ob1VZQJZlzxDhJDyIr1SRa0Ydwhcp
+q5zf7zDuIKwW9eOFIuS7tpDdVnw/VuzuEXi4xho+i0OK/hdTSttryKIe4dcV7S5Rn2qHAfuGmw3s
+FmZ8qgg0BlUoEzeQZdlJompCFP+uqSrbjKrP8CDOLPrrRKzbDttF9NQc6+biGV2BL4g3CyeqUINq
+wg3KH+jylNKDNWT3oirhlyqrg89Vetp2OBCt9eSnNvVXibO3ErIs+5iyELgypXRdVdlWVCV8Zsv1
+DBEJDUe68d3BgvRDYmcWKRddGVmWnYEFxeV2UTIaMaoSbrwK2aWs7E83POnZyqPnApHrbhJ1rXU1
+1zdR5MeNdb4vpbS2po59UNVpvbhoVwsSP8I0JemZymf200X7NWWKN2EEazsMt+CZxfVQSqnS8dUJ
+VXZ4ULwGIYKIXcJsby/uTRe7Pra4/ocor7bNZyvgRPFa5qTi+tsppSt60LcXVQg/W2m29xTtDvuS
+nipId323UwHnioClkRx8Qxm/94wqJj2xqX9vU79Berkw76miGPdanY+tdhgnAotLhJPbg8tSSleP
+QFdbVN3hBlodRutOTxGk6+70BcJ6LhVkN4n61qiSpRrh5nc3w1U22pEeP8zYVkwWUdsyHF3cWyRK
+SJWT+jqoQviQpn67EmyD9Mrieor4AdqRniae+TXKUs7a4v5snROTnlCXcKdQcAfOVpI+TZB+uoi8
+XoWEu0T9+exi3Hp8WBQBflF14SNFFafViF8fFeHh1g5jtwkiP8EZgvQacaa2Ptcb8DnxVnGn/YQq
+hFcV7aAI8eaIZGBQ/FdqUtEeI/5mdApe0iR/bFN/i4iclohzulIteTRRhfBi8SeUyfhg8amD9SIy
+u0UUDnbVlB9VVCG8R6R7y5SRz3BovJC+R1QeVwtvPTqvMUcJVWPpf4tM52KRHm4Rz+AGcWZuFh58
+z+Owxj766KOPPvroo48++ngy4n/GQqWZdghNjgAAAABJRU5ErkJggg==" transform="matrix(1.3333 0 0 1.3333 0 0)">
+</image>
 </svg>

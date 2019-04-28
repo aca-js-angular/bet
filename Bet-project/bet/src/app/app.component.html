@@ -1,35 +1,21 @@
 <div class="body">
     <div class="user" *ngIf="auth.isLogged">
-        <p>Username:</p>
-        <p>Balance:</p>
+        <p>Username: {{ username }}</p>
+        <p>Balance: {{ balance }}</p>
     </div>
     <div class="header">
         <div class="link">
-            <button class="logo" routerLink="/home">LOGO</button>
+            <div class="logo" routerLink="/home">Go<span>Bet</span></div>
         </div>
-        <bets *ngIf="showBet"></bets>
         <div class="dialog">
             <dialog-content-example *ngIf="!auth.isLogged"></dialog-content-example>
         </div>
-        <div class="rightContent"  *ngIf="auth.isLogged">
-            <div >
-                <div></div>
-                <p (click)="openBets()">Bets</p>
-                <span></span>
-            </div>
-            <div>
-                <div></div>
-                <p>Profile</p>
-            </div>
-            <div>
-                <div></div>
-                <p>Deposit</p>
-            </div>
-            <div (click)="logOut()">
-                    <div></div>
-                    <p>Logout</p>
-            </div>
-        </div>
+        <bets-and-deposit class="rightContent" *ngIf="auth.isLogged"></bets-and-deposit>
+    </div>
+    <div class="baner"><span><span> {{randomGame.team1}}</span><span>VS</span><span>{{randomGame.team2}}</span> </span>
+        <div class="betnow" (click)="betNow(randomGame)"
+            [routerLink]="['/', 'home', randomGame.categoryName, randomGame.subCategoryName, randomGame.team1, 'vs', randomGame.team2]">
+            BET NOW</div>
     </div>
     <div>
         <slider></slider>
@@ -37,23 +23,27 @@
 </div>
 
 <router-outlet></router-outlet>
-<!-- <footer>
-    <ul>
-        <li>Payment Methods</li>
-        <li>Visa card</li>
-        <li>Master card</li>
-        <li>ARCA</li>
-    </ul>
-    <ul>
-        <li>GoBet Links</li>
-        <li>About GoBet</li>
-        <li>Terms & Conditions</li>
-        <li>Blog</li>
-    </ul>
-    <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
-</footer> -->
+<div class="footer">
+    <div class="footerLeft">
+    <tbody >
+        <th>Payment Methods</th><br>
+        <tr>Visa card</tr><br>
+        <tr>Master card</tr><br>
+        <tr>ARCA</tr>
+    </tbody>
+    <tbody>
+        <th>GoBet links</th><br>
+        <tr>About GoBet</tr><br>
+        <tr>Teams & Conditions</tr><br>
+        <tr>Blog</tr>
+    </tbody> 
+</div>
+    <div class="footerRight">
+        <div class="logo" routerLink="/home">Go<span>Bet</span></div>
+        <div class="icon">
+            <img src="assets/img/icon/facebook.svg" alt="facebook">
+            <img src="assets/img/icon/instagram.svg" alt="instagram">
+            <img src="assets/img/icon/Mask%20Group%202.svg" alt="twitter">
+        </div>
+    </div>
+</div>
