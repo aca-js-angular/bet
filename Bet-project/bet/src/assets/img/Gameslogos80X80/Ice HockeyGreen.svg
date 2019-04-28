@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="80" height="80" viewBox="0 0 80 80">
+  <defs>
+    <clipPath id="clip-path">
+      <circle id="Ellipse_19" data-name="Ellipse 19" cx="40" cy="40" r="40" transform="translate(991 -8914)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="hockey-icon" transform="translate(-1072 8916)">
+    <g id="Mask_Group_30" data-name="Mask Group 30" transform="translate(81 -2)" clip-path="url(#clip-path)">
+      <g id="hockey" transform="translate(1001.529 -8907.581)">
+        <path id="Path_170" data-name="Path 170" d="M30.524,31.63,15.066.684,11.807,2.312,28.488,35.705Z" transform="translate(-3.116)" fill="#5db057"/>
+        <path id="Path_171" data-name="Path 171" d="M65.924,63.115H46.69L44.8,59.335,42.766,63.41l3.723,7.452a6.117,6.117,0,0,0,5.143,3.18H65.924a4.254,4.254,0,0,0,4.25-4.25V67.365A4.254,4.254,0,0,0,65.924,63.115Z" transform="translate(-11.286 -15.478)" fill="#5db057"/>
+        <path id="Path_172" data-name="Path 172" d="M46.938.684,23.484,47.637H4.25A4.254,4.254,0,0,0,0,51.886v2.428a4.254,4.254,0,0,0,4.25,4.25H18.542a6.117,6.117,0,0,0,5.143-3.18L50.2,2.312Z" fill="#5db057"/>
+      </g>
+    </g>
+    <rect id="Rectangle_221" data-name="Rectangle 221" width="80" height="80" transform="translate(1072 -8916)" fill="none"/>
+  </g>
+</svg>

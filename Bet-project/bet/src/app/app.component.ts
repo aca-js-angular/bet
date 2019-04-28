@@ -5,6 +5,7 @@ import { GameDetailsService } from './games/services/game-details.service';
 import { Game } from './games/interfaces/game';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { BetsService } from './user/services/bets.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -21,6 +22,7 @@ export class AppComponent implements OnInit {
     private afs: AngularFirestore,
     private allGames: FiltrationService,
     private gameDetails: GameDetailsService,
+    private bets: BetsService
     ){
     this.auth.checkAuthState();
    }
@@ -38,6 +40,7 @@ export class AppComponent implements OnInit {
       }
     });    
    }
+
    betNow(game:Game){
     this.gameDetails.currentGame = game;
    }

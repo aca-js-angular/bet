@@ -16,7 +16,7 @@ import { Game } from '../../interfaces/game';
 export class GamesComponent implements OnInit {
 
   
-
+  greenPicture:string='Green';
   selectedDayFromCalendar: number = Date.now();
 
   categories: Array<Object> = []
@@ -49,7 +49,7 @@ export class GamesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.currentCategory = "allSports";
+    
     this.filtrationService.getAllGames().then(res => {
       this.categories = res[2];
       this.allGames = res[0];
@@ -63,11 +63,17 @@ export class GamesComponent implements OnInit {
           this.currentCategory = params.category;
           this.filteredSubCategories = this.filtrationService.filterSubCategories(params.category, this.filteredSubCategories, this.categories);
           this.filteredGames = this.filtrationService.filterGamesWithCategory(params.category, this.allGames);
+          this.currentCategory = params.category
 
-        } else if (params.category && params.subCategory) {
+        }
+          if (params.category && params.subCategory) {
           this.currentSubCategory = params.subCategory;
           this.filteredSubCategories = this.filtrationService.filterSubCategories(params.category, this.filteredSubCategories, this.categories);
           this.filteredGames = this.filtrationService.filterWithSubCategories(params.subCategory, this.categories, this.allGames);
+          this.currentCategory = params.category
+        }
+        else if(!params.category && !params.subCategory){
+          this.currentCategory = "allSports";
         }
         
         if(params.team1 && params.team2) {
@@ -93,6 +99,5 @@ export class GamesComponent implements OnInit {
   };
   selectDay(selectedDay){
     this.selectedDayFromCalendar = selectedDay
-
   }
 }
