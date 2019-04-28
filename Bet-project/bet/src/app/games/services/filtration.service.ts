@@ -72,7 +72,9 @@ export class FiltrationService {
         const arr: Array<any> = [];
 
         res.forEach(game => {
-          arr.push(game.payload.doc.data())
+          const gameObj = game.payload.doc.data();
+          gameObj['id'] = game.payload.doc.id;
+          arr.push(gameObj)
         })
         games.push(arr);
 
@@ -164,7 +166,7 @@ export class FiltrationService {
                 cat['subCategories'] = subCategories;
 
               })
-              console.log(games)
+              // console.log(games)
               resolve(games);
 
             })
