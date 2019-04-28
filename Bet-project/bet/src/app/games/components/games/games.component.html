@@ -1,21 +1,33 @@
 <div id="catBody">
     <div class="categories">
             <div (click)="showGamesWithCategory('allSports')">
+
+
                 <img class="logo" src="assets/img/Gameslogos80X80/Allgames.svg">
+
+                
                 <p [ngClass]="{'checkCat': (currentCategory == 'allSports')}">All Sports</p>
-            </div>
-            
+            </div>     
         <div
             *ngFor="let cat of categories | gamesFilter : (allGames | dateFilter :  nextHours : selectedDayFromCalendar)">
             <div (click)="showGamesWithCategory(cat.name)">               
-                <img class="logo" src="assets/img/Gameslogos80X80/{{cat.name}}.svg" color="red">        
+                
+                <div *ngIf="(cat.name == currentCategory); else elseBlock"><img class="logo" src="assets/img/Gameslogos80X80/{{cat.name+greenPicture}}.svg" >  </div>
+            <ng-template #elseBlock><div><img class="logo" src="assets/img/Gameslogos80X80/{{cat.name}}.svg" ></div>  </ng-template>
+
+
                 <p [ngClass]="{'checkCat': (cat.name == currentCategory)}">{{cat.name}}</p>
             </div>
         </div>
     </div>
     <div id="date">
         <p>Select date</p>
+
+
+        
         <app-calendar (selectedDate)="selectDay($event)"></app-calendar>
+
+        
     </div>
 </div>
 <div class="allGames">

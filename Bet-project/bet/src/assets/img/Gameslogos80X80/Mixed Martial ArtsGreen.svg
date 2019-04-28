@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="80" height="80" viewBox="0 0 80 80">
+  <defs>
+    <clipPath id="clip-path">
+      <circle id="Ellipse_20" data-name="Ellipse 20" cx="40" cy="40" r="40" transform="translate(989 -8914)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="martial-arts-icon" transform="translate(-1053 8906)">
+    <g id="Mask_Group_31" data-name="Mask Group 31" transform="translate(64 8)" clip-path="url(#clip-path)">
+      <path id="nunchaku" d="M46.521,20.05V12.325H42.283V9.167A9.177,9.177,0,0,0,33.116,0H16.209A9.177,9.177,0,0,0,7.043,9.167v3.158H3.227V20.05H0V66.658H17.991V20.05h-2.8V12.325H10.948V9.167a5.267,5.267,0,0,1,5.261-5.261H33.116a5.267,5.267,0,0,1,5.261,5.261v3.158H34.559V20.05H31.331V66.658H49.322V20.05ZM14.085,23.955V29H3.906v-5.04ZM3.906,62.752V32.9H14.085V62.752Zm7.377-42.7H7.133V16.231h4.15Zm34.134,3.906V29H35.237v-5.04Zm-6.952-7.725h4.15V20.05h-4.15ZM35.237,62.752V32.9H45.417V62.752Zm0,0" transform="translate(1004.754 -8909.89)" fill="#5db057"/>
+    </g>
+    <rect id="Rectangle_222" data-name="Rectangle 222" width="80" height="80" transform="translate(1053 -8906)" fill="none"/>
+  </g>
+</svg>
