@@ -4,13 +4,14 @@ import { AngularFireAuth } from '@angular/fire/auth';
 
 import { User } from '../interfaces/user';
 import { from } from 'rxjs';
+import { PopupService } from './popup.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegistrationService {
 
-  constructor(private afs: AngularFirestore, private auth: AngularFireAuth) { }
+  constructor(private afs: AngularFirestore, private auth: AngularFireAuth,private popup: PopupService) { }
 
   createUser(user: User) {
     return from(this.auth.auth.createUserWithEmailAndPassword(user.email, user.password)
@@ -26,5 +27,8 @@ export class RegistrationService {
       )
       .catch(err => console.log(err))
       );
+  }
+  closeReg(){
+    this.popup._closePopup();
   }
 }
