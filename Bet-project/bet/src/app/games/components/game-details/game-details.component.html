@@ -14,13 +14,20 @@
   </div>
   <div class="bets">
     <div class="betting-amount" *ngIf="bettingAmount && gameDetails.selectedBet">
+      <div>
+        <div class="bettinFirstChild">
       <span style="color: white; font-size: 21px">Betting Amount</span>
+      <span style="color: #9B9B9B; font-size: 16px">(Min 1000 AMD)</span>
+      </div> 
+      <div class="bettingLastChild">
       <input class="amount" type="number" placeholder="ex 1000 AMD" [formControl]="bettingAmountControl"
               [ngClass]="{'invalid-border': bettingAmountControl.errors && (bettingAmountControl.dirty || bettingAmountControl.touched)}">
-      <span style="color: white; margin-right: 80px">Winning price - {{ bettingAmountControl.value * gameDetails.selectedOdd.toFixed(2)}}</span>
-      <button [_persistance]="placeBet">Do Bet</button>
-      <br>
-      <span style="color: #9B9B9B; font-size: 16px">(Min 1000 AMD)</span>
+              <span style="color: white; margin-right: 80px">Winning price - {{ bettingAmountControl.value * gameDetails.selectedOdd.toFixed(2)}}</span>
+      </div>
+    </div>
+    <div>
+      <button  [_persistance]="placeBet">Do Bet</button>
+    </div>
     </div>
     <div class="bets-info" appSelectedOdd>
       <div class="winner">

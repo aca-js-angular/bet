@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { LogInService } from '../../services/log-in.service';
 import { trigger, state, style, animate, transition } from '@angular/animations';
-import { DialogContentExample } from '../../popup/dialog-content-example';
 import { PopupService } from '../../services/popup.service';
 
 

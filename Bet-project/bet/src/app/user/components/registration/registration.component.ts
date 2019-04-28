@@ -4,6 +4,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 
 import { RegistrationService } from '../../services/registration.service';
 import { customValidators } from './customValidators/customValidators';
+import { PopupService } from '../../services/popup.service';
 
 @Component({
   selector: 'app-registration',
@@ -24,7 +25,7 @@ import { customValidators } from './customValidators/customValidators';
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private regService: RegistrationService) { }
+  constructor(private fb: FormBuilder, private regService: RegistrationService,) { }
 
   registrForm: FormGroup = this.fb.group({
     firstName: ['', [Validators.required, Validators.minLength(2)]],
@@ -39,6 +40,7 @@ export class RegistrationComponent implements OnInit {
   onRegistration() {
     this.regService.createUser(this.registrForm.value).subscribe(res => console.log(res), err => console.log(err))
   }
+  
 
   get _email() {
     return this.registrForm.get('email');

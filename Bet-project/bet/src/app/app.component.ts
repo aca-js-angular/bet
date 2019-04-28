@@ -17,11 +17,11 @@ export class AppComponent implements OnInit {
   balance: number;
 
   constructor(
+    private _auth: AngularFireAuth,
     private auth:AuthentificationService,
+    private afs: AngularFirestore,
     private allGames: FiltrationService,
     private gameDetails: GameDetailsService,
-    private _auth: AngularFireAuth,
-    private afs: AngularFirestore,
     private bets: BetsService
     ){
     this.auth.checkAuthState();

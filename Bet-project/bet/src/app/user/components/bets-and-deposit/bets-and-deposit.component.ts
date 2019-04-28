@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, Inject } from '@angular/core';
 import { AuthentificationService } from '../../services/authentification.service';
+import { PopupService } from '../../services/popup.service';
+
 import { Game } from 'src/app/games/interfaces/game';
 import { Bet } from '../../interfaces/bet';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -13,13 +14,16 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class BetsAndDepositComponent implements OnInit {
 
-  showBet:boolean = false;
+  showBet: boolean = false;
   allBets: Array<Bet> = [];
   currentUser = this._auth.auth.currentUser;
-  
-  constructor(private auth:AuthentificationService,
-              private afs: AngularFirestore,
-              private _auth:AngularFireAuth) { }
+
+  constructor(
+    private auth: AuthentificationService,
+    private afs: AngularFirestore,
+    private _auth: AngularFireAuth,
+    @Inject(PopupService) private popup: PopupService
+  ) { }
 
   ngOnInit() {
     this.afs.collection('bets', bet => bet.where('user', '==', this.currentUser.uid)).valueChanges().subscribe(res => {
@@ -33,5 +37,8 @@ export class BetsAndDepositComponent implements OnInit {
 
   openBets() {
     this.showBet = !this.showBet;
+  }
+  openDeposit() {
+    this.popup._openDeposit();
   }
 }
