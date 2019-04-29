@@ -2,10 +2,9 @@
     background-color: #131323;
 
     .info {
-        width: 662px;
-        height: 120px;
         width: 854px;
         height: 246px;
+        margin-top: 24px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -14,8 +13,8 @@
             div {
                 width: 190px;
                 height: 85px;
-                    display: flex;
-    align-items: center;
+                display: flex;
+                align-items: center;
                 span {
                     width: 100%;
                     font-size: 21px;
@@ -35,6 +34,23 @@
             justify-content: center;
         }
     }
+    
+    @keyframes betDown {
+        from {background-color: #131323;}
+        to {background-color: rgb(155, 30, 30);}
+      }
+      @keyframes betUp {
+        from {background-color: #131323;}
+        to {background-color: rgb(41, 150, 37);}
+      }
+      .betDown{
+            animation-name: betDown;
+            animation-duration: 4s;
+      }
+      .betUp{
+        animation-name: betUp;
+        animation-duration: 4s;
+      }
 
     .bets {
         display: inline-block;

@@ -16,20 +16,35 @@ export class GameDetailsComponent implements OnInit {
   currentGame = this.gameDetails.currentGame;
   bettingAmount: boolean = false;
   currentUser: object;
-
+  id:string;
+  betUp:boolean = false;
+  betDown:boolean = false;
   constructor(private gameDetails: GameDetailsService, 
               private auth: AngularFireAuth, 
               private afs: AngularFirestore,
-              private bets: BetsService) {  }
+              private bets: BetsService) {
+                this.id = this.currentGame.id
+               }
 
   ngOnInit() {
-
-  }
+    this.afs.collection('games').doc(this.id).snapshotChanges().subscribe((game:any) => {
+      for(let key in this.currentGame.odds){
+        for(let k in this.currentGame.odds[key]){
+          if(game.payload.data().odds[key][k] < this.currentGame.odds[key][k]){
+           this.betDown = true
+          }else if (game.payload.data().odds[key][k] > this.currentGame.odds[key][k]){
+            this.betUp = true
+          }
+          this.currentGame.odds[key][k] = game.payload.data().odds[key][k];
+        }
+      }
+    });
+   }
 
   bettingAmountControl = new FormControl('',[Validators.required,Validators.min(1000)]);
 
   placeBet(currentUser) {
-    this.afs.collection('users').doc(currentUser.uid).valueChanges().subscribe(user => {
+    let subscription = this.afs.collection('users').doc(currentUser.uid).valueChanges().subscribe(user => {
         if(user['balance'] >= this.bettingAmountControl.value) {
           this.bets.balance = user['balance'];
           const id = this.afs.createId();
@@ -40,9 +55,12 @@ export class GameDetailsComponent implements OnInit {
             user: currentUser.uid
           }
           this.afs.collection('bets').doc(id).set(bet);
+          this.bets.newBets.push(this.currentGame);
           this.bets.changeBalance(currentUser, this.bettingAmountControl.value, false);
+          subscription.unsubscribe();
         }
       })
+      
   }
 
   showBettingAmount(event: Event) {
@@ -56,6 +74,7 @@ export class GameDetailsComponent implements OnInit {
       }
     }
   }
+ 
   
 
 }

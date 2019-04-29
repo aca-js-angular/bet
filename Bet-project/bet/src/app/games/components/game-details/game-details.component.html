@@ -26,7 +26,7 @@
       </div>
     </div>
     <div>
-      <button  [_persistance]="placeBet">Do Bet</button>
+      <button  [_persistance]="placeBet">Bet</button>
     </div>
     </div>
     <div class="bets-info" appSelectedOdd>
@@ -35,17 +35,17 @@
           <span>{{ currentGame.team1 }} to Win</span>
         </div>
         <div class="bets-over">
-          <div class="overX">
+          <div class="overX" [ngClass]="{'betUp': betUp , 'betDown': betDown}">
             <p>Over 0.5</p>
-            <p class="odd" name="team_1:0">3.12</p>
+            <p class="odd" name="team_1:0">{{ currentGame.odds.team_1[0] }}</p>
           </div>
-          <div class="overX">
+          <div class="overX" [ngClass]="{'betUp': betUp ,'betDown': betDown}">
             <p>Over 1.5</p>
-            <p class="odd" name="team_1:1">2.12</p>
+            <p class="odd" name="team_1:1">{{ currentGame.odds.team_1[1] }}</p>
           </div>
-          <div class="overX">
+          <div class="overX" [ngClass]="{'betUp': betUp,'betDown': betDown}">
             <p>Over 2.5</p>
-            <p class="odd" name="team_1:2">1.25</p>
+            <p class="odd" name="team_1:2">{{ currentGame.odds.team_1[2] }}</p>
           </div>
           <div class="verticalLine"></div>
           <div class="place-bet" (click)="showBettingAmount($event)"><p>Place Bet</p></div>
@@ -56,17 +56,17 @@
           <span>{{ currentGame.team2 }} to Win</span>
         </div>
         <div class="bets-over">
-          <div class="overX">
+          <div class="overX" [ngClass]="{'betUp': betUp,'betDown': betDown}" >
             <p>Over 0.5</p>
-            <p class="odd" name="team_2:0">3.12</p>
+            <p class="odd" name="team_2:0">{{ currentGame.odds.team_2[0] }}</p>
           </div>
-          <div class="overX">
+          <div class="overX" [ngClass]="{'betUp': betUp,'betDown': betDown}" >
             <p>Over 1.5</p>
-            <p class="odd" name="team_2:1">2.12</p>
+            <p class="odd" name="team_2:1">{{ currentGame.odds.team_2[1] }}</p>
           </div>
-          <div class="overX">
+          <div class="overX" [ngClass]="{'betUp': betUp,'betDown': betDown}">
             <p>Over 2.5</p>
-            <p class="odd" name="team_2:2">1.25</p>
+            <p class="odd" name="team_2:2">{{ currentGame.odds.team_2[2] }}</p>
           </div>
           <div class="verticalLine"></div>
           <div class="place-bet" (click)="showBettingAmount($event)"><p>Place Bet</p></div>
@@ -77,17 +77,17 @@
           <span>Draw no bet</span>
         </div>
         <div class="bets-over">
-          <div class="overX">
+          <div class="overX" [ngClass]="{'betUp': betUp,'betDown': betDown}">
             <p>Draw on 0</p>
-            <p class="odd" name="draw:0">3.12</p>
+            <p class="odd" name="draw:0">{{ currentGame.odds.draw[0] }}</p>
           </div>
-          <div class="overX">
+          <div class="overX" [ngClass]="{'betUp': betUp,'betDown': betDown}">
             <p>Draw on 1</p>
-            <p class="odd" name="draw:1">2.12</p>
+            <p class="odd" name="draw:1">{{ currentGame.odds.draw[1] }}</p>
           </div>
-          <div class="overX">
+          <div class="overX" [ngClass]="{'betUp': betUp,'betDown': betDown}">
             <p>Draw on 2+</p>
-            <p class="odd" name="draw:2">4.15</p>
+            <p class="odd" name="draw:2">{{ currentGame.odds.draw[2] }}</p>
           </div>
           <div class="verticalLine"></div>
           <div class="place-bet" (click)="showBettingAmount($event)"><p>Place Bet</p></div>

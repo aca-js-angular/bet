@@ -1,3 +1,4 @@
+<h1>{{a}}</h1>
 <div id="catBody">
     <div class="categories">
         <div (click)="showGamesWithCategory('allSports')">
@@ -57,7 +58,6 @@
             </select>
         </div>
         <div class="games" *ngFor="let game of filteredGames | dateFilter : nextHours: selectedDayFromCalendar">
-            <!-- <img src={{game.img}}> -->
             <img class="logo" src="assets/img/Gameslogos60X60/{{game.categoryName}}.png">
             <div class="game">
                 <div>
