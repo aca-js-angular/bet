@@ -57,11 +57,5 @@ export class GameDetailsComponent implements OnInit {
     }
   }
   
-/*   bet = {
-    game: this.currentGame,
-    winner: 'team_1 || team_2 || draw',
-    amount: 5000,
-    odd: 1.5
-  } */
 
 }

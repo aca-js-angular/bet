@@ -4,6 +4,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 
 import { RegistrationService } from '../../services/registration.service';
 import { customValidators } from './customValidators/customValidators';
+import { MatDialog } from '@angular/material';
 
 
 @Component({
@@ -24,8 +25,7 @@ import { customValidators } from './customValidators/customValidators';
   ]
 })
 export class RegistrationComponent  {
-close:boolean = false;
-  constructor(private fb: FormBuilder, private regService: RegistrationService,) {
+  constructor(private fb: FormBuilder, private regService: RegistrationService, private dialog:MatDialog) {
 
    }
 
@@ -40,7 +40,9 @@ close:boolean = false;
   }, { validators: customValidators.passwordConfirmation });
 
   onRegistration() {
-    this.regService.createUser(this.registrForm.value).subscribe(res => res, err => console.log(err))
+    this.regService.createUser(this.registrForm.value).subscribe(
+      (res) => {this.dialog.closeAll()},
+      (err) => console.log(err))
   }
 
   get _email() {

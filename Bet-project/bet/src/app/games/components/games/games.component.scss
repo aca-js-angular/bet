@@ -80,6 +80,7 @@
 .categories {
     display: flex;
     width: 99.9%;
+    height: 210px;
     overflow-x: scroll;
     overflow-y: hidden;
     scroll-snap-points-y: 10px;
@@ -96,11 +97,10 @@
     .logo {
         width: 80px;
         height: 80px;
-        
         margin: 24px auto 0;      
         cursor: pointer;
     }
-    p {
+    span {
         display: flex;
         justify-content: center;
         font-family: "Helvetica Neue, Regular";

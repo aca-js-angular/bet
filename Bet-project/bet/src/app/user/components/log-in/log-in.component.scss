@@ -1,24 +1,26 @@
 .login {
   .closeButton {
-    float: right;
+    left:85%;
     color: #ffffff;
   }
   div {
-    color: #ffffff;
     :first-child {
       font-size: 24px;
-      margin-bottom: 6px;
     }
+    width: 413px;
+    margin-bottom: 10px;
+    color: #ffffff;
     font-size: 16px;
     display: flex;
     flex-direction: column;
     align-items: center;
     input {
-      width: 420px;
+      width: 405px;
       height: 50px;
       margin-bottom: 18px;
       border-radius: 4px;
       font-size: 16px;
+      padding-left: 10px;
     }
     button {
       width: 420px;
@@ -63,9 +65,8 @@
   border-left: 6px solid #f87474 ;
   background-color: #ffeaea !important;
   color: #f87474 !important ;
-  margin: 24px auto 0 0;
-  padding-top: 17px;
-  padding-bottom: 14px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   border-radius: 3px;
   font-size: 18px;
   width: 90%;

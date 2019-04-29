@@ -35,7 +35,7 @@ export class BetsAndDepositComponent implements OnInit {
     this.auth.logOut();
   }
 
-  openBets() {
+  openBets(event:any) {
     this.showBet = !this.showBet;
   }
   openDeposit() {
