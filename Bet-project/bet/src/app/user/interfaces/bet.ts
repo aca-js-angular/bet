@@ -1,8 +1,6 @@
-import { Game } from 'src/app/games/interfaces/game';
-
 export interface Bet {
     amount?: number,
-    game?: Game,
+    game?: string,
     odd?: string,
     user?: string,
 }

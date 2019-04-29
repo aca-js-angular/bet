@@ -13,5 +13,6 @@ export interface Game {
     }
     start_time: Date,
     end_time: Date,
-    type: string
+    type: string,
+    id: string
 }

@@ -29,7 +29,7 @@ export class GameDetailsComponent implements OnInit {
   bettingAmountControl = new FormControl('',[Validators.required,Validators.min(1000)]);
 
   placeBet(currentUser) {
-    this.afs.collection('users').doc(currentUser.uid).valueChanges().subscribe(user => {
+    let subscription = this.afs.collection('users').doc(currentUser.uid).valueChanges().subscribe(user => {
         if(user['balance'] >= this.bettingAmountControl.value) {
           this.bets.balance = user['balance'];
           const id = this.afs.createId();
@@ -40,9 +40,12 @@ export class GameDetailsComponent implements OnInit {
             user: currentUser.uid
           }
           this.afs.collection('bets').doc(id).set(bet);
+          this.bets.newBets.push(this.currentGame);
           this.bets.changeBalance(currentUser, this.bettingAmountControl.value, false);
+          subscription.unsubscribe();
         }
       })
+      
   }
 
   showBettingAmount(event: Event) {

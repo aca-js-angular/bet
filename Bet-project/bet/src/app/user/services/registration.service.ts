@@ -19,7 +19,7 @@ export class RegistrationService {
           this.afs.collection('users').doc(u.user.uid).set({
             first_name: user.firstName,
             last_name: user.lastName,
-            balance: 1000,
+            balance: 10000,
             username: user.username,
           });
         }

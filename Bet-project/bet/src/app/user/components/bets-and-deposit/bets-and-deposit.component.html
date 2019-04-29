@@ -6,16 +6,16 @@
     <div class="bets" *ngIf="showBet">
       <div>
         <h3>Ended Bets</h3>
-        <div *ngFor="let game of ended">
+        <div *ngFor="let game of endedBets">
           <div>
-            <div class="circuleEnd"></div>
+            <div [ngClass]="{'circuleEndGreen' : win}"></div>
             <div>{{game.team1}} vs {{game.team2}}</div>
           </div>
         </div>
       </div>
       <div>
         <h3>Ongoing Bets</h3>
-        <div *ngFor="let game of ongoing">
+        <div *ngFor="let game of ongoingBets">
           <div>
             <span class="circuleOngoin"></span>
             <div>{{game.team1}} vs {{game.team2}}</div>

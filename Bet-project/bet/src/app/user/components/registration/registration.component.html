@@ -29,7 +29,7 @@
 
                 <br>
                 <br>
-                <button type="submit" [disabled]="registrForm.invalid" mat-dialog-close >Register</button>
+                <button type="submit" [disabled]="registrForm.invalid">Register</button>
                 <div [@stateAnimation]="start" class="invalid"
                         *ngIf="(_email.invalid && (_email.dirty || _email.touched)) || ((_firstName.invalid && (_firstName.dirty || _firstName.touched)) || (_lastName.invalid && (_lastName.dirty || _lastName.touched)))">
                         <span class="email-invalid" *ngIf="_email.invalid && (_email.dirty || _email.touched)">Email
