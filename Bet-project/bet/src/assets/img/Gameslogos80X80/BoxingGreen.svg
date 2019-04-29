@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="80" height="80" viewBox="0 0 80 80">
+  <defs>
+    <clipPath id="clip-path">
+      <circle id="Ellipse_17" data-name="Ellipse 17" cx="40" cy="40" r="40" transform="translate(880 -8867)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="boxinong-icon" transform="translate(-952 8894)">
+    <g id="Mask_Group_28" data-name="Mask Group 28" transform="translate(72 -27)" clip-path="url(#clip-path)">
+      <path id="boxing" d="M53.438,17.5l-.752-.036V15.539A15.557,15.557,0,0,0,37.147,0H23.58A15.557,15.557,0,0,0,8.041,15.539V39.61a17.693,17.693,0,0,0,7.567,14.5V67.157a2.027,2.027,0,0,0,2.027,2.027H54.293a2.027,2.027,0,0,0,2.027-2.027V53.7a17.683,17.683,0,0,0,7-14.088V27.66A10.164,10.164,0,0,0,53.438,17.5ZM19.662,56.235c3.332,1.222,5.724,1.076,8.414,1.076V65.13H19.662Zm32.6,8.895H32.13V57.311H45.616a17.608,17.608,0,0,0,6.651-1.3V65.13Zm7-25.52A13.663,13.663,0,0,1,45.616,53.257H25.742A13.663,13.663,0,0,1,12.095,39.61V15.539A11.5,11.5,0,0,1,23.58,4.054H37.147A11.5,11.5,0,0,1,48.632,15.539V37.294a2.027,2.027,0,0,0,4.054,0V21.518l.624.03a6.078,6.078,0,0,1,5.954,6.112Z" transform="translate(884.676 -8862.036)" fill="#5db057"/>
+    </g>
+    <rect id="Rectangle_219" data-name="Rectangle 219" width="80" height="80" transform="translate(952 -8894)" fill="none"/>
+  </g>
+</svg>
