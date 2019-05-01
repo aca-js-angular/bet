@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
 import { RegistrationService } from '../../services/registration.service';
 import { customValidators } from './customValidators/customValidators';
-import { PopupService } from '../../services/popup.service';
+import { MatDialog } from '@angular/material';
+
 
 @Component({
   selector: 'app-registration',
@@ -23,9 +24,10 @@ import { PopupService } from '../../services/popup.service';
     ])
   ]
 })
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent  {
+  constructor(private fb: FormBuilder, private regService: RegistrationService, private dialog:MatDialog) {
 
-  constructor(private fb: FormBuilder, private regService: RegistrationService,) { }
+   }
 
   registrForm: FormGroup = this.fb.group({
     firstName: ['', [Validators.required, Validators.minLength(2)]],
@@ -38,9 +40,10 @@ export class RegistrationComponent implements OnInit {
   }, { validators: customValidators.passwordConfirmation });
 
   onRegistration() {
-    this.regService.createUser(this.registrForm.value).subscribe(res => console.log(res), err => console.log(err))
+    this.regService.createUser(this.registrForm.value).subscribe(
+      (res) => {this.dialog.closeAll()},
+      (err) => console.log(err))
   }
-  
 
   get _email() {
     return this.registrForm.get('email');
@@ -64,8 +67,5 @@ export class RegistrationComponent implements OnInit {
   get _passwordConfirm() {
     return this.registrForm.get('passwordConfirm');
   }
-
-  ngOnInit() {
-  }
-
+ 
 }

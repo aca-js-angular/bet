@@ -37,6 +37,7 @@
 .bets {
     width: 600px;
     height: 444px;
+    right: 240px;
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -73,12 +74,23 @@
             margin: 8px;
         }
         div{
+            width: 95%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             color: #ffffff;
             font-size: 20px;
             font-family: "Helvetica Neue, Regular";
+        }
+        .ongoing{
+            div{
+                display: flex;
+                justify-content: space-evenly;
+            }
+            .del{
+                transform: rotate(45deg);
+                font-size: 30px;
+            }
         }
         button {
             width: 180px;

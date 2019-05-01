@@ -35,15 +35,15 @@
           <span>{{ currentGame.team1 }} to Win</span>
         </div>
         <div class="bets-over">
-          <div class="overX">
+          <div class="overX" [ngClass]="{'betUp': betUp , 'betDown': betDown}">
             <p>Over 0.5</p>
             <p class="odd" name="team_1:0">{{ currentGame.odds['team_1:0'] }}</p>
           </div>
-          <div class="overX">
+          <div class="overX" [ngClass]="{'betUp': betUp ,'betDown': betDown}">
             <p>Over 1.5</p>
             <p class="odd" name="team_1:1">{{ currentGame.odds['team_1:1'] }}</p>
           </div>
-          <div class="overX">
+          <div class="overX" [ngClass]="{'betUp': betUp,'betDown': betDown}">
             <p>Over 2.5</p>
             <p class="odd" name="team_1:2">{{ currentGame.odds['team_1:2'] }}</p>
           </div>
@@ -56,15 +56,15 @@
           <span>{{ currentGame.team2 }} to Win</span>
         </div>
         <div class="bets-over">
-          <div class="overX">
+          <div class="overX" [ngClass]="{'betUp': betUp,'betDown': betDown}" >
             <p>Over 0.5</p>
             <p class="odd" name="team_2:0">{{ currentGame.odds['draw:0'] }}</p>
           </div>
-          <div class="overX">
+          <div class="overX" [ngClass]="{'betUp': betUp,'betDown': betDown}" >
             <p>Over 1.5</p>
             <p class="odd" name="team_2:1">{{ currentGame.odds['draw:1'] }}</p>
           </div>
-          <div class="overX">
+          <div class="overX" [ngClass]="{'betUp': betUp,'betDown': betDown}">
             <p>Over 2.5</p>
             <p class="odd" name="team_2:2">{{ currentGame.odds['draw:2'] }}</p>
           </div>
@@ -77,15 +77,15 @@
           <span>Draw no bet</span>
         </div>
         <div class="bets-over">
-          <div class="overX">
+          <div class="overX" [ngClass]="{'betUp': betUp,'betDown': betDown}">
             <p>Draw on 0</p>
             <p class="odd" name="draw:0">{{ currentGame.odds['draw:0'] }}</p>
           </div>
-          <div class="overX">
+          <div class="overX" [ngClass]="{'betUp': betUp,'betDown': betDown}">
             <p>Draw on 1</p>
             <p class="odd" name="draw:1">{{ currentGame.odds['draw:1'] }}</p>
           </div>
-          <div class="overX">
+          <div class="overX" [ngClass]="{'betUp': betUp,'betDown': betDown}">
             <p>Draw on 2+</p>
             <p class="odd" name="draw:2">{{ currentGame.odds['draw:2'] }}</p>
           </div>

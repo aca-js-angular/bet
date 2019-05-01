@@ -1,5 +1,5 @@
 <div class="rightContent">
-  <div (click)="openBets()">
+  <div (click)="openBets($event)">
     <img src="assets/img/icon/Mask%20Group%2016.svg">
     <span class="circule">{{2}}</span>
     <p>Bets</p>
@@ -16,9 +16,10 @@
       <div>
         <h3>Ongoing Bets</h3>
         <div *ngFor="let game of ongoingBets">
-          <div>
+          <div class="ongoing">
             <span class="circuleOngoin"></span>
-            <div>{{game.team1}} vs {{game.team2}}</div>
+            <div> <span>{{game.team1}}</span><span>vs</span><span>{{game.team2}}</span> </div>
+            <span class="del" (click)="deleteBet(game)">+</span>
           </div>
         </div>
       </div>

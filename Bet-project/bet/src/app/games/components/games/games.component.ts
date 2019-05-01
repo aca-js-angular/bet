@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit,} from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -13,7 +13,7 @@ import { Game } from '../../interfaces/game';
   styleUrls: ['./games.component.scss']
 })
 
-export class GamesComponent implements OnInit {
+export class GamesComponent implements OnInit{
 
   
   greenPicture:string='Green';
@@ -27,7 +27,6 @@ export class GamesComponent implements OnInit {
   currentSubCategory: string;
   currentCategory: string;
   nextHours: number = 500000000000;
-
   showGameDetails: boolean = false;
 
   constructor(
@@ -35,8 +34,10 @@ export class GamesComponent implements OnInit {
     private filtrationService: FiltrationService,
     private gameDetails: GameDetailsService,
     private router: Router,
-    private activeRoute: ActivatedRoute) {
+    private activeRoute: ActivatedRoute,
+    private afs:AngularFirestore) {
     // this.afs.firestore.disableNetwork();
+   
   }
 
   getCurrentGame(game: Game): void {
@@ -100,4 +101,5 @@ export class GamesComponent implements OnInit {
   selectDay(selectedDay){
     this.selectedDayFromCalendar = selectedDay
   }
+ 
 }

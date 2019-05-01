@@ -27,4 +27,5 @@ export class RegistrationService {
       .catch(err => console.log(err))
       );
   }
+ 
 }

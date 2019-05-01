@@ -6,7 +6,7 @@
         <p>Balance: {{ balance }}</p>
     </div>
     </div>
-    <div class="header">
+    <div class="header" [ngClass]="{'head':auth.isLogged}">
         <div class="link">
             <div class="logo" routerLink="/home">VAS<span>Bet</span></div>
         </div>
@@ -16,7 +16,7 @@
         <bets-and-deposit class="rightContent" *ngIf="auth.isLogged"></bets-and-deposit>
     </div>
     <div class="baner"><span><span> {{randomGame.team1}}</span><span>VS</span><span>{{randomGame.team2}}</span> </span>
-        <div class="betnow" (click)="betNow(randomGame)"
+        <div class="betnow" (click)="betNow(randomGame,target)"
             [routerLink]="['/', 'home', randomGame.categoryName, randomGame.subCategoryName, randomGame.team1, 'vs', randomGame.team2]">
             BET NOW</div>
     </div>
@@ -26,7 +26,7 @@
 </div>
 
 <router-outlet></router-outlet>
-<div class="footer">
+<div class="footer" #target>
     <div class="footerLeft">
     <tbody >
         <th>Payment Methods</th><br>

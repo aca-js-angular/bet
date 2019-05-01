@@ -33,7 +33,7 @@ export class BetsAndDepositComponent implements OnInit {
     private filtrationService: FiltrationService,
     private bets: BetsService,
     @Inject(PopupService) private popup: PopupService
-  ) { }
+  ) {  }
 
   ngOnInit() {
     this.currentUser = this._auth.auth.currentUser;
@@ -87,4 +87,5 @@ export class BetsAndDepositComponent implements OnInit {
   openDeposit() {
     this.popup._openDeposit();
   }
+  
 }

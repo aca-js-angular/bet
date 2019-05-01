@@ -9,6 +9,7 @@
 
       <div><input type="mail" formControlName="mail" placeholder="mail"></div>
       <div><input type="password" formControlName="password" placeholder="password"></div>
+      <div class="errorMesages" [@stateAnimation]="start" *ngIf="errorMessage">{{errorMessage}}</div>
       <button type="submit" [disabled]="logForm.invalid">Sign in</button>
 
       <div>
@@ -20,7 +21,7 @@
     </form>
 
   </div>
-  <div class="errorMesages" [@stateAnimation]="start" *ngIf="errorMessage">{{errorMessage}}</div>
+  
 
   <div class="errorMesages" [@stateAnimation]="start" *ngIf="mail.invalid && (mail.dirty || mail.touched)"
     [@stateAnimation]="start">
