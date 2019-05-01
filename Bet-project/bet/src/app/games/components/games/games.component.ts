@@ -15,9 +15,9 @@ import { Game } from '../../interfaces/game';
 
 export class GamesComponent implements OnInit{
 
-  
+  lentghs: number[]=[];
   greenPicture:string='Green';
-  selectedDayFromCalendar: number = Date.now();
+  selectedDayFromCalendar: number;
 
   categories: Array<Object> = []
   allGames: Array<Game> = [];
@@ -55,6 +55,7 @@ export class GamesComponent implements OnInit{
       this.categories = res[2];
       this.allGames = res[0];
       this.filteredGames = this.allGames
+      
       this.allSubCategories = res[3];
       this.allSubCategories.forEach(a => this.filteredSubCategories.push(a['name']));
       this.activeRoute.params.subscribe(params => {
