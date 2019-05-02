@@ -10,12 +10,15 @@ export class DateFilterPipe implements PipeTransform {
     const selectedDataFromCalendar = new Date(selectedDayFromCalendar);
     const toDay = new Date();
 
-    if (
-      selectedDataFromCalendar.getDate() == toDay.getDate() &&
-      selectedDataFromCalendar.getMonth() == toDay.getMonth() &&
-      selectedDataFromCalendar.getFullYear() == toDay.getFullYear()) {
+    if (selectedDayFromCalendar==0){
+      // selectedDataFromCalendar.getDate() == toDay.getDate() &&
+      // selectedDataFromCalendar.getMonth() == toDay.getMonth() &&
+      // selectedDataFromCalendar.getFullYear() == toDay.getFullYear()) {
       return games.filter((game) => {
-        return game.start_time.seconds * 1000 > Date.now() && game.start_time.seconds * 1000 < (Date.now() + hours * 3600)
+        // console.log("gaemstart:" + game.start_time.seconds * 1000)
+        // console.log("date     :" + Date.now())
+        // console.log("calendar :"+ (`${selectedDayFromCalendar+86400000}`))
+        return game.start_time.seconds * 1000 > Date.now() && game.start_time.seconds * 1000 < (Date.now() + hours * 3600000)
 
       })
     }

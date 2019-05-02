@@ -9,7 +9,7 @@
                 
             </div> 
             <span [ngClass]="{'checkCat': (currentCategory == 'allSports')}">All Sports</span>
-            <span [ngClass]="{'checkCat': (currentCategory == 'allSports')}">{{(allGames| dateFilter : nextHours: selectedDayFromCalendar).length}}</span>
+            <span [ngClass]="{'checkCat': (currentCategory == 'allSports')}">{{(allGames| dateFilter : nextHours: selectedDayFromCalendar.day).length}}</span>
         </div>  
           
         <div
@@ -19,16 +19,17 @@
             <ng-template #elseBlock><div><img class="logo" src="assets/img/Gameslogos80X80/{{cat.name}}.svg" ></div>  </ng-template>
                 <span [ngClass]="{'checkCat': (cat.name == currentCategory)}">{{cat.name}}</span>
                 {{cat.length}}
-            <span [ngClass]="{'checkCat': (cat.name == currentCategory)}">{{((allGames| dateFilter : nextHours: selectedDayFromCalendar)|gameslengths:cat).length}}</span>
+            <span [ngClass]="{'checkCat': (cat.name == currentCategory)}">{{((allGames| dateFilter : nextHours: selectedDayFromCalendar.day)|gameslengths:cat).length}}</span>
             </div>
         </div>
     </div>
     <div id="date">
-        <p>Select date</p>
+        <p>Select Day</p>
+        
 
 
         
-        <app-calendar (selectedDate)="selectDay($event)"></app-calendar>
+        <app-calendar ></app-calendar>
 
         
     </div>
@@ -48,19 +49,20 @@
         <div class="select">
             <select #category2 (change)="showGamesWithCategory(category2.value)" class="catFilterSelect">
                 <option [value]="cat.name"
-                    *ngFor="let cat of categories | gamesFilter : (allGames | dateFilter :  nextHours : selectedDayFromCalendar)">
+                    *ngFor="let cat of categories | gamesFilter : (allGames | dateFilter :  nextHours : selectedDayFromCalendar.day)">
                     {{cat.name}}
                 </option>
             </select>
             <select #selectedTime (change)='selectTime(selectedTime.value)' class="dateFilterSelect">
-                <option value="3">Next 3 Hours</option>
-                <option value="5">Next 5 Hours</option>
-                <option value="6">Next 6 Hours</option>
-                <option value="24">Next 24 Hours</option>
-                <option selected value="500000000000">Next 30 Hours</option>
+                <option *ngFor="let hour of hoursSelect " [value]="hour.value" [selected]="hour.value==nextHours">{{hour.text}}</option>
+                <!-- <option ng-selected="false" value="3">Next 3 Hours</option>
+                <option ng-selected="true" value="5">Next 5 Hours</option>
+                <option ng-selected="false" value="6">Next 6 Hours</option>
+                <option ng-selected="false"value="24">Next 24 Hours</option>
+                <option ng-selected="false" value="500000000000">Next 30 Hours</option> -->
             </select>
         </div>
-        <div class="games"  *ngFor="let game of filteredGames | dateFilter : nextHours: selectedDayFromCalendar">
+        <div class="games"  *ngFor="let game of filteredGames | dateFilter : nextHours: selectedDayFromCalendar.day">
             <img class="logo" src="assets/img/Gameslogos60X60/{{game.categoryName}}.png">
             <div class="game">
                 <div>
@@ -82,7 +84,7 @@
 
         </div>
         
-        <div class="Empti games" *ngIf="(filteredGames| dateFilter : nextHours: selectedDayFromCalendar).length==0">XAX chka</div>
+        <div class="Empti games" *ngIf="(filteredGames| dateFilter : nextHours: selectedDayFromCalendar.day).length==0">XAX chka</div>
     </div>
     <app-game-details *ngIf="showGameDetails" class="game-details"></app-game-details>
 </div>

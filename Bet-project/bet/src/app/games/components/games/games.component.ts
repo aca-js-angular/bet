@@ -6,6 +6,7 @@ import { GameDetailsService } from '../../services/game-details.service';
 import { FiltrationService } from '../../services/filtration.service';
 
 import { Game } from '../../interfaces/game';
+import { TimeService } from '../../services/time.service';
 
 @Component({
   selector: 'games',
@@ -17,7 +18,7 @@ export class GamesComponent implements OnInit{
 
   lentghs: number[]=[];
   greenPicture:string='Green';
-  selectedDayFromCalendar: number;
+  selectedDayFromCalendar: any;
 
   categories: Array<Object> = []
   allGames: Array<Game> = [];
@@ -26,11 +27,19 @@ export class GamesComponent implements OnInit{
   filteredSubCategories: Array<any> = [];
   currentSubCategory: string;
   currentCategory: string;
-  nextHours: number = 500000000000;
+  nextHours: any;
   showGameDetails: boolean = false;
 
+  hoursSelect: object [] = [
+    {value:3, text:"Next 3 Hours"},
+    {value:5, text:"Next 5 Hours"},
+    {value:6, text:"Next 6 Hours"},
+    {value:24, text:"Next 24 Hours"},
+    {value:500000000000, text:"Next 30 Hours"},
+  ]
+
   constructor(
-    
+    private timeService : TimeService,
     private filtrationService: FiltrationService,
     private gameDetails: GameDetailsService,
     private router: Router,
@@ -43,18 +52,16 @@ export class GamesComponent implements OnInit{
   getCurrentGame(game: Game): void {
     this.gameDetails.currentGame = game;
   }
-
-  selectTime(selectedTime): void {
-    this.nextHours = selectedTime;
-    this.selectedDayFromCalendar = Date.now();
-  }
+ 
 
   ngOnInit() {
-    
+    this.selectedDayFromCalendar = this.timeService.dayfromCalendar;
+    this.nextHours = this.timeService.nextHours.hours;
     this.filtrationService.getAllGames().then(res => {
       this.categories = res[2];
       this.allGames = res[0];
-      this.filteredGames = this.allGames
+      this.filteredGames = this.allGames;
+      console.log(this.allGames)
       
       this.allSubCategories = res[3];
       this.allSubCategories.forEach(a => this.filteredSubCategories.push(a['name']));
@@ -99,8 +106,14 @@ export class GamesComponent implements OnInit{
   showGamesWithSubCategory(subCatName: string) {
     this.filteredGames = this.filtrationService.filterWithSubCategories(subCatName, this.categories, this.allGames)
   };
-  selectDay(selectedDay){
-    this.selectedDayFromCalendar = selectedDay
+  // selectDay(selectedDay){
+  //   this.selectedDayFromCalendar = selectedDay
+  // }
+
+  selectTime(selectedTimeHours): void {
+    this.nextHours = this.timeService.selectTime(selectedTimeHours)
+    // this.nextHours = selectedTimeHours;
+    this.selectedDayFromCalendar.day = 0;
   }
  
 }

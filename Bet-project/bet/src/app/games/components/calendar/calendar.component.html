@@ -1,6 +1,6 @@
 <div class="calendar">
   <div (click)="toggle = !toggle">
-    <span>{{day | date:'dd/MMM/yyyy'}}</span> 
+    <span>{{(day || today) | date:'dd/MMM/yyyy'}}</span> 
     <span>&#x25BC;</span> 
   </div>
 
