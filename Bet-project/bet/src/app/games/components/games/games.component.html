@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    <div class="container" *ngIf="!showGameDetails">
+    <div class="container" *ngIf="!params?.id">
         <div class="select">
             <select #category2 (change)="showGamesWithCategory(category2.value)" class="catFilterSelect">
                 <option [value]="cat.name"
@@ -72,12 +72,12 @@
             </div>
             <div class="bet">
                 <button type="button" (click)="getCurrentGame(game)"
-                    [routerLink]="['/', 'home', game.categoryName, game.subCategoryName, game.team1, 'vs', game.team2]">Details
+                    [routerLink]="['/', 'home', game.categoryName, game.subCategoryName, game.id]">Details
                 </button>
             </div>
 
 
         </div>
     </div>
-    <app-game-details *ngIf="showGameDetails" class="game-details"></app-game-details>
+    <app-game-details *ngIf="params?.id" class="game-details"></app-game-details>
 </div>

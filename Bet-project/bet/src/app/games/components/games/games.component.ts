@@ -27,7 +27,7 @@ export class GamesComponent implements OnInit{
   currentSubCategory: string;
   currentCategory: string;
   nextHours: number = 500000000000;
-  showGameDetails: boolean = false;
+  params: any;
 
   constructor(
     
@@ -59,6 +59,11 @@ export class GamesComponent implements OnInit{
       this.allSubCategories.forEach(a => this.filteredSubCategories.push(a['name']));
       this.activeRoute.params.subscribe(params => {
 
+        
+        if(params.id) {
+          this.params = params;
+        }
+
         if (params.category && !params.subCategory) {
 
           this.currentCategory = params.category;
@@ -76,10 +81,7 @@ export class GamesComponent implements OnInit{
         else if(!params.category && !params.subCategory){
           this.currentCategory = "allSports";
         }
-        
-        if(params.team1 && params.team2) {
-          this.showGameDetails = true;
-        }
+
       });
     
     });
