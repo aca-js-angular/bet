@@ -13,7 +13,7 @@ import { interval } from 'rxjs';
 @Component({
   selector: 'bets-and-deposit',
   templateUrl: './bets-and-deposit.component.html',
-  styleUrls: ['./bets-and-deposit.component.scss']
+  styleUrls: ['./bets-and-deposit.component.scss'],
 })
 export class BetsAndDepositComponent implements OnInit {
 
@@ -25,14 +25,14 @@ export class BetsAndDepositComponent implements OnInit {
   betsAndGames: Array<Array<object>> = [];
   currentUser: Object;
   win: boolean = true;
-
+  
   constructor(
     private auth: AuthentificationService,
     private afs: AngularFirestore,
     private _auth: AngularFireAuth,
     private filtrationService: FiltrationService,
     private bets: BetsService,
-    @Inject(PopupService) private popup: PopupService
+    @Inject(PopupService) private popup: PopupService,
   ) {  }
 
   ngOnInit() {
@@ -77,7 +77,8 @@ export class BetsAndDepositComponent implements OnInit {
   }
 
   logOut() {
-    this.auth.logOut();
+    this.popup._openConfirm()
+    // this.auth.logOut();
   }
 
   openBets() {

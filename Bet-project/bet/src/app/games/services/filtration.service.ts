@@ -68,119 +68,76 @@ export class FiltrationService {
 
       const games: Array<Array<any>> = [];
       this.db.collection('games').snapshotChanges().subscribe(res => {
-
         const arr: Array<any> = [];
-
         res.forEach(game => {
           const gameObj = game.payload.doc.data();
           gameObj['id'] = game.payload.doc.id;
           arr.push(gameObj)
         })
         games.push(arr);
-
         this.db.collection('teams').snapshotChanges().subscribe(res => {
           games.push(res);
           games[1].forEach((game, ind) => {
-
             const key = game.payload.doc.id;
             const value = game.payload.doc.data().name;
             games[1][ind] = {
               id: key,
               name: value
             };
-
-
-          })
-
+          });
           this.db.collection('categories').snapshotChanges().subscribe(res => {
-
             games.push(res);
             games[2].forEach((game, ind) => {
-
               const key = game.payload.doc.id;
               const value = game.payload.doc.data().name;
               games[2][ind] = {
                 id: key,
                 name: value
               };
-
             })
-
             this.db.collection('subcategories').snapshotChanges().subscribe(res => {
-
-              games.push(res);
-              
-              
+              games.push(res);  
               games[0].forEach(game => {
-
                 games[1].forEach(team => {
-
                   if(game.team_1 === team.id) {
                     game.team1 = team.name
                   } else if(game.team_2 === team.id) {
                     game.team2 = team.name;
                   }
                 })
-
                 games[2].forEach(cat => {
-
                   if(game.category === cat.id) {
                     game.categoryName = cat.name;
                   }
-
                 })
-
                 res.forEach(subCat => {
-
                   if(game.type === subCat.payload.doc.id) {
                     game.subCategoryName = subCat.payload.doc.data()['name'];
                   }
-
                 })
-
               })
-
               games[3].forEach((game, ind) => {
-  
                 const key = game.payload.doc.data()['category'];
                 const value = game.payload.doc.data().name;
                 games[3][ind] = {
                   id: key,
                   name: value
                 };
-  
               })
-
               games[2].forEach(cat => {
-
                 const subCategories = [];
                 games[3].forEach(subCat => {
-
                   if(subCat['id'] === cat.id) {
-                    
                     subCategories.push(subCat['name']);
-
                   }
-
                 })
                 cat['subCategories'] = subCategories;
-
               })
-              // console.log(games)
               resolve(games);
-
             })
-
-            
           })
-
-          
-
         })
-
       })
-
     })
-
   }
 }

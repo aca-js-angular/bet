@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
 import { GameDetailsService } from '../../services/game-details.service';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { BetsService } from 'src/app/user/services/bets.service';
 
@@ -19,15 +18,14 @@ export class GameDetailsComponent implements OnInit {
   id:string;
   betUp:boolean = false;
   betDown:boolean = false;
-  constructor(private gameDetails: GameDetailsService, 
-              private auth: AngularFireAuth, 
-              private afs: AngularFirestore,
-              private bets: BetsService) {
-                this.id = this.currentGame.id
-               }
+  constructor(
+      private gameDetails: GameDetailsService, 
+      private afs: AngularFirestore,
+      private bets: BetsService,
+      ) {  }
 
-  ngOnInit() {
-    this.afs.collection('games').doc(this.id).snapshotChanges().subscribe((game:any) => {
+  ngOnInit() { 
+   this.afs.collection('games').doc(this.currentGame.id).snapshotChanges().subscribe((game:any) => {
       for(let key in this.currentGame.odds){
         for(let k in this.currentGame.odds[key]){
           if(game.payload.data().odds[key][k] < this.currentGame.odds[key][k]){
