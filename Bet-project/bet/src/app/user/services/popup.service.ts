@@ -9,6 +9,9 @@ import { DepositCopmponent } from '../components/bets-and-deposit/deposit.compon
 })
 export class PopupService {
 
+  message: string;
+  ok: Function;
+
   constructor(private dialog: MatDialog) { }
 
   _openRegistration() {
