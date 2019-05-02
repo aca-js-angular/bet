@@ -2,9 +2,11 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
 import { GameDetailsService } from '../../services/game-details.service';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { BetsService } from 'src/app/user/services/bets.service';
+import { ActivatedRoute } from '@angular/router';
+import { FiltrationService } from '../../services/filtration.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-game-details',
@@ -12,38 +14,71 @@ import { BetsService } from 'src/app/user/services/bets.service';
   styleUrls: ['./game-details.component.scss']
 })
 export class GameDetailsComponent implements OnInit {
-
   @ViewChild("scroll") scrollDiv: ElementRef;
-
-
-
-  currentGame = this.gameDetails.currentGame;
+  currentGame;
   bettingAmount: boolean = false;
   currentUser: object;
-  id: string;
   betUp: boolean = false;
   betDown: boolean = false;
   constructor(private gameDetails: GameDetailsService,
     private auth: AngularFireAuth,
     private afs: AngularFirestore,
-    private bets: BetsService) {
-    this.id = this.currentGame.id
+    private bets: BetsService,
+    private activeRoute: ActivatedRoute,
+    private games: FiltrationService) {
   }
 
   ngOnInit() {
-    this.scrollDiv.nativeElement.scrollIntoView({ behavior: "smooth", block: "start" });
-    this.afs.collection('games').doc(this.id).snapshotChanges().subscribe((game: any) => {
-      for (let key in this.currentGame.odds) {
-        for (let k in this.currentGame.odds[key]) {
-          if (game.payload.data().odds[key][k] < this.currentGame.odds[key][k]) {
-            this.betDown = true
-          } else if (game.payload.data().odds[key][k] > this.currentGame.odds[key][k]) {
-            this.betUp = true
-          }
-          this.currentGame.odds[key][k] = game.payload.data().odds[key][k];
-        }
+    this.scrollDiv.nativeElement.scrollIntoView({ behavior: "smooth", block: "start" });//Vahag esi scrolli hmara 4jnjes
+
+    this.activeRoute.params.subscribe(params => {
+      if(params.id) {
+
+        this.afs.collection('games').snapshotChanges().subscribe(res => {
+          res.forEach(game => {
+            if(game.payload.doc.id === params.id) {
+              this.currentGame = game.payload.doc.data();
+            }
+          })
+
+
+          this.afs.collection('teams').snapshotChanges().subscribe(res => {
+            res.forEach(team => {
+              if(this.currentGame['team_1'] === team.payload.doc.id) {
+                this.currentGame.team1 = team.payload.doc.data()['name'];
+              } else if(this.currentGame['team_2'] === team.payload.doc.id) {
+                this.currentGame.team2 = team.payload.doc.data()['name'];
+              }
+            })
+
+
+            this.afs.collection('categories').snapshotChanges().subscribe(res => {
+              res.forEach(cat => {
+                if(this.currentGame.category === cat.payload.doc.id) {
+                  this.currentGame.categoryName = cat.payload.doc.data()['name'];
+                }
+              })
+
+
+              this.afs.collection('subcategories').snapshotChanges().subscribe(res => {
+                res.forEach(subCat => {
+                  if(this.currentGame.type === subCat.payload.doc.id) {
+                    this.currentGame.subCategoryName = subCat.payload.doc.data()['name'];
+                  }
+                })
+              })
+
+              
+            })
+
+          })
+
+        })
+
       }
-    });
+
+    })
+
   }
 
   bettingAmountControl = new FormControl('', [Validators.required, Validators.min(1000)]);

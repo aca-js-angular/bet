@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthentificationService } from '../../services/authentification.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder } from '@angular/forms';
+import { PopupService } from '../../services/popup.service';
 
 @Component({
   selector: 'deposit',
@@ -25,7 +26,7 @@ export class DepositCopmponent {
         private _auth: AngularFireAuth,
         private auth:AuthentificationService,
         private afs: AngularFirestore,
-        private fb: FormBuilder
+        private fb: FormBuilder,
     ){
        
      }

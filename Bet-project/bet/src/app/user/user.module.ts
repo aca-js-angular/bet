@@ -12,6 +12,7 @@ import { UserRoutingModule } from './user-routing.module';
 import { MaterialModule } from './popup/material.module';
 import { BetsAndDepositComponent } from './components/bets-and-deposit/bets-and-deposit.component';
 import { DepositCopmponent } from './components/bets-and-deposit/deposit.component';
+// import { ConfirmComponent } from './Confirm/confirm.component';
 
 @NgModule({
   imports: [
