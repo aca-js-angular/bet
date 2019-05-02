@@ -22,6 +22,7 @@ import { DateFilterPipe } from './Pipes/date-filter.pipe';
 import { SubCategoriesFilterPipe } from './pipes/sub-categories-filter.pipe';
 import { SelectedOddDirective } from './components/directives/selected-odd.directive';
 import { SharedModule } from '../shared-module/shared.module';
+import { GameslengthsPipe } from './Pipes/gameslengths.pipe';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { SharedModule } from '../shared-module/shared.module';
     DateFilterPipe,
     SubCategoriesFilterPipe,
     GameDetailsComponent,
-    SelectedOddDirective 
+    SelectedOddDirective,
+    GameslengthsPipe 
   ],
   imports: [
     CommonModule,

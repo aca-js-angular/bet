@@ -18,6 +18,7 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit() {
     // this.selDate = XunkCalendarModule.getToday();
+    this.selectedDate.emit(this.day)
   }
   closingCalendar() {
     this.toggle = !this.toggle;

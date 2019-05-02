@@ -6,17 +6,20 @@
 
 
                 <img class="logo" src="assets/img/Gameslogos80X80/Allgames.svg">
-
+                
             </div> 
             <span [ngClass]="{'checkCat': (currentCategory == 'allSports')}">All Sports</span>
+            <span [ngClass]="{'checkCat': (currentCategory == 'allSports')}">{{(allGames| dateFilter : nextHours: selectedDayFromCalendar).length}}</span>
         </div>  
           
         <div
-            *ngFor="let cat of categories | gamesFilter : (allGames | dateFilter :  nextHours : selectedDayFromCalendar)">
+            *ngFor="let cat of categories | gamesFilter : allGames ">
             <div (click)="showGamesWithCategory(cat.name)">               
                 <div *ngIf="(cat.name == currentCategory); else elseBlock"><img class="logo" src="assets/img/Gameslogos80X80/{{cat.name+greenPicture}}.svg" >  </div>
             <ng-template #elseBlock><div><img class="logo" src="assets/img/Gameslogos80X80/{{cat.name}}.svg" ></div>  </ng-template>
                 <span [ngClass]="{'checkCat': (cat.name == currentCategory)}">{{cat.name}}</span>
+                {{cat.length}}
+            <span [ngClass]="{'checkCat': (cat.name == currentCategory)}">{{((allGames| dateFilter : nextHours: selectedDayFromCalendar)|gameslengths:cat).length}}</span>
             </div>
         </div>
     </div>
@@ -33,7 +36,7 @@
 <div class="allGames">
     <div class="subCategories">
         <div #subCategory (click)="showGamesWithSubCategory(subCat)" class="subCat"
-            *ngFor="let subCat of filteredSubCategories | subCategoriesFilter : (allGames | dateFilter : nextHours: selectedDayFromCalendar)">
+            *ngFor="let subCat of filteredSubCategories | subCategoriesFilter : allGames">
             <div>
                 <span [ngClass]="{'inSubCat': (currentSubCategory && subCat == currentSubCategory)}"></span>
                 <span>{{subCat}}</span>
@@ -57,7 +60,7 @@
                 <option selected value="500000000000">Next 30 Hours</option>
             </select>
         </div>
-        <div class="games" *ngFor="let game of filteredGames | dateFilter : nextHours: selectedDayFromCalendar">
+        <div class="games"  *ngFor="let game of filteredGames | dateFilter : nextHours: selectedDayFromCalendar">
             <img class="logo" src="assets/img/Gameslogos60X60/{{game.categoryName}}.png">
             <div class="game">
                 <div>
@@ -75,9 +78,11 @@
                     [routerLink]="['/', 'home', game.categoryName, game.subCategoryName, game.id]">Details
                 </button>
             </div>
-
+        
 
         </div>
+        
+        <div class="Empti games" *ngIf="(filteredGames| dateFilter : nextHours: selectedDayFromCalendar).length==0">XAX chka</div>
     </div>
     <app-game-details *ngIf="params?.id" class="game-details"></app-game-details>
 </div>
