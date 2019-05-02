@@ -28,10 +28,11 @@ import { Slider } from './user/slider.component';
   Directives
   **/
 import { ConfirmDirective } from './Confirm/ConfirmDirective/confirm.directive';
+import { ConfirmComponent } from './Confirm/confirm.component';
 
 @NgModule({
   declarations: [
-    AppComponent,DialogContentExample,Slider, ConfirmDirective,
+    AppComponent,DialogContentExample,Slider,ConfirmComponent
   ],
   imports: [
     BrowserModule,BrowserAnimationsModule,
@@ -49,8 +50,8 @@ import { ConfirmDirective } from './Confirm/ConfirmDirective/confirm.directive';
     UserModule,
     GamesModule,
   ],
-  entryComponents: [DialogContentExample,],
+  entryComponents: [DialogContentExample,ConfirmComponent],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

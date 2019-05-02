@@ -6,7 +6,7 @@ import { PopupService } from 'src/app/user/services/popup.service';
 })
 export class ConfirmDirective {
 
-  @Input() details: [string, Function];
+  @Input('appConfirm') details: [string, any];
 
   constructor(private popup: PopupService) { 
     this.popup.message = this.details[0];

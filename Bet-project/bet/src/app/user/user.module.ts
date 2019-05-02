@@ -12,6 +12,7 @@ import { UserRoutingModule } from './user-routing.module';
 import { MaterialModule } from './popup/material.module';
 import { BetsAndDepositComponent } from './components/bets-and-deposit/bets-and-deposit.component';
 import { DepositCopmponent } from './components/bets-and-deposit/deposit.component';
+import { ConfirmDirective } from '../Confirm/confirmDirective/confirm.directive';
 
 @NgModule({
   imports: [
@@ -24,7 +25,7 @@ import { DepositCopmponent } from './components/bets-and-deposit/deposit.compone
     RecaptchaFormsModule,
     UserRoutingModule,
   ],
-  declarations: [LogInComponent, RegistrationComponent, BetsAndDepositComponent,DepositCopmponent],
+  declarations: [LogInComponent, RegistrationComponent, BetsAndDepositComponent,DepositCopmponent,ConfirmDirective],
   providers: [
     {
       provide: RECAPTCHA_SETTINGS,

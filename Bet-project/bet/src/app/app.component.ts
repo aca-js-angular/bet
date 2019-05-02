@@ -41,7 +41,8 @@ export class AppComponent implements OnInit {
     });    
    }
 
-   betNow(game:Game){
+   betNow(game:Game,target:HTMLElement){
     this.gameDetails.currentGame = game;
+    target.scrollIntoView();
    }
 }
