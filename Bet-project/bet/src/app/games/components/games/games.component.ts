@@ -15,9 +15,9 @@ import { Game } from '../../interfaces/game';
 
 export class GamesComponent implements OnInit{
 
-  
+  lentghs: number[]=[];
   greenPicture:string='Green';
-  selectedDayFromCalendar: number = Date.now();
+  selectedDayFromCalendar: number;
 
   categories: Array<Object> = []
   allGames: Array<Game> = [];
@@ -27,7 +27,7 @@ export class GamesComponent implements OnInit{
   currentSubCategory: string;
   currentCategory: string;
   nextHours: number = 500000000000;
-  showGameDetails: boolean = false;
+  params: any;
 
   constructor(
     
@@ -55,9 +55,15 @@ export class GamesComponent implements OnInit{
       this.categories = res[2];
       this.allGames = res[0];
       this.filteredGames = this.allGames
+      
       this.allSubCategories = res[3];
       this.allSubCategories.forEach(a => this.filteredSubCategories.push(a['name']));
       this.activeRoute.params.subscribe(params => {
+
+        
+        if(params.id) {
+          this.params = params;
+        }
 
         if (params.category && !params.subCategory) {
 
@@ -76,10 +82,7 @@ export class GamesComponent implements OnInit{
         else if(!params.category && !params.subCategory){
           this.currentCategory = "allSports";
         }
-        
-        if(params.team1 && params.team2) {
-          this.showGameDetails = true;
-        }
+
       });
     
     });

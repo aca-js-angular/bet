@@ -1,14 +1,14 @@
 <div class="rightContent">
   <div (click)="openBets($event)">
     <img src="assets/img/icon/Mask%20Group%2016.svg">
-    <span class="circule">{{2}}</span>
+    <span class="circule">{{ unreadMessages }}</span>
     <p>Bets</p>
     <div class="bets" *ngIf="showBet">
       <div>
         <h3>Ended Bets</h3>
         <div *ngFor="let game of endedBets">
           <div>
-            <div [ngClass]="{'circuleEndGreen' : win}"></div>
+            <div [ngClass]="{'circuleEndGreen' : game.win, 'circuleEndRed' : !game.win}"></div>
             <div>{{game.team1}} vs {{game.team2}}</div>
           </div>
         </div>
@@ -19,7 +19,7 @@
           <div class="ongoing">
             <span class="circuleOngoin"></span>
             <div> <span>{{game.team1}}</span><span>vs</span><span>{{game.team2}}</span> </div>
-            <span class="del" (click)="deleteBet(game)">+</span>
+            <span class="del" (click)="deleteBet(game, $event)">+</span>
           </div>
         </div>
       </div>
@@ -29,7 +29,7 @@
     <img src="assets/img/icon/Mask%20Group%2015.svg">
     <p>Deposit</p>
   </div>
-  <div (click)="logOut()">
+  <div (click)="logOut()" [appConfirm]="details">
     <img src="assets/img/icon/Mask%20Group%2014.svg">
     <p>Logout</p>
   </div>

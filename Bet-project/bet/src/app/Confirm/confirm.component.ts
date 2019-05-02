@@ -11,7 +11,8 @@ export class ConfirmComponent implements OnInit {
   message:string
   ok:Function;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
-    console.log(this.data)
+    this.message = this.data.message;
+    this.ok = this.data.ok
    }
   
   ngOnInit() {

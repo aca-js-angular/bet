@@ -17,7 +17,7 @@
     </div>
     <div class="baner"><span><span> {{randomGame.team1}}</span><span>VS</span><span>{{randomGame.team2}}</span> </span>
         <div class="betnow" (click)="betNow(randomGame,target)"
-            [routerLink]="['/', 'home', randomGame.categoryName, randomGame.subCategoryName, randomGame.team1, 'vs', randomGame.team2]">
+            [routerLink]="['/', 'home', randomGame.categoryName, randomGame.subCategoryName, randomGame.id]">
             BET NOW</div>
     </div>
     <div>
