@@ -1,7 +1,10 @@
 <div class="rightContent">
   <div (click)="openBets($event)">
-    <img src="assets/img/icon/Mask%20Group%2016.svg">
-    <span class="circule">{{ unreadMessages }}</span>
+    <div [ngClass] = "{betsAnimation:animationPlay}">
+        <img src="assets/img/icon/Mask%20Group%2016.svg">
+        <span class="circule">{{ unreadMessages }}</span>
+    </div>
+   
     <p>Bets</p>
     <div class="bets" *ngIf="showBet">
       <div>

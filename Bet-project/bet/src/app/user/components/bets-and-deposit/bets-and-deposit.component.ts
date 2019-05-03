@@ -16,7 +16,7 @@ import { interval } from 'rxjs';
   styleUrls: ['./bets-and-deposit.component.scss'],
 })
 export class BetsAndDepositComponent implements OnInit {
-
+  animationPlay: boolean = false;
   showBet: boolean = false;
   allBets: Array<Bet> = [];
   endedBets: Array<Game> = [];
@@ -54,7 +54,7 @@ export class BetsAndDepositComponent implements OnInit {
               this.betsAndGames.push([bet, game]);
               
             } else if(bet.game === game.id && game.end_time['seconds'] * 1000 < Date.now() && !this.endedBets.includes(game)) {
-
+              
               this.endedBets.push(game);
 
             }
@@ -74,8 +74,9 @@ export class BetsAndDepositComponent implements OnInit {
           alert('prcav');
           this.ongoingBets.splice(ind, 1);
           this.endedBets.push(bet_game[1] as Game);
-          
+          this.animationPlay = true;
           if(bet_game[0]['odd'] === bet_game[1]['win']) {
+            
 
             alert('krir');
             bet_game[1]['win'] = true;
@@ -100,6 +101,7 @@ export class BetsAndDepositComponent implements OnInit {
   }
 
   openBets(): void {
+    this.animationPlay = false;
     this.showBet = !this.showBet;
     if(this.showBet === true) {
       this.unreadMessages = 0;

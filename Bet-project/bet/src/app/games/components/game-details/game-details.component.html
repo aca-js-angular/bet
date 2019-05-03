@@ -1,4 +1,4 @@
-<div class="container">
+<div #scroll class="container">
   <div class="info">
     <div class="team1">
       <span>{{ currentGame?.team1 }}</span>
@@ -34,7 +34,7 @@
         <div>
           <span>{{ currentGame?.team1 }} to Win</span>
         </div>
-        <div class="bets-over">
+        <div  class="bets-over">
           <div class="overX" [ngClass]="{'betUp': betUp , 'betDown': betDown}">
             <p>Over 0.5</p>
             <p class="odd" name="team_1:0">{{ currentGame?.odds['team_1:0'] }}</p>
@@ -73,7 +73,7 @@
         </div>
       </div>
       <div class="winner">
-        <div  #scroll>
+        <div>
           <span>Draw no bet</span>
         </div>
         <div class="bets-over">
