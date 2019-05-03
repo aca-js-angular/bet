@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, } from '@angular/core';
-import { PopupService } from '../user/services/popup.service';
+import { PopupService } from '../services/popup.service';
 import { MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
@@ -9,10 +9,10 @@ import { MAT_DIALOG_DATA } from '@angular/material';
 })
 export class ConfirmComponent implements OnInit {
   message:string
-  ok:Function;
+  ok:any;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
     this.message = this.data.message;
-    this.ok = this.data.ok
+    this.ok = this.data.ok;
    }
   
   ngOnInit() {

@@ -24,11 +24,13 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { DialogContentExample } from './user/popup/dialog-content-example';
 import { Slider } from './user/slider.component';
+import { ConfirmComponent } from './user/Confirm/confirm.component';
+// import { ConfirmComponent } from './user/Confirm/confirm.component';
 /*
   Directives
   **/
-import { ConfirmDirective } from './Confirm/ConfirmDirective/confirm.directive';
-import { ConfirmComponent } from './Confirm/confirm.component';
+// import { ConfirmDirective } from './Confirm/ConfirmDirective/confirm.directive';
+
 
 @NgModule({
   declarations: [

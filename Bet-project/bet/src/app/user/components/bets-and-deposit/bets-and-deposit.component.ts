@@ -25,7 +25,8 @@ export class BetsAndDepositComponent implements OnInit {
   betsAndGames: Array<Array<object>> = [];
   currentUser: Object;
   unreadMessages: number = 0;
-  details:[string,any] = ["adasd",this.auth.logOut()]
+  details:string;
+  
   constructor(
     private auth: AuthentificationService,
     private afs: AngularFirestore,
@@ -33,7 +34,10 @@ export class BetsAndDepositComponent implements OnInit {
     private filtrationService: FiltrationService,
     private bets: BetsService,
     @Inject(PopupService) private popup: PopupService
-  ) { }
+  ) { 
+    this.popup.message = 'asdsad';
+    this.popup.ok = this.auth.logOut;
+  }
 
   ngOnInit() {
     this.currentUser = this._auth.auth.currentUser;
