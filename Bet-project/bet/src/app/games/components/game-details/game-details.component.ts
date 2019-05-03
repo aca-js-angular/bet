@@ -5,7 +5,6 @@ import { GameDetailsService } from '../../services/game-details.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { BetsService } from 'src/app/user/services/bets.service';
 import { ActivatedRoute } from '@angular/router';
-import { FiltrationService } from '../../services/filtration.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
@@ -15,18 +14,17 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class GameDetailsComponent implements OnInit {
   @ViewChild("scroll") scrollDiv: ElementRef;
+  _currentGame;
   currentGame;
   bettingAmount: boolean = false;
   currentUser: object;
   betUp: boolean = false;
   betDown: boolean = false;
+
   constructor(private gameDetails: GameDetailsService,
-    private auth: AngularFireAuth,
-    private afs: AngularFirestore,
-    private bets: BetsService,
-    private activeRoute: ActivatedRoute,
-    private games: FiltrationService) {
-  }
+              private afs: AngularFirestore,
+              private bets: BetsService,
+              private activeRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.scrollDiv.nativeElement.scrollIntoView({ behavior: "smooth", block: "start" });//Vahag esi scrolli hmara 4jnjes
@@ -37,9 +35,23 @@ export class GameDetailsComponent implements OnInit {
         this.afs.collection('games').snapshotChanges().subscribe(res => {
           res.forEach(game => {
             if(game.payload.doc.id === params.id) {
+              for(let key in game.payload.doc.data()['odds']) {
+                if(this.currentGame) {
+                  if(game.payload.doc.data()['odds'][key] > this.currentGame.odds[key]) {
+                    this.betUp = true;
+                  } else if(game.payload.doc.data()['odds'][key] < this.currentGame.odds[key]) {
+                    this.betDown = true;
+                  }
+                }
+              }
+              this.betDown = false;
+              this.betUp = true;
+              
               this.currentGame = game.payload.doc.data();
+              this.currentGame.id = game.payload.doc.id;
             }
           })
+          
 
 
           this.afs.collection('teams').snapshotChanges().subscribe(res => {
@@ -88,6 +100,7 @@ export class GameDetailsComponent implements OnInit {
       if (user['balance'] >= this.bettingAmountControl.value) {
         this.bets.balance = user['balance'];
         const id = this.afs.createId();
+        console.log(this.currentGame);
         const bet = {
           amount: this.bettingAmountControl.value,
           game: this.currentGame['id'],

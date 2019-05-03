@@ -57,6 +57,10 @@
         width: 814px;
         padding: 24px 10px 0 24px;
 
+        .bet:disabled {
+            color: black;
+        }
+
         .betting-amount {
             background-color: #1D1E33;
             display: flex;
