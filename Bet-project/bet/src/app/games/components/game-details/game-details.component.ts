@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
 import { GameDetailsService } from '../../services/game-details.service';
@@ -13,7 +13,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
   styleUrls: ['./game-details.component.scss']
 })
 export class GameDetailsComponent implements OnInit {
-
+  @ViewChild("scroll") scrollDiv: ElementRef;
   currentGame;
   bettingAmount: boolean = false;
   currentUser: object;
@@ -25,6 +25,8 @@ export class GameDetailsComponent implements OnInit {
               private activeRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.scrollDiv.nativeElement.scrollIntoView({ behavior: "smooth", block: "start" });//Vahag esi scrolli hmara 4jnjes
+
     this.activeRoute.params.subscribe(params => {
       if(params.id) {
 
