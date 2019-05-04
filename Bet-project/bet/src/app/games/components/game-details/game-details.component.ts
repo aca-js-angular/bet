@@ -14,11 +14,13 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class GameDetailsComponent implements OnInit {
   @ViewChild("scroll") scrollDiv: ElementRef;
+  _currentGame;
   currentGame;
   bettingAmount: boolean = false;
   currentUser: object;
   betUp: boolean = false;
   betDown: boolean = false;
+
   constructor(private gameDetails: GameDetailsService,
               private afs: AngularFirestore,
               private bets: BetsService,
@@ -33,10 +35,23 @@ export class GameDetailsComponent implements OnInit {
         this.afs.collection('games').snapshotChanges().subscribe(res => {
           res.forEach(game => {
             if(game.payload.doc.id === params.id) {
+              for(let key in game.payload.doc.data()['odds']) {
+                if(this.currentGame) {
+                  if(game.payload.doc.data()['odds'][key] > this.currentGame.odds[key]) {
+                    this.betUp = true;
+                  } else if(game.payload.doc.data()['odds'][key] < this.currentGame.odds[key]) {
+                    this.betDown = true;
+                  }
+                }
+              }
+              this.betDown = false;
+              this.betUp = true;
+              
               this.currentGame = game.payload.doc.data();
               this.currentGame.id = game.payload.doc.id;
             }
           })
+          
 
 
           this.afs.collection('teams').snapshotChanges().subscribe(res => {
