@@ -3,12 +3,13 @@
     <div>
         <p>Username: {{ username }}</p>
         <span> &nbsp; </span>
-        <p>Balance: {{ balance }}</p>
+        <p >Balance: {{ balance }}</p>
     </div>
     </div>
     <div class="header" [ngClass]="{'head':auth.isLogged}">
         <div class="link">
             <div class="logo" routerLink="/home">VAS<span>Bet</span></div>
+            
         </div>
         <div class="dialog">
             <dialog-content-example *ngIf="!auth.isLogged"></dialog-content-example>
@@ -24,6 +25,7 @@
         <slider></slider>
     </div>
 </div>
+
 
 <router-outlet #target></router-outlet>>
 <div class="footer">

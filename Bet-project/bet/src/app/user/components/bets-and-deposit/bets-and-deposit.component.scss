@@ -9,9 +9,7 @@
         height: 44px;
         width: 44px;
         cursor: pointer;
-        >div {
-            border: 1px solid grey;
-        }
+        
         p {
             font-family: "Helvetica Neue, Regular";
             font-size: 18px;
@@ -28,7 +26,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 10px;
+    border-radius: 50%;
     background-color: #FF0000;
     margin-top: -16px;
     margin-right: -4px;
@@ -184,4 +182,40 @@
 }
 .check{
         color: #5DB057;
+}
+
+
+
+@keyframes betWinCircule{
+    from {
+        height: 16px;
+        width: 16px;
+        float: right;
+    display: flex;
+    align-items: center;
+    }
+        
+      
+      to {
+        width: 24px;
+        height: 24px;
+        float: right;
+    display: flex;
+    align-items: center;
+          
+      } 
+}
+
+
+
+
+
+.betsAnimation{
+    
+      span{
+        animation: betWinCircule 500ms;
+        animation-iteration-count: infinite;
+        animation-direction:alternate
+    }
+    
 }
