@@ -5,7 +5,6 @@ import { GameDetailsService } from '../../services/game-details.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { BetsService } from 'src/app/user/services/bets.service';
 import { ActivatedRoute } from '@angular/router';
-import { FiltrationService } from '../../services/filtration.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
@@ -21,12 +20,9 @@ export class GameDetailsComponent implements OnInit {
   betUp: boolean = false;
   betDown: boolean = false;
   constructor(private gameDetails: GameDetailsService,
-    private auth: AngularFireAuth,
-    private afs: AngularFirestore,
-    private bets: BetsService,
-    private activeRoute: ActivatedRoute,
-    private games: FiltrationService) {
-  }
+              private afs: AngularFirestore,
+              private bets: BetsService,
+              private activeRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.activeRoute.params.subscribe(params => {
@@ -36,6 +32,7 @@ export class GameDetailsComponent implements OnInit {
           res.forEach(game => {
             if(game.payload.doc.id === params.id) {
               this.currentGame = game.payload.doc.data();
+              this.currentGame.id = game.payload.doc.id;
             }
           })
 
@@ -86,6 +83,7 @@ export class GameDetailsComponent implements OnInit {
       if (user['balance'] >= this.bettingAmountControl.value) {
         this.bets.balance = user['balance'];
         const id = this.afs.createId();
+        console.log(this.currentGame);
         const bet = {
           amount: this.bettingAmountControl.value,
           game: this.currentGame['id'],

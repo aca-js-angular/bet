@@ -26,7 +26,7 @@
       </div>
     </div>
     <div>
-      <button  [_persistance]="placeBet">Bet</button>
+      <button class="bet"  [_persistance]="placeBet" [disabled]="bettingAmountControl.value < 1000">Bet</button>
     </div>
     </div>
     <div class="bets-info" appSelectedOdd>
