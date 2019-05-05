@@ -15,7 +15,7 @@ import { TimeService } from '../../services/time.service';
 })
 
 export class GamesComponent implements OnInit{
-
+  notloaded: boolean = true;
   lentghs: number[]=[];
   greenPicture:string='Green';
   selectedDayFromCalendar: any;
@@ -60,6 +60,7 @@ export class GamesComponent implements OnInit{
     this.selectedDayFromCalendar = this.timeService.dayfromCalendar;
     this.nextHours = this.timeService.nextHours.hours;
     this.filtrationService.getAllGames().then(res => {
+      this.notloaded = false;
       this.categories = res[2];
       this.allGames = res[0];
       this.filteredGames = this.allGames;

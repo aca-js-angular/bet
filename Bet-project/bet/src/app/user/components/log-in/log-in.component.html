@@ -24,13 +24,13 @@
   
 
   <div class="errorMesages" [@stateAnimation]="start" *ngIf="mail.invalid && (mail.dirty || mail.touched)"
-    [@stateAnimation]="start">
+   >
     <span>Name is required</span>
 
   </div>
 
   <div class="errorMesages" [@stateAnimation]="start" *ngIf="password.invalid && (password.dirty || password.touched)"
-    [@stateAnimation]="start">
+    >
     <span>password is required.</span>
   </div>
 </div>
