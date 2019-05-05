@@ -1,5 +1,7 @@
 <h1>{{a}}</h1>
-<div id="catBody">
+
+<mat-progress-bar mode="indeterminate" *ngIf="notloaded"></mat-progress-bar>
+<div id="catBody" *ngIf="!notloaded">
     <div class="categories">
         <div (click)="showGamesWithCategory('allSports')">
             <div >
@@ -11,7 +13,7 @@
             <span [ngClass]="{'checkCat': (currentCategory == 'allSports')}">All Sports</span>
             <span [ngClass]="{'checkCat': (currentCategory == 'allSports')}">{{(allGames| dateFilter : nextHours: selectedDayFromCalendar.day).length}}</span>
         </div>  
-          
+        
         <div
             *ngFor="let cat of categories | gamesFilter : allGames ">
             <div (click)="showGamesWithCategory(cat.name)">               
@@ -22,6 +24,7 @@
             <span [ngClass]="{'checkCat': (cat.name == currentCategory)}">{{((allGames| dateFilter : nextHours: selectedDayFromCalendar.day)|gameslengths:cat).length}}</span>
             </div>
         </div>
+        
     </div>
     <div id="date">
         <p>Select Day</p>
@@ -34,7 +37,7 @@
         
     </div>
 </div>
-<div class="allGames">
+<div class="allGames" *ngIf="!notloaded">
     <div class="subCategories">
         <div #subCategory (click)="showGamesWithSubCategory(subCat)" class="subCat"
             *ngFor="let subCat of filteredSubCategories | subCategoriesFilter : allGames">
