@@ -64,7 +64,6 @@ export class GamesComponent implements OnInit{
       this.categories = res[2];
       this.allGames = res[0];
       this.filteredGames = this.allGames;
-      console.log(this.allGames)
       
       this.allSubCategories = res[3];
       this.allSubCategories.forEach(a => this.filteredSubCategories.push(a['name']));

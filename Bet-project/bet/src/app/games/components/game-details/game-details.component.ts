@@ -20,6 +20,7 @@ export class GameDetailsComponent implements OnInit {
   currentUser: object;
   betUp: boolean = false;
   betDown: boolean = false;
+  key: string;
 
   constructor(private gameDetails: GameDetailsService,
               private afs: AngularFirestore,
@@ -38,14 +39,19 @@ export class GameDetailsComponent implements OnInit {
               for(let key in game.payload.doc.data()['odds']) {
                 if(this.currentGame) {
                   if(game.payload.doc.data()['odds'][key] > this.currentGame.odds[key]) {
+                    
+                    this.key = key;
                     this.betUp = true;
+
                   } else if(game.payload.doc.data()['odds'][key] < this.currentGame.odds[key]) {
+
+                    this.key = key;
                     this.betDown = true;
+
                   }
                 }
               }
-              this.betDown = false;
-              this.betUp = true;
+              
               
               this.currentGame = game.payload.doc.data();
               this.currentGame.id = game.payload.doc.id;
@@ -84,6 +90,11 @@ export class GameDetailsComponent implements OnInit {
             })
 
           })
+
+          setTimeout(() => {
+            this.betUp = false;
+            this.betDown = false;
+          }, 2000);
 
         })
 
