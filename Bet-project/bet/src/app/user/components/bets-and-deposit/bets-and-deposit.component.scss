@@ -18,6 +18,7 @@
         }
     }
 }
+
 .circule{
     color: #ffffff;
     height: 18px;
@@ -41,6 +42,7 @@
     position: absolute;
     z-index: 10;
     background-color: #1D1E33;
+    box-shadow: 0px 0px 10px 8px rgba(93, 176, 87,0.8);
     >div {
         h3 {
             font-size: 20px;
@@ -127,8 +129,6 @@
         div {
             margin-right: 10px;
             cursor: pointer;
-        }>:last-child{
-            text-decoration: underline;
         }
     }
     .cardDetails{
@@ -205,17 +205,11 @@
           
       } 
 }
-
-
-
-
-
 .betsAnimation{
-    
+    box-shadow: 0px 10px 10px 25px rgba(93, 176, 87,0.8);
       span{
         animation: betWinCircule 500ms;
         animation-iteration-count: infinite;
         animation-direction:alternate
     }
-    
 }

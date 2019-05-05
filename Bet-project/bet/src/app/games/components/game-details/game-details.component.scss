@@ -40,16 +40,17 @@
         to {background-color: rgb(155, 30, 30);}
       }
       @keyframes betUp {
-        from {background-color: #131323;}
-        to {background-color: rgb(41, 150, 37);}
+        0%   {background-color: #131323;}
+        50%  {background-color: rgb(41, 150, 37);}
+        100% {background-color: #131323;}
       }
       .betDown{
             animation-name: betDown;
-            animation-duration: 4s;
+            animation-duration: 5s;
       }
       .betUp{
         animation-name: betUp;
-        animation-duration: 4s;
+        animation-duration: 5s;
       }
 
     .bets {

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 
 import { PopupService } from '../services/popup.service';
+import { LogInService } from '../services/log-in.service';
 
 @Component({
   selector: 'dialog-content-example',
@@ -9,10 +10,10 @@ import { PopupService } from '../services/popup.service';
   styleUrls:['dialog-content-example.scss'],
 })
 export class DialogContentExample {
-  constructor(private dialog: MatDialog, private popup: PopupService){}
+  constructor(private dialog: MatDialog, private popup: PopupService,private login:LogInService){}
 
   openRegistration() {
-    this.popup._openRegistration();
+    this.login._openRegistration();
   }
   
   openSignIn() {

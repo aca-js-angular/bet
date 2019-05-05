@@ -9,6 +9,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { FiltrationService } from 'src/app/games/services/filtration.service';
 import { BetsService } from '../../services/bets.service';
 import { interval } from 'rxjs';
+import { MatDialogConfig, MatDialog } from '@angular/material';
+import { ConfirmComponent } from '../../Confirm/confirm.component';
 
 @Component({
   selector: 'bets-and-deposit',
@@ -26,21 +28,22 @@ export class BetsAndDepositComponent implements OnInit {
   currentUser: Object;
   unreadMessages: number = 0;
   details:string;
+  message:string;
   
   constructor(
-    private auth: AuthentificationService,
     private afs: AngularFirestore,
     private _auth: AngularFireAuth,
     private filtrationService: FiltrationService,
     private bets: BetsService,
+    private dialog: MatDialog,
     @Inject(PopupService) private popup: PopupService
   ) { 
-    this.popup.message = 'asdsad';
-    this.popup.ok = this.auth.logOut;
+   
   }
 
   ngOnInit() {
     this.currentUser = this._auth.auth.currentUser;
+    this.bets.ongoingBets = this.ongoingBets;
     
     this.filtrationService.getAllGames().then(_games => {
       this.afs.collection('bets', bet => bet.where('user', '==', this.currentUser['uid'])).valueChanges().subscribe(res => {
@@ -95,9 +98,9 @@ export class BetsAndDepositComponent implements OnInit {
     
   }
 
-  logOut() {
-    this.popup._openConfirm()
-    // this.auth.logOut();
+  logOut(event:any) {
+    this.popup.message = 'Would you like to log out ?'
+    this.popup._openConfirm(event)
   }
 
   openBets(): void {
@@ -113,17 +116,29 @@ export class BetsAndDepositComponent implements OnInit {
   }
 
   deleteBet(game, event: Event): void {
+    this.bets.game = game
+    this.message = "Would you like cancel Bet ?"
     event.stopPropagation();
-    this.ongoingBets.forEach((_game, ind) => {
-      if(_game.id === game.id) {
-        this.ongoingBets.splice(ind, 1);
-        let subscription = this.afs.collection('bets', bet => bet.where('game', '==', game.id)).snapshotChanges().subscribe(res => {
-          this.bets.changeBalance(this.currentUser, res[0].payload.doc.data()['amount'], true);
-          this.afs.collection('bets').doc(res[0].payload.doc.id).delete();
-          subscription.unsubscribe();
-        })
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    this.dialog.open(ConfirmComponent, {
+      data:{
+        message:this.message,
+        event:event,
       }
     })
+    // this.bets.deleteBet(game,event,this.ongoingBets);
+    
+    // this.ongoingBets.forEach((_game, ind) => {
+    //   if(_game.id === game.id) {
+    //     this.ongoingBets.splice(ind, 1);
+    //     let subscription = this.afs.collection('bets', bet => bet.where('game', '==', game.id)).snapshotChanges().subscribe(res => {
+    //       this.bets.changeBalance(this.currentUser, res[0].payload.doc.data()['amount'], true);
+    //       this.afs.collection('bets').doc(res[0].payload.doc.id).delete();
+    //       subscription.unsubscribe();
+    //     })
+    //   }
+    // })
   }
   
 }

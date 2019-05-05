@@ -84,7 +84,7 @@
 
         </div>
         
-        <div class="Empti games" *ngIf="(filteredGames| dateFilter : nextHours: selectedDayFromCalendar.day).length==0">XAX chka</div>
+        <div class="emptyGames games" *ngIf="(filteredGames| dateFilter : nextHours: selectedDayFromCalendar.day).length==0">No Result</div>
     </div>
     <app-game-details *ngIf="params?.id" class="game-details"></app-game-details>
 </div>

@@ -12,7 +12,7 @@ import { BetsService } from './user/services/bets.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  randomGame:Object = {};
+  randomGame:any;
   username: string;
   balance: number;
 
@@ -27,8 +27,11 @@ export class AppComponent implements OnInit {
     this.auth.checkAuthState();
    }
    ngOnInit(){
-    this.allGames.getAllGames().then(res => {
-      this.randomGame = res[0][(Math.floor(Math.random() * res[0].length))];
+    this.allGames.getAllGames().then((res:any) => {
+      this.randomGame = res[0].filter(game=>{
+        return (game.start_time.seconds*1000 > new Date().getTime()) 
+      })
+      this.randomGame = this.randomGame[(Math.floor(Math.random() * this.randomGame.length))]
     });
   
     this._auth.authState.subscribe(user => {

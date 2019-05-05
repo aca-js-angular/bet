@@ -36,8 +36,9 @@
         </div>
         <div class="bets-over">
           <div class="overX" [ngClass]="{'betUp': betUp && (key==='team_1:0'), 'betDown': betDown && (key==='team_1:0')}">
-            <p>Over 0.5</p>
+            <p >Over 0.5 </p>
             <p class="odd" name="team_1:0">{{ currentGame?.odds['team_1:0'] }}</p>
+            <span class="icon"></span>
           </div>
           <div class="overX" [ngClass]="{'betUp': betUp && (key==='team_1:1'),'betDown': betDown && (key==='team_1:1')}">
             <p>Over 1.5</p>
@@ -95,4 +96,6 @@
       </div>
     </div>
   </div>
+</div>
+<div >
 </div>
