@@ -68,6 +68,11 @@ export class BetsAndDepositComponent implements OnInit {
 
     interval(30000).subscribe(() => {
       this.betsAndGames.forEach((bet_game, ind) => {
+        if(bet_game[1]['start_time']['seconds']*1000 > Date.now()) {
+          bet_game[1]['showDeleteButton'] = true;
+        } else if(bet_game[1]['start_time']['seconds']*1000 <= Date.now()) {
+          bet_game[1]['showDeleteButton'] = false;
+        }
         if(bet_game[1]['end_time']['seconds']*1000 < Date.now()) {
 
           this.unreadMessages++;
@@ -115,7 +120,7 @@ export class BetsAndDepositComponent implements OnInit {
   deleteBet(game, event: Event): void {
     event.stopPropagation();
     this.ongoingBets.forEach((_game, ind) => {
-      if(_game.id === game.id) {
+      if(_game.id === game.id && game.start_time > Date.now()) {
         this.ongoingBets.splice(ind, 1);
         let subscription = this.afs.collection('bets', bet => bet.where('game', '==', game.id)).snapshotChanges().subscribe(res => {
           this.bets.changeBalance(this.currentUser, res[0].payload.doc.data()['amount'], true);
