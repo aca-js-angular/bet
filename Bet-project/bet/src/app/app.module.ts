@@ -25,6 +25,7 @@ import { AppComponent } from './app.component';
 import { DialogContentExample } from './user/popup/dialog-content-example';
 import { Slider } from './user/slider.component';
 import { ConfirmComponent } from './user/Confirm/confirm.component';
+import { Page404Component } from './page404/page404.component';
 // import { ConfirmComponent } from './user/Confirm/confirm.component';
 /*
   Directives
@@ -34,7 +35,7 @@ import { ConfirmComponent } from './user/Confirm/confirm.component';
 
 @NgModule({
   declarations: [
-    AppComponent,DialogContentExample,Slider,ConfirmComponent
+    AppComponent,DialogContentExample,Slider,ConfirmComponent, Page404Component
   ],
   imports: [
     BrowserModule,BrowserAnimationsModule,
