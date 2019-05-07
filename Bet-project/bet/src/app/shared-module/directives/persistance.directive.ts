@@ -1,6 +1,8 @@
 import { Directive, Input, HostListener, ViewContainerRef } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { PopupService } from 'src/app/user/services/popup.service';
+// import { PopupService } from 'src/app/user/services/popup.service';
+import { MatDialogConfig, MatDialog } from '@angular/material';
+import { LogInComponent } from 'src/app/user/components/log-in/log-in.component';
 
 @Directive({
   selector: '[_persistance]'
@@ -11,7 +13,7 @@ export class PersistanceDirective {
 
   constructor(
     private fireAuth: AngularFireAuth,
-    private dialog: PopupService,
+    private dialog: MatDialog,
     private viewRef: ViewContainerRef
   ) {}
 
@@ -23,9 +25,9 @@ export class PersistanceDirective {
       const hostComponent = this.viewRef['_view'].component
       this.callback.call(hostComponent,currentUser)
     }else{
-      this.dialog._openSignIn()
-    }
-    
+        const dialogConfig = new MatDialogConfig();
+      dialogConfig.disableClose = false;
+      this.dialog.open(LogInComponent,dialogConfig);
+      }
+    } 
   }
-
-}

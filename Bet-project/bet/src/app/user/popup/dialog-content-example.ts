@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 
-import { PopupService } from '../services/popup.service';
 import { LogInService } from '../services/log-in.service';
+import { RegistrationComponent } from '../components/registration/registration.component';
+import { LogInComponent } from '../components/log-in/log-in.component';
 
 @Component({
   selector: 'dialog-content-example',
@@ -10,13 +11,17 @@ import { LogInService } from '../services/log-in.service';
   styleUrls:['dialog-content-example.scss'],
 })
 export class DialogContentExample {
-  constructor(private dialog: MatDialog, private popup: PopupService,private login:LogInService){}
+  constructor(private dialog: MatDialog,private login:LogInService){}
 
   openRegistration() {
-    this.login._openRegistration();
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    this.dialog.open(RegistrationComponent,dialogConfig);
   }
   
   openSignIn() {
-    this.popup._openSignIn();
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.disableClose = false;
+      this.dialog.open(LogInComponent,dialogConfig);
   }
 }

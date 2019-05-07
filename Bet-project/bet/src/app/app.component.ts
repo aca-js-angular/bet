@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
     this._auth.authState.subscribe(user => {
       if(user) {
         this.afs.collection('users').doc(user.uid).valueChanges().subscribe(res => {
-          this.username = res['username'];
+          this.username = res['first_name'] + ' ' + res['last_name'];
           this.balance = res['balance'];
         })
       }

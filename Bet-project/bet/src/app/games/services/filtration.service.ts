@@ -66,8 +66,8 @@ export class FiltrationService {
 
     return new Promise(resolve => {
 
-      const games: Array<Array<any>> = [];
       this.db.collection('games').snapshotChanges().subscribe(res => {
+        const games: Array<Array<any>> = [];
         const arr: Array<any> = [];
         res.forEach(game => {
           const gameObj = game.payload.doc.data();

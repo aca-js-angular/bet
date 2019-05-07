@@ -1,16 +1,20 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { AuthentificationService } from '../../services/authentification.service';
-import { PopupService } from '../../services/popup.service';
+import { Component, OnInit } from '@angular/core';
 
-import { Game } from 'src/app/games/interfaces/game';
-import { Bet } from '../../interfaces/bet';
+// Auth
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
+
+// Bet and game
+import { Game } from 'src/app/games/interfaces/game';
 import { FiltrationService } from 'src/app/games/services/filtration.service';
+import { Bet } from '../../interfaces/bet';
 import { BetsService } from '../../services/bets.service';
 import { interval } from 'rxjs';
+
+// Material and Popup
 import { MatDialogConfig, MatDialog } from '@angular/material';
 import { ConfirmComponent } from '../../Confirm/confirm.component';
+import { DepositCopmponent } from './deposit.component';
 
 @Component({
   selector: 'bets-and-deposit',
@@ -36,7 +40,6 @@ export class BetsAndDepositComponent implements OnInit {
     private filtrationService: FiltrationService,
     private bets: BetsService,
     private dialog: MatDialog,
-    @Inject(PopupService) private popup: PopupService
   ) { 
    
   }
@@ -99,8 +102,15 @@ export class BetsAndDepositComponent implements OnInit {
   }
 
   logOut(event:any) {
-    this.popup.message = 'Would you like to log out ?'
-    this.popup._openConfirm(event)
+    this.message = 'Would you like to log out ?'
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    this.dialog.open(ConfirmComponent, {
+      data:{
+        message:this.message,
+        event:event,
+      }
+    })
   }
 
   openBets(): void {
@@ -112,15 +122,15 @@ export class BetsAndDepositComponent implements OnInit {
   }
 
   openDeposit(): void {
-    this.popup._openDeposit();
+    this.dialog.open(DepositCopmponent)
   }
 
   deleteBet(game, event: Event): void {
     this.bets.game = game
     this.message = "Would you like cancel Bet ?"
     event.stopPropagation();
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = false;
+    // const dialogConfig = new MatDialogConfig();
+    // dialogConfig.disableClose = false;
     this.dialog.open(ConfirmComponent, {
       data:{
         message:this.message,

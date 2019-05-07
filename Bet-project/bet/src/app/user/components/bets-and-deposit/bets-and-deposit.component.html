@@ -1,5 +1,5 @@
 <div class="rightContent">
-  <div (click)="openBets($event)">
+  <div (click)="openBets($event)" [ngClass]="{betOpen:showBet}">
     <div [ngClass] = "{betsAnimation:animationPlay}">
         <img src="assets/img/icon/Mask%20Group%2016.svg">
         <span class="circule">{{ unreadMessages }}</span>

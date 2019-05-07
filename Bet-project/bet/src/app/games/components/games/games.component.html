@@ -89,17 +89,8 @@
                     [routerLink]="['/', 'home', game.categoryName, game.subCategoryName, game.id]">Details
                 </button>
             </div>
-
-
         </div>
-<<<<<<< HEAD
-        
         <div class="emptyGames games" *ngIf="(filteredGames| dateFilter : nextHours: selectedDayFromCalendar.day).length==0">No Result</div>
-=======
-
-        <div class="Empti games" *ngIf="(filteredGames| dateFilter : nextHours: selectedDayFromCalendar.day).length==0">
-            XAX chka</div>
->>>>>>> ab2122b7e9c7aaf8fbaf40ad4cdbfd5ca6894e77
     </div>
     <app-game-details *ngIf="params?.id" class="game-details"></app-game-details>
 </div>

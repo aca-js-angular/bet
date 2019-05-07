@@ -1,7 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AuthentificationService } from '../../services/authentification.service';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BetsService } from '../../services/bets.service';
 

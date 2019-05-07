@@ -47,12 +47,14 @@
 
       u {
         font-size: 16px;
+        cursor: pointer;
       }
     }
     :last-child {
       margin-top: 6px;
       font-size: 24px;
       font-family: Helvetica Neue, Regular;
+      cursor: pointer;
     }
   }
 }
