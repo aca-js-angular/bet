@@ -1,0 +1,12 @@
+div{
+    height: 100px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+    >div{
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: row;
+    }
+}

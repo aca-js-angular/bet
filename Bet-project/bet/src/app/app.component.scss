@@ -94,6 +94,9 @@
     font-family: fantasy;
     margin-left: 105px;
     cursor: pointer;
+    animation-duration: 2s;
+    animation-name: betPulsation;
+    animation-iteration-count: infinite;
   }
 }
 .footer {
@@ -133,25 +136,20 @@
   }
 }
 
-@keyframes win {
+@keyframes betPulsation {
   from {
-    width: 0px;
-    height: 0px;
-    
-    margin: 50px;
-    margin-left: 1429px;
-    z-index: 10;
-    position: absolute;
-    margin-top: -69px;
+    transform: scale3d(1, 1, 1);
+    background-color: #71c46b;
   }
+
+  50% {
+    transform: scale3d(1.17, 1.17, 1.17);
+    background-color: #5db057;
+    color: rgb(212, 236, 236);
+  }
+
   to {
-    width: 80px;
-    height: 80px;
-    
-  margin: 50px;
-  margin-left: 1645px;
-  z-index: 10;
-  position: absolute;
-  margin-top: -122px;
+    background-color: #71c46b;
+    transform: scale3d(1, 1, 1);
   }
 }

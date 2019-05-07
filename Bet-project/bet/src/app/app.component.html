@@ -3,7 +3,7 @@
     <div>
         <p>Username: {{ username }}</p>
         <span> &nbsp; </span>
-        <p >Balance: {{ balance }}</p>
+        <p >Balance: {{ balance | number}}</p>
     </div>
     </div>
     <div class="header" [ngClass]="{'head':auth.isLogged}">
@@ -27,7 +27,7 @@
 </div>
 
 
-<router-outlet #target></router-outlet>>
+<router-outlet #target></router-outlet>
 <div class="footer">
     <div class="footerLeft">
     <tbody >

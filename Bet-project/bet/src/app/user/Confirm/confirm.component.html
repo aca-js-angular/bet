@@ -1,4 +1,9 @@
 <div>
-  <div>{{message}}</div>
-  <div>{{ok}}</div>
+  <div>
+    <p>{{message}}</p>
+  </div>
+  <div>
+    <button mat-button (click)="confirmFunction()">OK</button>
+    <button mat-button mat-dialog-close>Cancel</button>
+  </div>
 </div>

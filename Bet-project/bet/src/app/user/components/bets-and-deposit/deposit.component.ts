@@ -2,8 +2,8 @@ import { Component, Inject } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthentificationService } from '../../services/authentification.service';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { FormBuilder } from '@angular/forms';
-import { PopupService } from '../../services/popup.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { BetsService } from '../../services/bets.service';
 
 @Component({
   selector: 'deposit',
@@ -13,22 +13,21 @@ import { PopupService } from '../../services/popup.service';
 export class DepositCopmponent {
     showDeposit:boolean = true;
     depositForm = this.fb.group({
-        cardNumber:[""],
-        expiryDateMM:[""],
-        expiryDateYY:[""],
-        cardHoldersName:[""],
-        cvcNumber:[""],
-        depositAmount:[""]
+        cardNumber:["",[Validators.required, Validators.minLength(2)]],
+        expiryDateMM:["",[Validators.required, Validators.minLength(2)]],
+        expiryDateYY:["",[Validators.required, Validators.minLength(4), Validators.maxLength(4)]],
+        cardHoldersName:["",[Validators.required]],
+        cvcNumber:["",[Validators.required, Validators.maxLength(3)]],
+        depositAmount:["",[Validators.required, Validators.min(1000)]]
     })
     balance: number;
-
+    currentUser: Object;
     constructor(
-        private _auth: AngularFireAuth,
-        private auth:AuthentificationService,
-        private afs: AngularFirestore,
+        private deposit:BetsService,
         private fb: FormBuilder,
+        private _auth: AngularFireAuth,
     ){
-       
+       this.currentUser = this._auth.auth.currentUser
      }
      get _cardNumber(){
         return this.depositForm.get("cardNumber")
@@ -49,16 +48,17 @@ export class DepositCopmponent {
          return this.depositForm.get("depositAmount")
     }
     depositBalance(){
-        
+        this.deposit.changeBalance(this.currentUser,+this.depositForm.get('depositAmount').value,true)
     }
     withdrawlBalance(){
+        this.deposit.changeBalance(this.currentUser,+this.depositForm.get('depositAmount').value,false)
        
     }
 
-    opneDeposit(){
+    openDeposit(){
         this.showDeposit = true;
     }
-    opneWithdrawal(){
+    openWithdrawal(){
         this.showDeposit = false;
     }
    

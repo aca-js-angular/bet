@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable, from } from 'rxjs';
+import { MatDialogConfig, MatDialog } from '@angular/material';
+import { RegistrationComponent } from '../components/registration/registration.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LogInService {
 
-  constructor(private avtorizating: AngularFireAuth) { }
+  constructor(private avtorizating: AngularFireAuth,private dialog:MatDialog) { }
 
   doLogin(mail, password, remeberPassw): Observable<any> {
     if (!remeberPassw){
@@ -19,5 +21,10 @@ export class LogInService {
 
   resetPassword(mail) {
     return from(this.avtorizating.auth.sendPasswordResetEmail(mail))
+  }
+  _openRegistration() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    this.dialog.open(RegistrationComponent,dialogConfig);
   }
 }

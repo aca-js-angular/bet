@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { GamesRoutingModule } from './games-routing.module';
 import { XunkCalendarModule } from './xunk-calendar/xunk-calendar.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 /*
   Components
@@ -25,6 +26,7 @@ import { SharedModule } from '../shared-module/shared.module';
 import { GameslengthsPipe } from './Pipes/gameslengths.pipe';
 
 
+
 @NgModule({
   declarations: [
     CalendarComponent, 
@@ -38,11 +40,13 @@ import { GameslengthsPipe } from './Pipes/gameslengths.pipe';
   ],
   imports: [
     CommonModule,
+    MatProgressBarModule,
     GamesRoutingModule,
     XunkCalendarModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    
   ],
   exports: [CalendarComponent,GamesComponent],
 })
