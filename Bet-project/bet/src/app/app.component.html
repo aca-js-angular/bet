@@ -3,7 +3,7 @@
     <div>
         <p>Username: {{ username }}</p>
         <span> &nbsp; </span>
-        <p >Balance: {{ balance | number}}</p>
+        <p [ngClass]="{'balanceAnimate': balanceChanged}">Balance: <span #balanceEl >{{ balance | number}}</span></p>
     </div>
     </div>
     <div class="header" [ngClass]="{'head':auth.isLogged}">
