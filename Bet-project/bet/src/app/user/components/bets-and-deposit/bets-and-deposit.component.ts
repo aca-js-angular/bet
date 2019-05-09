@@ -23,12 +23,14 @@ import { DepositCopmponent } from './deposit.component';
 })
 export class BetsAndDepositComponent implements OnInit {
   animationPlay: boolean = false;
+  
   showBet: boolean = false;
   allBets: Array<Bet> = [];
   endedBets: Array<Game> = [];
   ongoingBets: Array<Game> = [];
   newBets: Array<Game> = [];
   betsAndGames: Array<Array<object>> = [];
+
   currentUser: Object;
   unreadMessages: number = 0;
   details:string;
@@ -74,6 +76,11 @@ export class BetsAndDepositComponent implements OnInit {
 
     interval(30000).subscribe(() => {
       this.betsAndGames.forEach((bet_game, ind) => {
+        if(bet_game[1]['start_time']['seconds']*1000 > Date.now()) {
+          bet_game[1]['showDeleteButton'] = true;
+        } else if(bet_game[1]['start_time']['seconds']*1000 <= Date.now()) {
+          bet_game[1]['showDeleteButton'] = false;
+        }
         if(bet_game[1]['end_time']['seconds']*1000 < Date.now()) {
 
           this.unreadMessages++;

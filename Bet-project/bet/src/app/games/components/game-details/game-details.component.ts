@@ -6,6 +6,9 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { BetsService } from 'src/app/user/services/bets.service';
 import { ActivatedRoute } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AuthentificationService } from 'src/app/user/services/authentification.service';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { LogInComponent } from 'src/app/user/components/log-in/log-in.component';
 
 @Component({
   selector: 'app-game-details',
@@ -24,8 +27,13 @@ export class GameDetailsComponent implements OnInit {
 
   constructor(private gameDetails: GameDetailsService,
               private afs: AngularFirestore,
+              private auth: AngularFireAuth,
               private bets: BetsService,
-              private activeRoute: ActivatedRoute) { }
+              private activeRoute: ActivatedRoute,
+              private authService: AuthentificationService,
+              private dialog: MatDialog) {
+
+              }
 
   ngOnInit() {
     this.scrollDiv.nativeElement.scrollIntoView({ behavior: "smooth", block: "start" });//Vahag esi scrolli hmara 4jnjes
@@ -39,20 +47,20 @@ export class GameDetailsComponent implements OnInit {
               for(let key in game.payload.doc.data()['odds']) {
                 if(this.currentGame) {
                   if(game.payload.doc.data()['odds'][key] > this.currentGame.odds[key]) {
-                    
+                    console.log(this.betUp)
                     this.key = key;
                     this.betUp = true;
+                    console.log(this.betUp)
 
                   } else if(game.payload.doc.data()['odds'][key] < this.currentGame.odds[key]) {
-
+                    console.log(this.betDown)
                     this.key = key;
                     this.betDown = true;
+                    console.log(this.betDown)
 
                   }
                 }
               }
-              
-              
               this.currentGame = game.payload.doc.data();
               this.currentGame.id = game.payload.doc.id;
             }
@@ -94,7 +102,7 @@ export class GameDetailsComponent implements OnInit {
           setTimeout(() => {
             this.betUp = false;
             this.betDown = false;
-          }, 2000);
+          }, 10000);
 
         })
 
@@ -106,24 +114,31 @@ export class GameDetailsComponent implements OnInit {
 
   bettingAmountControl = new FormControl('', [Validators.required, Validators.min(1000)]);
 
-  placeBet(currentUser) {
-    let subscription = this.afs.collection('users').doc(currentUser.uid).valueChanges().subscribe(user => {
-      if (user['balance'] >= this.bettingAmountControl.value) {
-        this.bets.balance = user['balance'];
-        const id = this.afs.createId();
-        console.log(this.currentGame);
-        const bet = {
-          amount: this.bettingAmountControl.value,
-          game: this.currentGame['id'],
-          odd: this.gameDetails.selectedTeam,
-          user: currentUser.uid
+  placeBet() {
+    if(this.authService.isLogged) {
+      const currentUser = this.auth.auth.currentUser;
+      let subscription = this.afs.collection('users').doc(currentUser.uid).valueChanges().subscribe(user => {
+        if (user['balance'] >= this.bettingAmountControl.value) {
+          this.bets.balance = user['balance'];
+          const id = this.afs.createId();
+          const bet = {
+            amount: this.bettingAmountControl.value,
+            game: this.currentGame['id'],
+            odd: this.gameDetails.selectedTeam,
+            user: currentUser.uid
+          }
+          this.afs.collection('bets').doc(id).set(bet);
+          this.bets.newBets.push(this.currentGame);
+          this.bets.changeBalance(currentUser, this.bettingAmountControl.value, false);
+          subscription.unsubscribe();
         }
-        this.afs.collection('bets').doc(id).set(bet);
-        this.bets.newBets.push(this.currentGame);
-        this.bets.changeBalance(currentUser, this.bettingAmountControl.value, false);
-        subscription.unsubscribe();
-      }
-    })
+      })  
+    } else {
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.disableClose = false;
+      this.dialog.open(LogInComponent,dialogConfig);
+    }
+    
 
   }
 

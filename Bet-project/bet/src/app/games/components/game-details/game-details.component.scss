@@ -36,13 +36,36 @@
     }
     
     @keyframes betDown {
-        from {background-color: #131323;}
-        to {background-color: rgb(155, 30, 30);}
+        from {width: 30px;
+            height: 30px;
+            position: absolute;
+            margin-left: 6px;
+            margin-top:2px;
+            background-image: url("/assets/img/arrow-up%20(1)%20(1).svg");
+            background-repeat: no-repeat;}
+        to { width: 30px;
+            height: 30px;
+            position: absolute;
+            margin-left: 6px;
+            margin-top:2px;
+            background-image: url("/assets/img/arrow-up%20(1)%20(1).svg");
+            background-repeat: no-repeat;}
       }
       @keyframes betUp {
-        0%   {background-color: #131323;}
-        50%  {background-color: rgb(41, 150, 37);}
-        100% {background-color: #131323;}
+        from   {  width: 30px;
+            height: 30px;
+            position: absolute;
+            margin-left: 6px;
+            margin-top:2px;
+            background-image: url("/assets/img/arrow-up%20(2).svg");
+            background-repeat: no-repeat;}
+        to {  width: 30px;
+            height: 30px;
+            position: absolute;
+            margin-left: 6px;
+            margin-top:2px;
+            background-image: url("/assets/img/arrow-up%20(2).svg");
+            background-repeat: no-repeat;}
       }
       .betDown{
             animation-name: betDown;

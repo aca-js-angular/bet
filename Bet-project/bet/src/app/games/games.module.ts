@@ -22,7 +22,6 @@ import { CategoryPipe }   from './Pipes/games-filter.pipe';
 import { DateFilterPipe } from './Pipes/date-filter.pipe';
 import { SubCategoriesFilterPipe } from './pipes/sub-categories-filter.pipe';
 import { SelectedOddDirective } from './components/directives/selected-odd.directive';
-import { SharedModule } from '../shared-module/shared.module';
 import { GameslengthsPipe } from './Pipes/gameslengths.pipe';
 
 
@@ -45,7 +44,6 @@ import { GameslengthsPipe } from './Pipes/gameslengths.pipe';
     XunkCalendarModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule,
     
   ],
   exports: [CalendarComponent,GamesComponent],

@@ -10,9 +10,12 @@ export class AuthentificationService {
   
   private user: Observable<firebase.User>;
   isLogged: boolean;
+
   constructor(private _firebaseAuth: AngularFireAuth, private router: Router) {
-      this.user = _firebaseAuth.authState;
+    this.user = _firebaseAuth.authState;
+    this.checkAuthState();
   }
+
   checkAuthState() {
     this._firebaseAuth.auth.onAuthStateChanged(
       res => {
@@ -21,6 +24,7 @@ export class AuthentificationService {
       }
     )
   }
+
   logOut(){
     this._firebaseAuth.auth.signOut();
   }

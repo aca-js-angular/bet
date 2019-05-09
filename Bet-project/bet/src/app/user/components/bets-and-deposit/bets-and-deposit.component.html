@@ -22,7 +22,7 @@
           <div class="ongoing">
             <span class="circuleOngoin"></span>
             <div> <span>{{game.team1}}</span><span>vs</span><span>{{game.team2}}</span> </div>
-            <span class="del" (click)="deleteBet(game, $event)">+</span>
+            <span class="del" *ngIf="game.showDeleteButton" (click)="deleteBet(game, $event)">+</span>
           </div>
         </div>
       </div>
