@@ -64,11 +64,6 @@
             <select #selectedTime (change)='selectTime(selectedTime.value)' class="dateFilterSelect">
                 <option *ngFor="let hour of hoursSelect " [value]="hour.value" [selected]="hour.value==nextHours">
                     {{hour.text}}</option>
-                <!-- <option ng-selected="false" value="3">Next 3 Hours</option>
-                <option ng-selected="true" value="5">Next 5 Hours</option>
-                <option ng-selected="false" value="6">Next 6 Hours</option>
-                <option ng-selected="false"value="24">Next 24 Hours</option>
-                <option ng-selected="false" value="500000000000">Next 30 Hours</option> -->
             </select>
         </div>
         <div class="games" *ngFor="let game of filteredGames | dateFilter : nextHours: selectedDayFromCalendar.day">

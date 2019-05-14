@@ -45,12 +45,12 @@
         100% {background-color: #131323;}
       }
       .betDown{
-            animation-name: betDown;
-            animation-duration: 5s;
+        animation-name: betDown;
+        animation-duration: 5s;
       }
       .betUp{
         animation-name: betUp;
-        animation-duration: 5s;
+        animation-duration: 2s;
       }
 
     .bets {
@@ -65,48 +65,47 @@
         .betting-amount {
             background-color: #1D1E33;
             display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-bottom: 24px;
-    height: 85px;
-    >div{
-        display: flex;
-    flex-direction: row;
-    align-items: center;
-    }
-    .bettinFirstChild{
-        display: flex;
-        flex-direction: column;
-        margin-right: 30px;
-    }
-    .bettingLastChild{
-
-        display: flex;
-        align-items: center;
-    }
-            button {
-                height: 50px;
-                width: 130px;
-                background-color: #7A7B9B;
-                border-radius: 4px;
-                padding: 1px 6px;
-                cursor: pointer;
-                text-align: center;
-                font-size: 17px;
-            }
-            button:active {
-                border-style: inset;
-            }
-            .amount {
-                width: 182px;
-                height: 52px;
-                display: flex;
-                align-items: center;
-                border-radius: 4px;
-                font-size: 16px;
-                outline: none;
-                margin-right: 10px;
-            }
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 24px;
+            height: 85px;
+                >div{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                }
+                .bettinFirstChild{
+                    display: flex;
+                    flex-direction: column;
+                    margin-right: 30px;
+                }
+                .bettingLastChild{
+                    display: flex;
+                    align-items: center;
+                }
+                button {
+                    height: 50px;
+                    width: 130px;
+                    background-color: #7A7B9B;
+                    border-radius: 4px;
+                    padding: 1px 6px;
+                    cursor: pointer;
+                    text-align: center;
+                    font-size: 17px;
+                }
+                button:active {
+                    border-style: inset;
+                }
+                .amount {
+                    width: 182px;
+                    height: 52px;
+                    display: flex;
+                    align-items: center;
+                    border-radius: 4px;
+                    font-size: 16px;
+                    outline: none;
+                    margin-right: 10px;
+                }
         }
     }
     
