@@ -6,13 +6,14 @@ export interface Game {
     category: string;
     categoryName: string;
     subCategory: string;
+    subCategoryName: string;
     odds: {
         draw: number,
         team_1: number,
         team_2: number,
     }
-    start_time: Date,
-    end_time: Date,
-    type: string,
-    id: string
+    start_time: Date;
+    end_time: Date;
+    type: string;
+    id: string;
 }

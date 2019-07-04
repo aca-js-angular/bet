@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>Bet</title>
@@ -9,7 +10,14 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
 </head>
+
 <body>
+  <script>
+    if (global === undefined) {
+      var global = window;
+    }
+  </script>
   <app-root></app-root>
 </body>
+
 </html>

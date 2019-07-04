@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+
 import { Game } from 'src/app/games/interfaces/game';
 
 @Injectable({
@@ -18,7 +19,7 @@ export class BetsService {
 
   }
 
-  changeBalance(user, amount, bool) {
+  changeBalance(user, amount, bool): void {
     let currentUser;
     let subscription = this.afs.collection('users').doc(user.uid).valueChanges().subscribe(_user => {
       currentUser = _user;
@@ -30,7 +31,11 @@ export class BetsService {
         this.afs.collection('users').doc(user.uid).update(__user);
         subscription.unsubscribe();
       } else {
-        _user['balance'] -= amount;
+        if(_user['balance']-amount >= 0) {
+          _user['balance'] -= amount;
+        } else {
+          alert('No enough money')
+        }
         const __user = {
           balance: _user['balance']
         }
@@ -40,7 +45,8 @@ export class BetsService {
     })
   
   }
-  deleteBet(game,event,ongoingBets){
+
+  deleteBet(game,event,ongoingBets): void {
     event.stopPropagation();
     ongoingBets.forEach((_game, ind) => {
       if(_game.id === game.id) {
@@ -52,5 +58,12 @@ export class BetsService {
         })
       }
     })
+  }
+
+  hideDeleteButton(game: object): void {
+    const time = game['start_time']['seconds']*1000 - Date.now();
+    setTimeout(() => {
+      game['showDeleteButton'] = false;
+    }, time);
   }
 }

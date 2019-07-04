@@ -9,6 +9,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthentificationService } from 'src/app/user/services/authentification.service';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { LogInComponent } from 'src/app/user/components/log-in/log-in.component';
+import { Game } from '../../interfaces/game';
 
 @Component({
   selector: 'app-game-details',
@@ -16,14 +17,17 @@ import { LogInComponent } from 'src/app/user/components/log-in/log-in.component'
   styleUrls: ['./game-details.component.scss']
 })
 export class GameDetailsComponent implements OnInit {
+
   @ViewChild("scroll") scrollDiv: ElementRef;
-  _currentGame;
-  currentGame;
+
+  currentGame: Game = null;
   bettingAmount: boolean = false;
   currentUser: object;
   betUp: boolean = false;
   betDown: boolean = false;
   key: string;
+
+  winningPrice: string = '';
 
   constructor(private gameDetails: GameDetailsService,
               private afs: AngularFirestore,
@@ -32,11 +36,15 @@ export class GameDetailsComponent implements OnInit {
               private activeRoute: ActivatedRoute,
               private authService: AuthentificationService,
               private dialog: MatDialog) {
-
               }
 
   ngOnInit() {
-    this.scrollDiv.nativeElement.scrollIntoView({ behavior: "smooth", block: "start" });//Vahag esi scrolli hmara 4jnjes
+
+    this.bettingAmountControl.valueChanges.subscribe(value => {
+      this.winningPrice = (value * this.gameDetails.selectedOdd).toFixed(2);
+    })
+
+    this.scrollDiv.nativeElement.scrollIntoView({ behavior: "smooth", block: "start" });
 
     this.activeRoute.params.subscribe(params => {
       if(params.id) {
@@ -47,27 +55,19 @@ export class GameDetailsComponent implements OnInit {
               for(let key in game.payload.doc.data()['odds']) {
                 if(this.currentGame) {
                   if(game.payload.doc.data()['odds'][key] > this.currentGame.odds[key]) {
-                    
                     this.key = key;
                     this.betUp = true;
-
                   } else if(game.payload.doc.data()['odds'][key] < this.currentGame.odds[key]) {
-
                     this.key = key;
                     this.betDown = true;
-
                   }
                 }
               }
-              
-              
-              this.currentGame = game.payload.doc.data();
+              this.currentGame = game.payload.doc.data() as Game;
               this.currentGame.id = game.payload.doc.id;
             }
           })
           
-
-
           this.afs.collection('teams').snapshotChanges().subscribe(res => {
             res.forEach(team => {
               if(this.currentGame['team_1'] === team.payload.doc.id) {
@@ -77,14 +77,12 @@ export class GameDetailsComponent implements OnInit {
               }
             })
 
-
             this.afs.collection('categories').snapshotChanges().subscribe(res => {
               res.forEach(cat => {
                 if(this.currentGame.category === cat.payload.doc.id) {
                   this.currentGame.categoryName = cat.payload.doc.data()['name'];
                 }
               })
-
 
               this.afs.collection('subcategories').snapshotChanges().subscribe(res => {
                 res.forEach(subCat => {
@@ -112,7 +110,7 @@ export class GameDetailsComponent implements OnInit {
 
   }
 
-  bettingAmountControl = new FormControl('', [Validators.required, Validators.min(1000)]);
+  bettingAmountControl = new FormControl('', [Validators.required, Validators.min(1000), Validators.max(250000)]);
 
   placeBet() {
     if(this.authService.isLogged) {
@@ -153,7 +151,5 @@ export class GameDetailsComponent implements OnInit {
       }
     }
   }
-
-
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit,} from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -14,10 +14,10 @@ import { TimeService } from '../../services/time.service';
   styleUrls: ['./games.component.scss']
 })
 
-export class GamesComponent implements OnInit{
+export class GamesComponent implements OnInit {
   notloaded: boolean = true;
-  lentghs: number[]=[];
-  greenPicture:string='Green';
+  lentghs: number[] = [];
+  greenPicture: string = 'Green';
   selectedDayFromCalendar: any;
 
   categories: Array<Object> = []
@@ -29,95 +29,174 @@ export class GamesComponent implements OnInit{
   currentCategory: string;
   nextHours: any;
   showGameDetails: boolean = false;
-  
+
   params: any;
 
-  hoursSelect: object [] = [
-    {value:3, text:"Next 3 Hours"},
-    {value:5, text:"Next 5 Hours"},
-    {value:6, text:"Next 6 Hours"},
-    {value:24, text:"Next 24 Hours"},
-    {value:500000000000, text:"Next 30 Hours"},
+  hoursSelect: object[] = [
+    { value: 3, text: "Next 3 Hours" },
+    { value: 5, text: "Next 5 Hours" },
+    { value: 6, text: "Next 6 Hours" },
+    { value: 24, text: "Next 24 Hours" },
+    { value: 500000000000, text: "Next 30 Hours" },
   ]
 
   constructor(
-    private timeService : TimeService,
+    private timeService: TimeService,
     private filtrationService: FiltrationService,
     private gameDetails: GameDetailsService,
     private router: Router,
     private activeRoute: ActivatedRoute,
-    private afs:AngularFirestore) {
+    private afs: AngularFirestore) {
     // this.afs.firestore.disableNetwork();
-   
+
   }
 
   getCurrentGame(game: Game): void {
     this.gameDetails.currentGame = game;
   }
- 
+
 
   ngOnInit() {
+
+
+
+
+
+
+
+    let subscription = this.afs.collection('games').snapshotChanges().subscribe(res => {
+      /* let x = 3600000;
+      let startDate = new Date(Date.now());
+      let endDate = new Date(Date.now() + x); */
+      res.forEach((game, ind) => {
+
+        /* if(ind % 30 === 0) {
+          x *= 2;
+          startDate = new Date(Date.now() + x);
+          endDate = new Date(Date.now() + x + 3600000);
+        } */
+
+        let endDate = new Date(new Date(Date.now()+10000360000));
+        let startDate = new Date(new Date(Date.now()+10000000000));
+
+        let _game = {
+
+          end_time: endDate,
+          start_time: startDate,
+          
+        }
+
+        this.afs.collection('games').doc(game.payload.doc.id).update(_game);
+
+
+        
+      })
+      subscription.unsubscribe();
+    })
+
+
+
+
+
+
+
+
+
+
+
+
     this.selectedDayFromCalendar = this.timeService.dayfromCalendar;
     this.nextHours = this.timeService.nextHours.hours;
+
     this.filtrationService.getAllGames().then(res => {
       this.notloaded = false;
-      this.categories = res[2];
-      this.allGames = res[0];
-      this.filteredGames = this.allGames;
       
-      this.allSubCategories = res[3];
+      this.categories = res.categories;
+      this.allGames = res.allGames;
+      this.filteredGames = this.allGames;
+
+      this.allSubCategories = res.subcategories;
       this.allSubCategories.forEach(a => this.filteredSubCategories.push(a['name']));
       this.activeRoute.params.subscribe(params => {
 
-        
-        if(params.id) {
+        if (params.id) {
           this.params = params;
+          for (let i = 0; i < this.allGames.length; i++) {
+            if (this.allGames[i].id === params.id) {
+              break;
+            }
+            if (i === this.allGames.length - 1) {
+              this.router.navigate(['**']);
+            }
+          }
         }
 
         if (params.category && !params.subCategory) {
 
-          this.currentCategory = params.category;
           this.filteredSubCategories = this.filtrationService.filterSubCategories(params.category, this.filteredSubCategories, this.categories);
           this.filteredGames = this.filtrationService.filterGamesWithCategory(params.category, this.allGames);
-          this.currentCategory = params.category
+          this.currentCategory = params.category;
+
+          for(let i = 0; i < this.categories.length; i++) {
+            if(this.categories[i]['name'] === params.category) {
+              break;
+            }
+            if(i === this.categories.length - 1) {
+              this.router.navigate(['**']);
+            }
+          }
 
         }
-          if (params.category && params.subCategory) {
+        if (params.category && params.subCategory) {
+
           this.currentSubCategory = params.subCategory;
+          this.currentCategory = params.category;
           this.filteredSubCategories = this.filtrationService.filterSubCategories(params.category, this.filteredSubCategories, this.categories);
           this.filteredGames = this.filtrationService.filterWithSubCategories(params.subCategory, this.categories, this.allGames);
-          this.currentCategory = params.category
+
+          for(let i = 0; i < this.categories.length; i++) {
+            if(this.categories[i]['name'] === params.category) {
+              break;
+            }
+            if(i === this.categories.length - 1) {
+              this.router.navigate(['**']);
+            }
+          }
+
+          for(let i = 0; i < this.allSubCategories.length; i++) {
+            if(this.allSubCategories[i]['name'] === params.subCategory) {
+              break;
+            }
+            if(i === this.allSubCategories.length - 1) {
+              this.router.navigate(['**']);
+            }
+          }
         }
-        else if(!params.category && !params.subCategory){
+        else if (!params.category && !params.subCategory) {
           this.currentCategory = "allSports";
         }
 
       });
-    
+
     });
   }
 
   showGamesWithCategory(categoryName: string) {
-    if(categoryName == 'allSports'){
+    if (categoryName == 'allSports') {
       this.router.navigate([`home/`]);
-      
     }
     else {
       this.router.navigate([`home/${categoryName}`]);
-    } 
+    }
   };
 
   showGamesWithSubCategory(subCatName: string) {
     this.filteredGames = this.filtrationService.filterWithSubCategories(subCatName, this.categories, this.allGames)
   };
-  // selectDay(selectedDay){
-  //   this.selectedDayFromCalendar = selectedDay
-  // }
 
   selectTime(selectedTimeHours): void {
     this.nextHours = this.timeService.selectTime(selectedTimeHours)
-    // this.nextHours = selectedTimeHours;
     this.selectedDayFromCalendar.day = 0;
   }
- 
+
 }

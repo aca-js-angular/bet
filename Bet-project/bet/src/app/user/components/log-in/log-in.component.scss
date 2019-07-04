@@ -3,10 +3,12 @@
     left:85%;
     color: #ffffff;
   }
+
   div {
     :first-child {
       font-size: 24px;
     }
+
     width: 413px;
     margin-bottom: 10px;
     color: #ffffff;
@@ -14,6 +16,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
     input {
       width: 405px;
       height: 50px;
@@ -22,6 +25,7 @@
       font-size: 16px;
       padding-left: 10px;
     }
+
     button {
       width: 420px;
       height: 50px;
@@ -32,10 +36,11 @@
       color: #ffffff;
       cursor: pointer;
     }
+
     :nth-last-child(2) {
       display: flex;
       flex-direction: row;
-      align-items: end;
+      align-items: flex-end;
       justify-content: space-between;
       span {
         font-size: 16px;
@@ -47,14 +52,20 @@
 
       u {
         font-size: 16px;
+        cursor: pointer;
       }
     }
+
     :last-child {
       margin-top: 6px;
       font-size: 24px;
       font-family: Helvetica Neue, Regular;
     }
   }
+}
+
+a {
+  cursor: pointer;
 }
 
 .errorMesages {
@@ -73,10 +84,17 @@
 }
 
 .forgotPassword {
+
+  .forgot-password-form {
+    margin-top: 20px;
+  }
+
   .closeButton{
     color: #ffffff;
     float: right;
+    margin-left: -60px;
   }
+
   div {
     width: 420px;
     display: flex;

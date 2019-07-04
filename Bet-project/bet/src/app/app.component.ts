@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewChecked, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { AuthentificationService } from './user/services/authentification.service';
 import { FiltrationService } from './games/services/filtration.service';
 import { GameDetailsService } from './games/services/game-details.service';
@@ -12,40 +12,51 @@ import { BetsService } from './user/services/bets.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  randomGame:any;
+
+
+  randomGame: any;
   username: string;
   balance: number;
+  balanceChanged: boolean;
+  previus: number;
+  //@ViewChild('balanceEl') balanceEl: ElementRef;
 
   constructor(
     private _auth: AngularFireAuth,
-    private auth:AuthentificationService,
+    private auth: AuthentificationService,
     private afs: AngularFirestore,
     private allGames: FiltrationService,
     private gameDetails: GameDetailsService,
     private bets: BetsService
-    ){
+  ) {
     this.auth.checkAuthState();
-   }
-   ngOnInit(){
-    this.allGames.getAllGames().then((res:any) => {
-      this.randomGame = res[0].filter(game=>{
-        return (game.start_time.seconds*1000 > new Date().getTime()) 
+  }
+  ngOnInit() {
+
+    this.allGames.getAllGames().then((res: any) => {
+      this.randomGame = res.allGames.filter(game => {
+        return (game.start_time.seconds * 1000 > new Date().getTime())
       })
       this.randomGame = this.randomGame[(Math.floor(Math.random() * this.randomGame.length))]
     });
-  
+
     this._auth.authState.subscribe(user => {
-      if(user) {
+      if (user) {
         this.afs.collection('users').doc(user.uid).valueChanges().subscribe(res => {
-          this.username = res['username'];
+          this.username = res['first_name'] + ' ' + res['last_name'];
           this.balance = res['balance'];
+          setTimeout(() => {
+            this.balanceChanged = false;
+          }, 2000);
         })
       }
-    });    
-   }
+    });
 
-   betNow(game:Game,target:HTMLElement){
+  }
+
+  betNow(game: Game, target: HTMLElement) {
     this.gameDetails.currentGame = game;
     target.scrollIntoView();
-   }
+  }
+
 }

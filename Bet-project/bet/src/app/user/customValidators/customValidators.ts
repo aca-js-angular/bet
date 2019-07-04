@@ -1,4 +1,4 @@
-import { ValidatorFn, FormControl, FormGroup, ValidationErrors } from '@angular/forms';
+import { ValidatorFn, FormControl, FormGroup } from '@angular/forms';
 
 function _upperCaseAndLowerCase(): ValidatorFn {
     return (control: FormControl): { [key: string]: boolean } | null => {

@@ -13,9 +13,9 @@ import {
   MatCheckboxModule,
   MatDialogModule,
 } from '@angular/material';
-import { LogInComponent } from '../components/log-in/log-in.component';
-import { RegistrationComponent } from '../components/registration/registration.component';
-import { DepositCopmponent } from '../components/bets-and-deposit/deposit.component';
+import { LogInComponent } from '../log-in/log-in.component';
+import { RegistrationComponent } from '../registration/registration.component';
+import { DepositCopmponent } from '../bets-and-deposit/deposit.component';
   
 @NgModule({
   exports: [

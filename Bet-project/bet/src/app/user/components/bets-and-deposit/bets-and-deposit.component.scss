@@ -42,6 +42,7 @@
     position: absolute;
     z-index: 10;
     background-color: #1D1E33;
+    cursor: default;
     box-shadow: 0px 0px 10px 8px rgba(93, 176, 87,0.8);
     >div {
         h3 {
@@ -90,6 +91,7 @@
             .del{
                 transform: rotate(45deg);
                 font-size: 30px;
+                cursor: pointer;
             }
         }
         button {
@@ -181,7 +183,7 @@
     cursor: pointer;
 }
 .check{
-        color: #5DB057;
+    color: #5DB057;
 }
 
 
@@ -191,25 +193,27 @@
         height: 16px;
         width: 16px;
         float: right;
-    display: flex;
-    align-items: center;
+        display: flex;
+        align-items: center;
     }
         
       
-      to {
+    to {
         width: 24px;
         height: 24px;
         float: right;
-    display: flex;
-    align-items: center;
-          
-      } 
+        display: flex;
+        align-items: center;      
+    } 
 }
 .betsAnimation{
-    box-shadow: 0px 10px 10px 25px rgba(93, 176, 87,0.8);
       span{
         animation: betWinCircule 500ms;
         animation-iteration-count: infinite;
         animation-direction:alternate
     }
+}
+
+.invalid-border {
+    border: 1px solid #F87474;
 }

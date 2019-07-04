@@ -1,5 +1,5 @@
 import { Directive, HostListener, Renderer } from '@angular/core';
-import { GameDetailsService } from '../../services/game-details.service';
+import { GameDetailsService } from '../services/game-details.service';
 
 @Directive({
   selector: '[appSelectedOdd]'

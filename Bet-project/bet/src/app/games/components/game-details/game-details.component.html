@@ -13,44 +13,42 @@
     </div>
   </div>
   <div class="bets">
+
     <div class="betting-amount" *ngIf="bettingAmount && gameDetails.selectedBet">
       <div>
-        <div class="bettinFirstChild">
+        <div class="bettingFirstChild">
           <span style="color: white; font-size: 21px">Betting Amount</span>
           <span style="color: #9B9B9B; font-size: 16px">(Min 1000 AMD)</span>
         </div>
         <div class="bettingLastChild">
           <input class="amount" type="number" placeholder="ex 1000 AMD" [formControl]="bettingAmountControl"
             [ngClass]="{'invalid-border': bettingAmountControl.errors && (bettingAmountControl.dirty || bettingAmountControl.touched)}">
-          <span style="color: white; margin-right: 80px">Winning price -
-            {{ bettingAmountControl.value * gameDetails.selectedOdd.toFixed(2)}}</span>
+          <span style="color: white">Winning price: 
+            {{ winningPrice }}</span>
         </div>
       </div>
       <div>
         <button class="bet" (click)="placeBet()" [disabled]="bettingAmountControl.value < 1000">Bet</button>
       </div>
     </div>
+
     <div class="bets-info" appSelectedOdd>
       <div class="winner">
         <div>
           <span>{{ currentGame?.team1 }} to Win</span>
         </div>
         <div class="bets-over">
-          <div class="overX"
-            [ngClass]="{'betUp': betUp && (key==='team_1:0'), 'betDown': betDown && (key==='team_1:0')}">
-            <p>Over 0.5 </p>
-            <p class="odd" name="team_1:0">{{ currentGame?.odds['team_1:0'] }}</p>
-            <span class="icon"></span>
+          <div class="overX">
+            <p>Over 0.5 </p>  
+            <p class="odd" name="team_1:0">{{ currentGame?.odds['team_1:0'] }} <span  [ngClass]="{'betUp': betUp && (key==='team_1:0'), 'betDown': betDown && (key==='team_1:0')}" ></span></p>
           </div>
-          <div class="overX"
-            [ngClass]="{'betUp': betUp && (key==='team_1:1'),'betDown': betDown && (key==='team_1:1')}">
+          <div class="overX">
             <p>Over 1.5</p>
-            <p class="odd" name="team_1:1">{{ currentGame?.odds['team_1:1'] }}</p>
+            <p class="odd" name="team_1:1">{{ currentGame?.odds['team_1:1'] }} <span  [ngClass]="{'betUp': betUp && (key==='team_1:1'), 'betDown': betDown && (key==='team_1:1')}" ></span></p>
           </div>
-          <div class="overX"
-            [ngClass]="{'betUp': betUp  && (key==='team_1:2'),'betDown': betDown && (key==='team_1:2')}">
+          <div class="overX">
             <p>Over 2.5</p>
-            <p class="odd" name="team_1:2">{{ currentGame?.odds['team_1:2'] }}</p>
+            <p class="odd" name="team_1:2">{{ currentGame?.odds['team_1:2'] }} <span  [ngClass]="{'betUp': betUp && (key==='team_1:2'), 'betDown': betDown && (key==='team_1:2')}" ></span></p>
           </div>
           <div class="verticalLine"></div>
           <div class="place-bet" (click)="showBettingAmount($event)">
@@ -63,20 +61,17 @@
           <span>{{ currentGame?.team2 }} to Win</span>
         </div>
         <div class="bets-over">
-          <div class="overX"
-            [ngClass]="{'betUp': betUp && (key==='team_2:0'),'betDown': betDown && (key==='team_2:0')}">
+          <div class="overX">
             <p>Over 0.5</p>
-            <p class="odd" name="team_2:0">{{ currentGame?.odds['team_2:0'] }}</p>
+            <p class="odd" name="team_2:0">{{ currentGame?.odds['team_2:0'] }}<span  [ngClass]="{'betUp': betUp && (key==='team_2:0'), 'betDown': betDown && (key==='team_2:0')}" ></span></p>
           </div>
-          <div class="overX"
-            [ngClass]="{'betUp': betUp && (key==='team_2:1'),'betDown': betDown && (key==='team_2:1')}">
+          <div class="overX">
             <p>Over 1.5</p>
-            <p class="odd" name="team_2:1">{{ currentGame?.odds['team_2:1'] }}</p>
+            <p class="odd" name="team_2:1">{{ currentGame?.odds['team_2:1'] }}<span  [ngClass]="{'betUp': betUp && (key==='team_2:1'), 'betDown': betDown && (key==='team_2:1')}" ></span></p>
           </div>
-          <div class="overX"
-            [ngClass]="{'betUp': betUp && (key==='team_2:2'),'betDown': betDown && (key==='team_2:2')}">
+          <div class="overX">
             <p>Over 2.5</p>
-            <p class="odd" name="team_2:2">{{ currentGame?.odds['team_2:2'] }}</p>
+            <p class="odd" name="team_2:2">{{ currentGame?.odds['team_2:2'] }}<span  [ngClass]="{'betUp': betUp && (key==='team_2:2'), 'betDown': betDown && (key==='team_2:2')}" ></span></p>
           </div>
           <div class="verticalLine"></div>
           <div class="place-bet" (click)="showBettingAmount($event)">
@@ -89,17 +84,17 @@
           <span>Draw no bet</span>
         </div>
         <div class="bets-over">
-          <div class="overX" [ngClass]="{'betUp': betUp && (key==='draw:0'),'betDown': betDown && (key==='draw:0')}">
+          <div class="overX" >
             <p>Draw on 0</p>
-            <p class="odd" name="draw:0">{{ currentGame?.odds['draw:0'] }}</p>
+            <p class="odd" name="draw:0">{{ currentGame?.odds['draw:0'] }}<span  [ngClass]="{'betUp': betUp && (key==='draw:0'), 'betDown': betDown && (key==='draw:0')}" ></span></p>
           </div>
-          <div class="overX" [ngClass]="{'betUp': betUp && (key==='draw:1'),'betDown': betDown && (key==='draw:1')}">
+          <div class="overX" >
             <p>Draw on 1</p>
-            <p class="odd" name="draw:1">{{ currentGame?.odds['draw:1'] }}</p>
+            <p class="odd" name="draw:1">{{ currentGame?.odds['draw:1'] }}<span  [ngClass]="{'betUp': betUp && (key==='draw:1'), 'betDown': betDown && (key==='draw:1')}" ></span></p>
           </div>
-          <div class="overX" [ngClass]="{'betUp': betUp && (key==='draw:2'),'betDown': betDown && (key==='draw:2')}">
+          <div class="overX" >
             <p>Draw on 2+</p>
-            <p class="odd" name="draw:2">{{ currentGame?.odds['draw:2'] }}</p>
+            <p class="odd" name="draw:2">{{ currentGame?.odds['draw:2'] }}<span  [ngClass]="{'betUp': betUp && (key==='draw:2'), 'betDown': betDown && (key==='draw:2')}" ></span></p>
           </div>
           <div class="verticalLine"></div>
           <div class="place-bet" (click)="showBettingAmount($event)">

@@ -1,16 +1,20 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { AuthentificationService } from '../../services/authentification.service';
-import { PopupService } from '../../services/popup.service';
+import { Component, OnInit } from '@angular/core';
 
-import { Game } from 'src/app/games/interfaces/game';
-import { Bet } from '../../interfaces/bet';
+// Auth
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
+
+// Bet and game
+import { Game } from 'src/app/games/interfaces/game';
 import { FiltrationService } from 'src/app/games/services/filtration.service';
+import { Bet } from '../../interfaces/bet';
 import { BetsService } from '../../services/bets.service';
 import { interval } from 'rxjs';
+
+// Material and Popup
 import { MatDialogConfig, MatDialog } from '@angular/material';
 import { ConfirmComponent } from '../../Confirm/confirm.component';
+import { DepositCopmponent } from './deposit.component';
 
 @Component({
   selector: 'bets-and-deposit',
@@ -38,7 +42,6 @@ export class BetsAndDepositComponent implements OnInit {
     private filtrationService: FiltrationService,
     private bets: BetsService,
     private dialog: MatDialog,
-    @Inject(PopupService) private popup: PopupService
   ) { 
    
   }
@@ -50,11 +53,12 @@ export class BetsAndDepositComponent implements OnInit {
     this.filtrationService.getAllGames().then(_games => {
       this.afs.collection('bets', bet => bet.where('user', '==', this.currentUser['uid'])).valueChanges().subscribe(res => {
         this.allBets = res;
-        let games: Array<Game> = _games[0];
+        let games: Array<Game> = _games.allGames;
         this.allBets.forEach(bet => {
           games.forEach(game => {
             if (bet.game === game.id && game.start_time['seconds'] * 1000 >= Date.now() && !this.ongoingBets.includes(game)) {
               
+              game['showDeleteButton'] = true;
               this.ongoingBets.push(game);
               this.betsAndGames.push([bet, game]);
               
@@ -65,30 +69,21 @@ export class BetsAndDepositComponent implements OnInit {
             }
           })
         })
-        
-        
-
       })
     })
 
     interval(30000).subscribe(() => {
       this.betsAndGames.forEach((bet_game, ind) => {
-        if(bet_game[1]['start_time']['seconds']*1000 > Date.now()) {
-          bet_game[1]['showDeleteButton'] = true;
-        } else if(bet_game[1]['start_time']['seconds']*1000 <= Date.now()) {
-          bet_game[1]['showDeleteButton'] = false;
-        }
+        this.bets.hideDeleteButton(bet_game[1]);
         if(bet_game[1]['end_time']['seconds']*1000 < Date.now()) {
 
           this.unreadMessages++;
-          alert('prcav');
+
           this.ongoingBets.splice(ind, 1);
           this.endedBets.push(bet_game[1] as Game);
           this.animationPlay = true;
           if(bet_game[0]['odd'] === bet_game[1]['win']) {
             
-
-            alert('krir');
             bet_game[1]['win'] = true;
             const odd = +bet_game[1]['odds'][bet_game[0]['odd']];
             const amount = bet_game[0]['amount'] * odd;
@@ -96,7 +91,6 @@ export class BetsAndDepositComponent implements OnInit {
 
           } else {
             bet_game[1]['win'] = false;
-            alert('krvar');
           }
           this.betsAndGames.splice(ind ,1);
         }
@@ -106,8 +100,15 @@ export class BetsAndDepositComponent implements OnInit {
   }
 
   logOut(event:any) {
-    this.popup.message = 'Would you like to log out ?'
-    this.popup._openConfirm(event)
+    this.message = 'Would you like to log out ?'
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    this.dialog.open(ConfirmComponent, {
+      data:{
+        message:this.message,
+        event:event,
+      }
+    })
   }
 
   openBets(): void {
@@ -119,33 +120,20 @@ export class BetsAndDepositComponent implements OnInit {
   }
 
   openDeposit(): void {
-    this.popup._openDeposit();
+    this.dialog.open(DepositCopmponent)
   }
 
   deleteBet(game, event: Event): void {
     this.bets.game = game
     this.message = "Would you like cancel Bet ?"
     event.stopPropagation();
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = false;
+
     this.dialog.open(ConfirmComponent, {
       data:{
         message:this.message,
         event:event,
       }
     })
-    // this.bets.deleteBet(game,event,this.ongoingBets);
-    
-    // this.ongoingBets.forEach((_game, ind) => {
-    //   if(_game.id === game.id) {
-    //     this.ongoingBets.splice(ind, 1);
-    //     let subscription = this.afs.collection('bets', bet => bet.where('game', '==', game.id)).snapshotChanges().subscribe(res => {
-    //       this.bets.changeBalance(this.currentUser, res[0].payload.doc.data()['amount'], true);
-    //       this.afs.collection('bets').doc(res[0].payload.doc.id).delete();
-    //       subscription.unsubscribe();
-    //     })
-    //   }
-    // })
   }
   
 }

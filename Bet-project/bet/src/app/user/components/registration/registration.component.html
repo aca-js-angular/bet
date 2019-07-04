@@ -11,11 +11,8 @@
                 <input type="text" placeholder="Last Name" formControlName="lastName" class="inp"
                         [ngClass]="{'invalid-border': _lastName.invalid && (_lastName.dirty || _lastName.touched)}">
 
-                <input type="text" placeholder="Email Adress" formControlName="email" class="inp left"
+                <input type="text" placeholder="Email Adress" formControlName="email" class="inp left email"
                         [ngClass]="{'invalid-border': _email.invalid && (_email.dirty || _email.touched)}">
-
-                <input type="text" placeholder="username" formControlName="username" class="inp"
-                        [ngClass]="{'invalid-border': _username.invalid && (_username.dirty || _username.touched)}">
 
                 <input type="password" placeholder="Password" formControlName="password" class="inp left"
                         [ngClass]="{'invalid-border': _password.invalid && (_password.dirty || _password.touched)}">

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
 import { RegistrationService } from '../../services/registration.service';
-import { customValidators } from './customValidators/customValidators';
+import { customValidators } from '../../customValidators/customValidators';
 import { MatDialog } from '@angular/material';
 
 
@@ -32,7 +32,6 @@ export class RegistrationComponent  {
   registrForm: FormGroup = this.fb.group({
     firstName: ['', [Validators.required, Validators.minLength(2)]],
     lastName: ['', [Validators.required, Validators.minLength(2)]],
-    username: ['', [Validators.required, Validators.minLength(2)]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8), customValidators.upperCaseAndLowerCase, customValidators.specSymbols]],
     passwordConfirm: ['', [Validators.required]],
@@ -60,10 +59,7 @@ export class RegistrationComponent  {
   get _lastName() {
     return this.registrForm.get('lastName');
   }
-  get _username() {
-    return this.registrForm.get('username');
-  }
-
+ 
   get _passwordConfirm() {
     return this.registrForm.get('passwordConfirm');
   }

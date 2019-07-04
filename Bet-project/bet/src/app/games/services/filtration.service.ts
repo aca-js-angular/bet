@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 
 import { Game } from '../interfaces/game';
+import { Datas } from '../interfaces/datas';
 
 @Injectable({
   providedIn: 'root'
@@ -62,15 +63,19 @@ export class FiltrationService {
     return filteredGames;
   };
 
-  getAllGames(): Promise<Array<any>> {
+  getAllGames(): Promise<Datas> {
 
     return new Promise(resolve => {
 
 
       this.db.collection('games').snapshotChanges().subscribe(res => {
 
-        let games: Array<Array<any>> = [];
-
+        let datas: Datas = {
+          allGames: [],
+          teams: [],
+          categories: [],
+          subcategories: []
+        };
 
         let arr: Array<any> = [];
         res.forEach(game => {
@@ -78,38 +83,38 @@ export class FiltrationService {
           gameObj['id'] = game.payload.doc.id;
           arr.push(gameObj)
         })
-        games.push(arr);
+        datas.allGames = arr;
         this.db.collection('teams').snapshotChanges().subscribe(res => {
-          games.push(res);
-          games[1].forEach((game, ind) => {
+          datas.teams = res;
+          datas.teams.forEach((game, ind) => {
             let key = game.payload.doc.id;
             let value = game.payload.doc.data().name;
-            games[1][ind] = {
+            datas.teams[ind] = {
               id: key,
               name: value
             };
           });
           this.db.collection('categories').snapshotChanges().subscribe(res => {
-            games.push(res);
-            games[2].forEach((game, ind) => {
+            datas.categories = res;
+            datas.categories.forEach((game, ind) => {
               let key = game.payload.doc.id;
               let value = game.payload.doc.data().name;
-              games[2][ind] = {
+              datas.categories[ind] = {
                 id: key,
                 name: value
               };
             })
             this.db.collection('subcategories').snapshotChanges().subscribe(res => {
-              games.push(res);
-              games[0].forEach(game => {
-                games[1].forEach(team => {
+              datas.subcategories = res;
+              datas.allGames.forEach(game => {
+                datas.teams.forEach(team => {
                   if (game.team_1 === team.id) {
                     game.team1 = team.name
                   } else if (game.team_2 === team.id) {
                     game.team2 = team.name;
                   }
                 })
-                games[2].forEach(cat => {
+                datas.categories.forEach(cat => {
                   if (game.category === cat.id) {
                     game.categoryName = cat.name;
                   }
@@ -120,24 +125,24 @@ export class FiltrationService {
                   }
                 })
               })
-              games[3].forEach((game, ind) => {
+              datas.subcategories.forEach((game, ind) => {
                 let key = game.payload.doc.data()['category'];
                 let value = game.payload.doc.data().name;
-                games[3][ind] = {
+                datas.subcategories[ind] = {
                   id: key,
                   name: value
                 };
               })
-              games[2].forEach(cat => {
+              datas.categories.forEach(cat => {
                 let subCategories = [];
-                games[3].forEach(subCat => {
+                datas.subcategories.forEach(subCat => {
                   if (subCat['id'] === cat.id) {
                     subCategories.push(subCat['name']);
                   }
                 })
                 cat['subCategories'] = subCategories;
               })
-              resolve(games);
+              resolve(datas);
             })
           })
         })

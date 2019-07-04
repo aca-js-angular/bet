@@ -42,7 +42,7 @@
   <div>
     <div>Forgot Your Password?</div>
 
-    <form [formGroup]="forgotPasswordForm">
+    <form class="forgot-password-form" [formGroup]="forgotPasswordForm">
       <div><input type="mail" formControlName="mail" placeholder="Email Addres"></div>
       <button (click)="resetPassword()" type="button" [disabled]="forgotPasswordForm.invalid">Reset Password</button>
     </form>
