@@ -26,7 +26,8 @@ export class ConfirmComponent implements OnInit {
   ngOnInit() {
   }
   confirmFunction() {
-      if(this.event.target.className === 'del'){
+
+      if(this.event.target.classList.contains('del')){
         this.bets.deleteBet(this.bets.game,this.event,this.bets.ongoingBets)
       }
       else{

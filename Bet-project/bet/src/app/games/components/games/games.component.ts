@@ -59,126 +59,90 @@ export class GamesComponent implements OnInit {
   ngOnInit() {
 
 
+ 
 
 
 
 
-
-    let subscription = this.afs.collection('games').snapshotChanges().subscribe(res => {
-      /* let x = 3600000;
-      let startDate = new Date(Date.now());
-      let endDate = new Date(Date.now() + x); */
-      res.forEach((game, ind) => {
-
-        /* if(ind % 30 === 0) {
-          x *= 2;
-          startDate = new Date(Date.now() + x);
-          endDate = new Date(Date.now() + x + 3600000);
-        } */
-
-        let endDate = new Date(new Date(Date.now()+10000360000));
-        let startDate = new Date(new Date(Date.now()+10000000000));
-
-        let _game = {
-
-          end_time: endDate,
-          start_time: startDate,
-          
-        }
-
-        this.afs.collection('games').doc(game.payload.doc.id).update(_game);
-
-
+      //////////////////////////////////////////////////////////////////////
+      this.selectedDayFromCalendar = this.timeService.dayfromCalendar;
+      this.nextHours = this.timeService.nextHours.hours;
+  
+      this.filtrationService.getAllGames().then(res => {
+        this.notloaded = false;
         
-      })
-      subscription.unsubscribe();
-    })
-
-
-
-
-
-
-
-
-
-
-
-
-    this.selectedDayFromCalendar = this.timeService.dayfromCalendar;
-    this.nextHours = this.timeService.nextHours.hours;
-
-    this.filtrationService.getAllGames().then(res => {
-      this.notloaded = false;
-      
-      this.categories = res.categories;
-      this.allGames = res.allGames;
-      this.filteredGames = this.allGames;
-
-      this.allSubCategories = res.subcategories;
-      this.allSubCategories.forEach(a => this.filteredSubCategories.push(a['name']));
-      this.activeRoute.params.subscribe(params => {
-
-        if (params.id) {
-          this.params = params;
-          for (let i = 0; i < this.allGames.length; i++) {
-            if (this.allGames[i].id === params.id) {
-              break;
-            }
-            if (i === this.allGames.length - 1) {
-              this.router.navigate(['**']);
+        this.categories = res.categories;
+        this.allGames = res.allGames;
+        this.filteredGames = this.allGames;
+  
+        this.allSubCategories = res.subcategories;
+        this.allSubCategories.forEach(a => this.filteredSubCategories.push(a['name']));
+        this.activeRoute.params.subscribe(params => {
+  
+          if (params.id) {
+            this.params = params;
+            for (let i = 0; i < this.allGames.length; i++) {
+              if (this.allGames[i].id === params.id) {
+                break;
+              }
+              if (i === this.allGames.length - 1) {
+                this.router.navigate(['**']);
+              }
             }
           }
-        }
-
-        if (params.category && !params.subCategory) {
-
-          this.filteredSubCategories = this.filtrationService.filterSubCategories(params.category, this.filteredSubCategories, this.categories);
-          this.filteredGames = this.filtrationService.filterGamesWithCategory(params.category, this.allGames);
-          this.currentCategory = params.category;
-
-          for(let i = 0; i < this.categories.length; i++) {
-            if(this.categories[i]['name'] === params.category) {
-              break;
+  
+          if (params.category && !params.subCategory) {
+  
+            this.filteredSubCategories = this.filtrationService.filterSubCategories(params.category, this.filteredSubCategories, this.categories);
+            this.filteredGames = this.filtrationService.filterGamesWithCategory(params.category, this.allGames);
+            this.currentCategory = params.category;
+  
+            for(let i = 0; i < this.categories.length; i++) {
+              if(this.categories[i]['name'] === params.category) {
+                break;
+              }
+              if(i === this.categories.length - 1) {
+                this.router.navigate(['**']);
+              }
             }
-            if(i === this.categories.length - 1) {
-              this.router.navigate(['**']);
+  
+          }
+          if (params.category && params.subCategory) {
+  
+            this.currentSubCategory = params.subCategory;
+            this.currentCategory = params.category;
+            this.filteredSubCategories = this.filtrationService.filterSubCategories(params.category, this.filteredSubCategories, this.categories);
+            this.filteredGames = this.filtrationService.filterWithSubCategories(params.subCategory, this.categories, this.allGames);
+  
+            for(let i = 0; i < this.categories.length; i++) {
+              if(this.categories[i]['name'] === params.category) {
+                break;
+              }
+              if(i === this.categories.length - 1) {
+                this.router.navigate(['**']);
+              }
+            }
+  
+            for(let i = 0; i < this.allSubCategories.length; i++) {
+              if(this.allSubCategories[i]['name'] === params.subCategory) {
+                break;
+              }
+              if(i === this.allSubCategories.length - 1) {
+                this.router.navigate(['**']);
+              }
             }
           }
-
-        }
-        if (params.category && params.subCategory) {
-
-          this.currentSubCategory = params.subCategory;
-          this.currentCategory = params.category;
-          this.filteredSubCategories = this.filtrationService.filterSubCategories(params.category, this.filteredSubCategories, this.categories);
-          this.filteredGames = this.filtrationService.filterWithSubCategories(params.subCategory, this.categories, this.allGames);
-
-          for(let i = 0; i < this.categories.length; i++) {
-            if(this.categories[i]['name'] === params.category) {
-              break;
-            }
-            if(i === this.categories.length - 1) {
-              this.router.navigate(['**']);
-            }
+          else if (!params.category && !params.subCategory) {
+            this.currentCategory = "allSports";
           }
-
-          for(let i = 0; i < this.allSubCategories.length; i++) {
-            if(this.allSubCategories[i]['name'] === params.subCategory) {
-              break;
-            }
-            if(i === this.allSubCategories.length - 1) {
-              this.router.navigate(['**']);
-            }
-          }
-        }
-        else if (!params.category && !params.subCategory) {
-          this.currentCategory = "allSports";
-        }
-
+  
+        });
+  
       });
 
-    });
+    
+
+
   }
 
   showGamesWithCategory(categoryName: string) {
